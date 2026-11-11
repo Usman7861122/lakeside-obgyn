@@ -13,6 +13,18 @@ export const site = {
   email: null as string | null,
   address: { line1: '402 8th Avenue, Suite 201', city: 'San Francisco', state: 'CA', zip: '94118' },
   hours: 'Monday to Friday, 8:30 am to 5 pm',
+  // Weekly hours for the hours list. Same source as `hours` (old home page). TODO(client): the old Accessibility page
+  // says Monday to Saturday, and hours are in no client document. Confirm, then change them here only.
+  timezone: 'America/Los_Angeles',
+  weekHours: [
+    { day: 'Monday', open: '08:30', close: '17:00' },
+    { day: 'Tuesday', open: '08:30', close: '17:00' },
+    { day: 'Wednesday', open: '08:30', close: '17:00' },
+    { day: 'Thursday', open: '08:30', close: '17:00' },
+    { day: 'Friday', open: '08:30', close: '17:00' },
+    { day: 'Saturday', open: null, close: null },
+    { day: 'Sunday', open: null, close: null },
+  ] as { day: string; open: string | null; close: string | null }[],
   portalUrl: 'https://16523.portal.athenahealth.com/',
   appointmentHref: '#contact',
   // TODO(dev): set this to the form service or API address that sends the email (for example a Formspree, Resend or

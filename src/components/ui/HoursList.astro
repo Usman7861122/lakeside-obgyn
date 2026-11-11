@@ -1,0 +1,65 @@
+---
+import { site } from '../../data/site';
+
+interface Props { dark?: boolean; status?: boolean; variant?: 'list' | 'status' }
+const { dark = false, status = true, variant = 'list' } = Astro.props;
+const compact = variant === 'status';
+const fmt = (t: string) => {
+  const [h, m] = t.split(':').map(Number);
+  const hh = h % 12 === 0 ? 12 : h % 12;
+  return `${hh}${m ? ':' + String(m).padStart(2, '0') : ''} ${h < 12 ? 'am' : 'pm'}`;
+};
+---
+<div class={`hrs ${dark ? 'hrs-dark' : ''} ${compact ? 'hrs-compact' : ''}`} data-hours data-tz={site.timezone}>
+  {(status || compact) && <p class="hrs-status" data-hours-status role="status" aria-live={compact ? 'off' : 'polite'}></p>}
+  <ul class="hrs-list" hidden={compact}>
+    {site.weekHours.map((d) => (
+      <li class="hrs-row" data-day={d.day} data-open={d.open ?? ''} data-close={d.close ?? ''}>
+        <span class="hrs-day">{d.day}<span class="hrs-today" hidden>Today</span></span>
+        <span class="hrs-time">{d.open && d.close ? `${fmt(d.open)} – ${fmt(d.close)}` : 'Closed'}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  // Marks today (in the practice's time zone) and writes a sentence such as
+  // "Open now. We close at 5:00 pm today." or "Closed now. We open tomorrow at 8:30 am."
+  const roots = document.querySelectorAll<HTMLElement>('[data-hours]');
+  const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+  const fmt = (t: string) => { const [h, m] = t.split(':').map(Number); return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'am' : 'pm'}`; };
+  function update() {
+    roots.forEach((root) => {
+      const tz = root.dataset.tz || 'America/Los_Angeles';
+      const parts = new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'long', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+      const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
+      const day = get('weekday');
+      const now = (Number(get('hour')) % 24) * 60 + Number(get('minute'));
+      const rows = Array.from(root.querySelectorAll<HTMLElement>('.hrs-row'));
+      const idx = rows.findIndex((r) => r.dataset.day === day);
+      rows.forEach((row, i) => {
+        const isToday = i === idx;
+        row.classList.toggle('is-today', isToday);
+        row.querySelector<HTMLElement>('.hrs-today')!.hidden = !isToday;
+        if (isToday) row.setAttribute('aria-current', 'date'); else row.removeAttribute('aria-current');
+      });
+      const today = rows[idx];
+      let openNow = false;
+      let msg = '';
+      if (today?.dataset.open && today?.dataset.close) {
+        const o = toMin(today.dataset.open), c = toMin(today.dataset.close);
+        if (now >= o && now < c) { openNow = true; msg = `Open now. We close at ${fmt(today.dataset.close)} today.`; }
+        else if (now < o) msg = `Closed now. We open at ${fmt(today.dataset.open)} today.`;
+      }
+      if (!openNow && !msg) {
+        for (let k = 1; k <= 7; k++) {
+          const next = rows[(idx + k) % rows.length];
+          if (next?.dataset.open) { msg = `Closed now. We open ${k === 1 ? 'tomorrow' : next.dataset.day} at ${fmt(next.dataset.open)}.`; break; }
+        }
+      }
+      const st = root.querySelector<HTMLElement>('[data-hours-status]');
+      if (st) { st.textContent = msg; st.classList.toggle('is-open', openNow); }
+    });
+  }
+  if (roots.length) { update(); setInterval(update, 60000); }
+</script>

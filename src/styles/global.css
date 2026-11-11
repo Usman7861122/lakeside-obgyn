@@ -56,12 +56,12 @@
     transform: translate(.2rem, -.1rem);
     transition: transform .6s cubic-bezier(.2,.7,.2,1), background-position .8s ease;
   }
-  .tl-item:hover .tl-dot, .tl-dot:hover {
+  .why-item:hover .tl-dot, .why-item.is-active .tl-dot, .tl-dot:hover {
     transform: scale(1.14);
     box-shadow: 0 0 0 1.5px var(--color-magenta-500), 0 16px 30px -10px rgb(216 16 112 / .6);
     animation: tl-pulse 1.6s ease-out infinite;
   }
-  .tl-item:hover .tl-logo { background-position: 100% 0; transform: translate(.2rem, -.1rem) rotate(-6deg) scale(1.08); }
+  .why-item:hover .tl-logo, .why-item.is-active .tl-logo { background-position: 100% 0; transform: translate(.2rem, -.1rem) rotate(-6deg) scale(1.08); }
   @keyframes tl-pulse { 0% { outline: 0 solid rgb(216 16 112 / .35); outline-offset: 0; } 100% { outline: 14px solid rgb(216 16 112 / 0); outline-offset: 2px; } }
 
 
@@ -571,3 +571,63 @@ a.pbadge:hover { background: rgb(255 255 255 / .13); border-color: rgb(255 194 2
 .cf-bad { background: #fdecef; color: #8a0f33; border: 1px solid #e6a0b2; }
 .cf-side { padding: 2rem; border-radius: 6px; background: #fff; border: 1px solid rgb(136 32 120 / .12); box-shadow: 0 30px 60px -44px rgb(58 16 56 / .55); }
 @media (prefers-reduced-motion: reduce) { .cf-field input, .cf-field textarea { transition: none; } }
+
+/* About facts hover */
+.ab-fact { position: relative; transition: background-color .35s ease; }
+.ab-fact::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, var(--color-plum-700), var(--color-magenta-500)); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.ab-fact:hover { background-color: rgb(136 32 120 / .06); }
+.ab-fact:hover::after { transform: scaleX(1); }
+.ab-dash { transition: width .4s cubic-bezier(.2,.7,.2,1), height .3s; }
+.ab-fact:hover .ab-dash { width: 1.75rem; height: 2px; }
+.ab-txt { transition: transform .4s cubic-bezier(.2,.7,.2,1), color .3s ease; }
+.ab-fact:hover .ab-txt { transform: translateX(4px); color: var(--color-plum-900); }
+@media (prefers-reduced-motion: reduce) { .ab-fact, .ab-fact::after, .ab-dash, .ab-txt { transition-duration: .01ms !important; } .ab-fact:hover .ab-txt { transform: none; } }
+
+/* Providers mega menu cards */
+.mdoc { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--color-plum-900); }
+.mdoc-img { display: block; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 6px; background: var(--color-mist-200); }
+.mdoc-img img { transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.mdoc:hover .mdoc-img img, .mdoc:focus-visible .mdoc-img img { transform: scale(1.07); }
+.mdoc-name { margin-top: 1rem; font-family: var(--font-display); font-size: 1.4rem; line-height: 1.15; transition: color .3s; }
+.mdoc:hover .mdoc-name, .mdoc:focus-visible .mdoc-name { color: var(--color-magenta-600); }
+.mdoc-creds { margin-top: .3rem; font-size: .8rem; color: rgb(136 32 120 / .9); }
+.mdoc-role { font-size: .8rem; color: rgb(30 20 32 / .62); }
+.mdoc:hover .mcard-cta span { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) { .mdoc-img img { transition-duration: .01ms !important; transform: none !important; } }
+
+/* Home "Why Lakeside" timeline: scroll highlight */
+.why-item h3, .why-item > p { transition: color .35s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+.why-item.is-active h3 { color: var(--color-magenta-600); transform: translateX(6px); }
+.why-item.is-active > p:first-of-type { transform: translateX(6px); }
+@media (prefers-reduced-motion: reduce) { .why-item h3, .why-item > p { transition-duration: .01ms !important; } .why-item.is-active h3, .why-item.is-active > p:first-of-type { transform: none; } .why-item:hover .tl-dot, .why-item.is-active .tl-dot { animation: none; } }
+
+/* Weekly hours list */
+.hrs-status { display: flex; align-items: center; gap: .6rem; margin: 0 0 .9rem; font-size: 1rem; font-weight: 700; line-height: 1.35; color: rgb(30 20 32 / .6); }
+.hrs-status:empty { display: none; }
+.hrs-status::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: currentColor; }
+.hrs-status.is-open { color: #1c7c4a; }
+.hrs-status.is-open::before { box-shadow: 0 0 0 0 rgb(28 124 74 / .5); animation: hrs-pulse 2s ease-out infinite; }
+@keyframes hrs-pulse { 70% { box-shadow: 0 0 0 .5rem rgb(28 124 74 / 0); } 100% { box-shadow: 0 0 0 0 rgb(28 124 74 / 0); } }
+.hrs-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgb(136 32 120 / .14); }
+.hrs-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem .6rem; border-bottom: 1px solid rgb(136 32 120 / .14); border-left: 3px solid transparent; font-size: .95rem; transition: background-color .3s, border-color .3s; }
+.hrs-day { display: inline-flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--color-plum-900); }
+.hrs-time { color: rgb(30 20 32 / .75); font-variant-numeric: tabular-nums; }
+.hrs-today { padding: .15rem .5rem; border-radius: 999px; background: var(--color-magenta-500); color: #fff; font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.hrs-today[hidden] { display: none; }
+.hrs-row.is-today { background: rgb(136 32 120 / .07); border-left-color: var(--color-magenta-500); }
+.hrs-row.is-today .hrs-time { color: var(--color-plum-900); font-weight: 700; }
+.hrs-dark .hrs-status { color: rgb(255 255 255 / .7); }
+.hrs-dark .hrs-status.is-open { color: #7ee2a8; }
+.hrs-dark .hrs-list, .hrs-dark .hrs-row { border-color: rgb(255 255 255 / .15); }
+.hrs-dark .hrs-day { color: #fff; }
+.hrs-dark .hrs-time { color: rgb(255 255 255 / .8); }
+.hrs-dark .hrs-row.is-today { background: rgb(255 255 255 / .09); border-left-color: var(--color-rose-200, #fbcfe8); }
+.hrs-dark .hrs-row.is-today .hrs-time { color: #fff; }
+@media (prefers-reduced-motion: reduce) { .hrs-status.is-open::before { animation: none; } .hrs-row { transition: none; } }
+
+/* Compact hours (one sentence) for the header, cards and call-to-action bands */
+.hrs-compact { display: inline-block; }
+.hrs-compact .hrs-status { margin: 0; font-size: inherit; font-weight: 600; letter-spacing: normal; text-transform: none; color: inherit; }
+.hrs-compact .hrs-status.is-open { color: #1c7c4a; }
+.hrs-dark.hrs-compact .hrs-status.is-open { color: #7ee2a8; }
+.hrs-compact .hrs-status::before { width: .5rem; height: .5rem; flex: none; }

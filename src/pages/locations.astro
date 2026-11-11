@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Backdrop from '../components/ui/Backdrop.astro';
 import Parking from '../components/home/Parking.astro';
 import { site } from '../data/site';
+import HoursList from '../components/ui/HoursList.astro';
 
 const a = site.address;
 const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(`${a.line1} ${a.city} ${a.state} ${a.zip}`)}&output=embed`;
@@ -45,8 +46,8 @@ const ld = {
         <dl class="loc-list mt-8">
           <div><dt>Address</dt><dd>{a.line1}<br />{a.city}, {a.state} {a.zip}</dd></div>
           <div><dt>Phone</dt><dd><a href={site.phoneHref} class="svc-link">{site.phone}</a></dd></div>
-          <div><dt>Hours</dt><dd>{site.hours}</dd></div>
-        </dl>
+          </dl>
+        <div class="mt-8" id="hours"><p class="eyebrow">Office hours</p><div class="mt-4"><HoursList /></div></div>
         <div class="mt-9 flex flex-wrap items-center gap-4">
           <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
           <a href={site.portalUrl} class="btn" rel="noopener" target="_blank">Request appointment</a>

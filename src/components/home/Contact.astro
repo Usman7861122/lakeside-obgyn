@@ -1,6 +1,7 @@
 ---
 import Backdrop from '../ui/Backdrop.astro';
 import { site } from '../../data/site';
+import HoursList from '../ui/HoursList.astro';
 const q = encodeURIComponent(`${site.address.line1}, ${site.address.city}, ${site.address.state} ${site.address.zip}`);
 const mapSrc = `https://www.google.com/maps?q=${q}&z=16&output=embed`;
 const dirHref = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
@@ -23,9 +24,9 @@ const dirHref = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
               <dt class="text-[.72rem] font-semibold uppercase tracking-[.22em] text-rose-200">Office</dt>
               <dd class="text-white/90">{site.address.line1}<br />{site.address.city}, {site.address.state} {site.address.zip}</dd>
             </div>
-            <div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-4 border-y border-white/15 py-5">
+            <div class="grid grid-cols-[5.5rem_1fr] items-start gap-4 border-y border-white/15 py-5">
               <dt class="text-[.72rem] font-semibold uppercase tracking-[.22em] text-rose-200">Hours</dt>
-              <dd class="text-white/90">{site.hours}</dd>
+              <dd><HoursList dark /></dd>
             </div>
           </dl>
         </div>

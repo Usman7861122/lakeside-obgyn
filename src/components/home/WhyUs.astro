@@ -10,9 +10,9 @@ import { journey } from '../../data/home';
       <h2 id="why-h" class="h-section">Care that goes the distance with you</h2>
       <p class="lede mt-6">From your first exam to menopause and beyond, you see a team that knows you. Here is how we support each stage.</p>
     </div>
-    <ol class="relative ml-3 border-l border-plum-700/25 pl-10 md:pl-14">
+    <ol class="why-list relative ml-3 border-l border-plum-700/25 pl-10 md:pl-14">
       {journey.map((j, n) => (
-        <li class="tl-item relative pb-14 last:pb-0" data-reveal style={`--d:${n * 0.06}s`}>
+        <li class="why-item relative pb-14 last:pb-0" data-reveal style={`--d:${n * 0.06}s`}>
           <span aria-hidden="true" class="tl-dot"><span class="tl-logo"></span></span>
           <p class="text-[.72rem] font-semibold uppercase tracking-[.24em] text-magenta-500">{j.stage}</p>
           <h3 class="mt-2 text-2xl md:text-[1.75rem]">{j.title}</h3>
@@ -22,3 +22,14 @@ import { journey } from '../../data/home';
     </ol>
   </div>
 </section>
+
+<script>
+  // Scroll animation: the step nearest the middle of the screen gets the highlighted look.
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.why-item'));
+  if (items.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting));
+    }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+    items.forEach((i) => io.observe(i));
+  }
+</script>

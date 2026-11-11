@@ -1,4 +1,5 @@
 ---
+import HoursList from './ui/HoursList.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Backdrop from './ui/Backdrop.astro';
 import { servicesMenu } from '../data/nav';
@@ -64,7 +65,7 @@ const kind = (x: Part) => ('p' in x ? 'p' : 'ul' in x ? 'ul' : 'h' in x ? 'h' : 
           </li>
           <li class="hero-row">
             <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <span><strong>Hours</strong><br />{site.hours}</span>
+            <span><strong>Hours</strong><br /><HoursList variant="status" dark /> <a href="/locations#hours" class="text-rose-200 underline underline-offset-4 hover:text-white">See all hours</a></span>
           </li>
           <li class="hero-row">
             <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>

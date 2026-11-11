@@ -22,8 +22,8 @@ import { images } from '../../data/images';
         <p class="lede mt-6">We are a father and daughter team of board-certified physicians. Our care is individualized and low-intervention, and we are here for you around the clock.</p>
         <ul class="mt-8 grid grid-cols-2 border-y border-plum-700/15">
           {['24/7 care', 'Low-intervention, individualized care', 'On-site ultrasound', 'FemVue® testing'].map((t, i) => (
-            <li class={`flex items-center gap-3 px-1 py-4 text-[.95rem] leading-snug ${i % 2 ? 'border-l border-plum-700/15 pl-5' : ''} ${i > 1 ? 'border-t border-plum-700/15' : ''}`}>
-              <span aria-hidden="true" class="h-px w-4 shrink-0 bg-magenta-500"></span>{t}
+            <li class={`ab-fact flex items-center gap-3 px-1 py-4 text-[.95rem] leading-snug ${i % 2 ? 'border-l border-plum-700/15 pl-5' : ''} ${i > 1 ? 'border-t border-plum-700/15' : ''}`}>
+              <span aria-hidden="true" class="ab-dash h-px w-4 shrink-0 bg-magenta-500"></span><span class="ab-txt">{t}</span>
             </li>
           ))}
         </ul>
