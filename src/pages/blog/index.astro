@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Backdrop from '../../components/ui/Backdrop.astro';
+import { posts } from '../../data/blog';
+import { site } from '../../data/site';
+
+const description = 'Articles from Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco: well-woman exams, fibroids, perimenopause and menopause.';
+---
+<BaseLayout title={`Blog | ${site.shortName}, Inner Richmond, San Francisco`} description={description}>
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="bl-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap" data-reveal>
+      <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+        <a href="/" class="hover:text-rose-200">Home</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <span class="text-rose-200">Blog</span>
+      </nav>
+      <h1 id="bl-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">From our blog</h1>
+      <p class="lede mt-6 max-w-2xl">Straight answers to common questions.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Articles">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap">
+      <ul class="svc-grid">
+        {posts.map((p, i) => (
+          <li data-reveal style={`--d:${((i % 3) * 0.08).toFixed(2)}s`}>
+            <a href={`/blog/${p.slug}`} class="svc-card bl-card">
+              <span class="svc-card-img">
+                <img src={p.image} alt={p.imageAlt} width="1200" height="1200" loading="lazy" decoding="async" />
+                <span class="svc-card-glare" aria-hidden="true"></span>
+              </span>
+              <span class="svc-card-body">
+                <span class="bl-tag">{p.tag}</span>
+                <span class="svc-card-title">{p.title}</span>
+                <span class="bl-excerpt">{p.excerpt}</span>
+                <span class="svc-card-cta">Read article<svg aria-hidden="true" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5h11M8 1l4 4-4 4" /></svg></span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section on-dark !py-20" aria-labelledby="bl-cta">
+    <Backdrop variant="plum" mark="left" />
+    <div class="wrap grid items-center gap-8 lg:grid-cols-[1fr_auto]" data-reveal>
+      <div>
+        <p class="eyebrow">Visit us</p>
+        <h2 id="bl-cta" class="h-section text-white">Schedule your appointment</h2>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

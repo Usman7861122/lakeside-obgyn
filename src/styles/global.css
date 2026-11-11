@@ -631,3 +631,10 @@ a.pbadge:hover { background: rgb(255 255 255 / .13); border-color: rgb(255 194 2
 .hrs-compact .hrs-status.is-open { color: #1c7c4a; }
 .hrs-dark.hrs-compact .hrs-status.is-open { color: #7ee2a8; }
 .hrs-compact .hrs-status::before { width: .5rem; height: .5rem; flex: none; }
+
+/* Blog */
+.bl-tag { display: block; margin-bottom: .5rem; font-size: .7rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--color-magenta-500); }
+.bl-excerpt { display: block; margin-top: .6rem; font-size: .95rem; line-height: 1.55; color: rgb(30 20 32 / .75); }
+.bl-card .svc-card-body { justify-content: flex-start; gap: 0; }
+.bl-card .svc-card-title { margin-bottom: .2rem; }
+.bl-card .svc-card-cta { margin-top: auto; padding-top: 1.4rem; }

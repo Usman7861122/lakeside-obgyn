@@ -18,9 +18,9 @@ const tones = [['#f4c9d9', '#b04c9f'], ['#e6d6ea', '#5c1650'], ['#ffd1e6', '#882
       {posts.map((p, n) => (
         <li data-reveal style={`--d:${n * 0.1}s`}>
           <article class="group">
-            <a href="/blog" class="block no-underline">
+            <a href={p.href} class="block no-underline">
               <div class="overflow-hidden rounded-[6px]"><Img src={p.img} alt="" tone={tones[n]} class="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" /></div>
-              <p class="mt-5 text-[.7rem] font-semibold uppercase tracking-[.22em] text-magenta-500">{p.tag} <span class="text-ink/40">· {p.date}</span></p>
+              <p class="mt-5 text-[.7rem] font-semibold uppercase tracking-[.22em] text-magenta-500">{p.tag}</p>
               <h3 class="mt-2 text-2xl leading-snug transition-colors group-hover:text-plum-700">{p.title}</h3>
             </a>
           </article>

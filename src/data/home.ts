@@ -63,12 +63,9 @@ export const portalFeatures = [
   'Non-urgent messages to our team',
 ];
 
-// TODO: placeholder posts until the blog is written. The old website had none.
-export const posts = [
-  { tag: 'Well-woman', title: 'What happens at an annual well-woman exam', date: 'Coming soon', img: images.blog[0] },
-  { tag: 'Fibroids', title: 'Fibroid symptoms: when to talk to your doctor', date: 'Coming soon', img: images.blog[1] },
-  { tag: 'Menopause', title: 'Perimenopause: what to expect and who can help', date: 'Coming soon', img: images.blog[2] },
-];
+// Home page blog cards. The articles live in src/data/blog.ts (drafts for client review).
+import { posts as blogPosts } from './blog';
+export const posts = blogPosts.map((p) => ({ tag: p.tag, title: p.title, img: p.image, href: `/blog/${p.slug}` }));
 
 export const contactFacts = {
   phone: site.phone,

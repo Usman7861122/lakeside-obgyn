@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Backdrop from '../../components/ui/Backdrop.astro';
+import { posts } from '../../data/blog';
+import { site } from '../../data/site';
+import type { Part } from '../../data/svc/types';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+const others = posts.filter((p) => p.slug !== post.slug);
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  image: post.image,
+  publisher: { '@type': 'MedicalBusiness', name: site.name, telephone: site.phone },
+};
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+---
+<BaseLayout title={`${post.title} | ${site.shortName}, Inner Richmond, San Francisco`} description={post.metaDescription} jsonLd={ld}>
+  <section class="section on-dark !pb-16 !pt-40 md:!pt-48" aria-labelledby="ar-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap" data-reveal>
+      <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+        <a href="/" class="hover:text-rose-200">Home</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <a href="/blog" class="hover:text-rose-200">Blog</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <span class="text-rose-200">{post.tag}</span>
+      </nav>
+      <h1 id="ar-h" class="mt-8 max-w-4xl font-display text-[clamp(2.2rem,5vw,4rem)] leading-[1.06] text-white">{post.title}</h1>
+    </div>
+  </section>
+
+  <article class="section" aria-labelledby="ar-h">
+    <Backdrop variant="mist" mark="none" />
+    <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-20">
+      <div class="legal-prose" data-reveal>
+        {post.intro.map((t: string) => <p class="!mt-0 text-[1.15rem]">{t}</p>)}
+        {post.sections.map((s: { h?: string; parts: Part[] }) => (
+          <>
+            {s.h && <h2>{s.h}</h2>}
+            {s.parts.map((x: Part) => {
+              if ('p' in x) return <p>{x.p}</p>;
+              if ('h' in x) return <h3 class="svc-sub">{x.h}</h3>;
+              if ('ul' in x) return <ul>{x.ul.map((i: string) => <li>{i}</li>)}</ul>;
+              return null;
+            })}
+          </>
+        ))}
+        <p class="!mt-10">{post.closing}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={post.serviceHref} class="btn">{post.serviceLabel}</a>
+        </div>
+        {post.related && (
+          <a href={post.related.href} class="rel-card mt-10">
+            <span class="eyebrow">{post.related.eyebrow}</span>
+            <span class="rel-title">{post.related.title}</span>
+            <span class="mega-more">{post.related.cta} <span aria-hidden="true">→</span></span>
+          </a>
+        )}
+      </div>
+      <div class="lg:sticky lg:top-28">
+        <figure class="pframe" data-reveal style="--d:.12s">
+          <span class="pframe-line" aria-hidden="true"></span>
+          <div class="pframe-img">
+            <img src={post.image} alt={post.imageAlt} width="1200" height="1200" class="kb h-full w-full object-cover" />
+            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/35 via-transparent to-magenta-500/10 mix-blend-multiply"></div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <section class="section" aria-labelledby="ar-more">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap">
+      <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
+        <div>
+          <p class="eyebrow">More articles</p>
+          <h2 id="ar-more" class="h-section">Keep reading</h2>
+        </div>
+        <a href="/blog" class="btn">All articles</a>
+      </div>
+      <ul class="svc-grid mt-12">
+        {others.map((p) => (
+          <li data-reveal>
+            <a href={`/blog/${p.slug}`} class="svc-card bl-card">
+              <span class="svc-card-img">
+                <img src={p.image} alt={p.imageAlt} width="1200" height="1200" loading="lazy" decoding="async" />
+                <span class="svc-card-glare" aria-hidden="true"></span>
+              </span>
+              <span class="svc-card-body">
+                <span class="bl-tag">{p.tag}</span>
+                <span class="svc-card-title">{p.title}</span>
+                <span class="svc-card-cta">Read article<svg aria-hidden="true" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5h11M8 1l4 4-4 4" /></svg></span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

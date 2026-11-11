@@ -96,3 +96,9 @@ Text was copied word for word from the old site. Please confirm these points wit
 - [ ] /contact form is built (Name, Email, Phone, Message, spam trap) but NOT connected. TODO(dev): set `contactEndpoint` in src/data/site.ts to the service that sends the email, and ask the client which email address should receive messages. Until then the form shows "not connected" and sends nothing.
 - [ ] The old site's Contact Us page (/contactus) had no form text or fields. The field list and the note "Please do not put health information in this form..." are the developer's draft. Ask the client to confirm.
 - [ ] Weekly hours list (2026-11-12): built from the old home page (Monday to Friday 8:30 am to 5 pm, Saturday and Sunday shown as Closed). Hours are in no client document, and the old Accessibility page says Monday to Saturday. To change the hours, edit `weekHours` in src/data/site.ts (and the one-line `hours` text). The list marks today and "Open now" or "Closed now" in San Francisco time.
+
+## Blog (2026-11-12)
+- [ ] The 3 blog posts (src/data/blog.ts) reuse exact wording from the service pages. Ask Dr. Hannon to approve them, or to send her own articles. Titles, tags and the "Straight answers to common questions" line are the developer's draft.
+- [ ] The text repeats the service pages, so search engines may see duplicate content. Ask if the client wants different articles later.
+- [ ] Blog is linked from the home cards and the "All articles" button only. It is NOT in the menu or footer yet, as requested. Add it to src/data/nav.ts when ready.
+- [ ] Post images are the stock photos in public/images/blog. Confirm they are licensed for this use.
