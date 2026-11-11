@@ -18,41 +18,32 @@ import { site } from '../../data/site';
     </div>
 
     <figure class="mx-auto w-full max-w-md" data-reveal style="--d:.14s">
-      <svg viewBox="0 0 480 540" role="img" aria-label="Simple map: 8th Avenue runs north to south between Clement Street at the top and Geary Boulevard below. A meter parking lot is on the east side of 8th Avenue near Clement Street. The office star is just south of Geary Boulevard." class="w-full rounded-[6px] bg-white shadow-[0_40px_80px_-44px_rgb(58_16_56/.6)]">
-        <rect width="480" height="540" fill="#fbf7fc" />
-        <!-- blocks -->
-        <g fill="#efe4f2">
-          <rect x="20" y="96" width="156" height="310" rx="4" /><rect x="224" y="96" width="236" height="310" rx="4" />
-          <rect x="224" y="466" width="236" height="60" rx="4" /><rect x="20" y="466" width="156" height="60" rx="4" />
-        </g>
-        <!-- park / church block -->
-        <rect x="40" y="250" width="116" height="120" rx="4" fill="#e1eddc" />
-        <!-- streets -->
-        <g fill="#ffffff" stroke="#dcc8e0" stroke-width="1">
-          <rect x="176" y="0" width="48" height="540" />
-          <rect x="0" y="46" width="480" height="40" />
-          <rect x="0" y="410" width="480" height="48" />
-        </g>
-        <g fill="#8a6a86" font-family="Open Sans Variable, Open Sans, sans-serif" font-size="12" letter-spacing="2">
-          <text x="300" y="71">CLEMENT ST</text>
-          <text x="40" y="439">GEARY BLVD</text>
-          <text transform="translate(205 300) rotate(-90)" text-anchor="middle">8TH AVE</text>
-        </g>
-        <!-- meter lot (red square) -->
-        <rect x="236" y="110" width="110" height="58" fill="rgb(216 16 112 / .08)" stroke="#d81070" stroke-width="2" rx="2" />
-        <circle cx="291" cy="139" r="13" fill="#882078" /><text x="291" y="144" text-anchor="middle" fill="#fff" font-size="15" font-weight="700" font-family="Open Sans Variable, sans-serif">P</text>
-        <!-- street meter parking -->
-        <g stroke="#882078" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity=".7">
-          <path d="M216 190 V396" /><path d="M236 424 H452" />
-        </g>
-        <!-- office (red star) -->
-        <path transform="translate(232 486) scale(1.5)" d="M0-14 4.1-4.3 14.5-3.6 6.6 3.2 9 13.4 0 8 -9 13.4 -6.6 3.2 -14.5-3.6 -4.1-4.3Z" fill="#d81070" />
-        <g font-family="Open Sans Variable, sans-serif" font-size="12" fill="#3a1038" font-weight="600">
-          <text x="262" y="474">Our office</text><text x="262" y="490" font-weight="400" fill="#6b4a68">402 8th Ave, Suite 201</text>
-          <text x="358" y="143">Meter lot</text>
-        </g>
-      </svg>
-      <figcaption class="mt-3 text-xs text-ink/55">Simple map, not to scale. Red star: office. Red square: meter lot. Dotted lines: meter parking.</figcaption>
+      <div class="overflow-hidden rounded-[6px] bg-white shadow-[0_40px_80px_-44px_rgb(58_16_56/.6)]">
+        <!-- Plays once when scrolled into view, muted, then stops on the last frame. -->
+        <video id="parking-video" class="block aspect-[4/5] w-full" muted playsinline preload="metadata" poster="/images/parking/parking-poster.jpg" aria-label="Animated map showing the office, the meter parking lot on 8th Avenue, nearby street parking, and the short walk to 402 8th Avenue.">
+          <source src="/images/parking/parking-demo.mp4" type="video/mp4" />
+        </video>
+      </div>
     </figure>
   </div>
 </section>
+
+<script>
+  const v = document.getElementById('parking-video') as HTMLVideoElement | null;
+  if (v) {
+    v.muted = true;
+    v.loop = false;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      v.controls = true; // visitor chooses to play
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          v.play().catch(() => { v.controls = true; });
+          io.disconnect();
+        }
+      }, { threshold: 0.5 });
+      io.observe(v);
+    }
+  }
+</script>
