@@ -1,0 +1,40 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+import Img from '../ui/Img.astro';
+import { services } from '../../data/home';
+---
+<section id="services" class="section on-dark" aria-labelledby="services-h">
+  <Backdrop variant="plum" mark="left" rings={2} />
+  <div class="wrap">
+    <div class="mx-auto max-w-2xl text-center" data-reveal>
+      <p class="eyebrow">Our services</p>
+      <h2 id="services-h" class="h-section text-white">Care for every stage, <span class="shift">in one place</span></h2>
+      <p class="lede mt-5">Hover or tap a card to see more.</p>
+    </div>
+    <ul class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s, n) => (
+        <li data-reveal style={`--d:${(n % 3) * 0.1}s`}>
+          <div class="flip aspect-square cursor-pointer" tabindex="0" role="group" aria-label={s.title}>
+            <div class="flip-inner">
+              <div class="flip-face">
+                <Img src={s.img} alt="" tone={s.tone} class="h-full" />
+                <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-plum-900/25 to-plum-800/20"></div>
+                <h3 class="absolute inset-x-0 bottom-0 p-6 text-2xl leading-tight text-white">{s.title}</h3>
+              </div>
+              <div class="flip-face flip-back grid content-center bg-plum-800 p-8 text-white">
+                <Img src={s.img} alt="" tone={s.tone} class="absolute inset-0 h-full w-full" />
+                <div aria-hidden="true" class="absolute inset-0 bg-plum-900/[.82] mix-blend-multiply"></div>
+                <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/70 via-plum-800/70 to-plum-700/60"></div>
+                <span aria-hidden="true" class="absolute -right-6 -top-4 h-28 w-48 opacity-15" style="background:#fff;-webkit-mask:url('/images/logo-mark.png') center/contain no-repeat;mask:url('/images/logo-mark.png') center/contain no-repeat"></span>
+                <h3 class="relative text-2xl text-rose-200">{s.title}</h3>
+                <p class="relative mt-4 leading-relaxed text-white">{s.text}</p>
+                <a href="#contact" class="relative mt-6 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-white underline-offset-8 hover:underline">Ask about this</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-12 text-center text-sm text-white/70" data-reveal>We also offer birth control, ovarian cyst care, irregular bleeding and PCOS care, pelvic pain care, ultrasound, and weight loss and management.</p>
+  </div>
+</section>

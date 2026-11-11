@@ -1,0 +1,47 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+import { sonata } from '../../data/sonata';
+---
+<section id="sonata" class="section on-dark" aria-labelledby="sonata-h">
+  <Backdrop variant="plum" mark="right" rings={2} />
+  <div class="wrap grid gap-14 lg:grid-cols-[6fr_5fr] lg:gap-20">
+    <div data-reveal>
+      <p class="eyebrow">Fibroid care</p>
+      <h2 id="sonata-h" class="h-section text-white">The Sonata<sup class="text-[.45em] align-super">®</sup> Procedure <br class="hidden md:block" />for Fibroids</h2>
+      <p class="lede mt-7 max-w-xl">{sonata.about}</p>
+
+      <p class="mt-10 text-[.72rem] font-semibold uppercase tracking-[.24em] text-rose-200">Common fibroid symptoms</p>
+      <ul class="mt-4 flex flex-wrap gap-2.5">
+        {sonata.symptoms.map((s) => <li class="rounded-[3px] border border-white/25 px-3.5 py-2 text-sm text-white/90">{s}</li>)}
+      </ul>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/services/sonata" class="btn-appt">Learn about Sonata</a>
+        <a href={sonata.learnMoreUrl} class="btn" rel="noopener" target="_blank">Sonata procedure website</a>
+      </div>
+    </div>
+
+    <div data-reveal style="--d:.14s">
+      <div class="rounded-[6px] border border-white/15 bg-white/[.06] p-8 backdrop-blur-sm md:p-10">
+        <h3 class="text-2xl text-white">Procedure overview</h3>
+        <dl class="mt-6 divide-y divide-white/15">
+          {sonata.overview.map((o) => (
+            <div class="grid gap-1 py-5 first:pt-0 sm:grid-cols-[7rem_1fr] sm:gap-6">
+              <dt class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-rose-200">{o.label}</dt>
+              <dd class="leading-relaxed text-white/90">{o.value}{o.fn && <sup><a href="#sonata-sources" class="ml-0.5 text-rose-200 no-underline">{o.fn}</a></sup>}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+
+    <div class="lg:col-span-2" data-reveal>
+      <p class="max-w-4xl text-sm leading-relaxed text-white/75">
+        {sonata.safetyLine} <a class="text-rose-200 underline underline-offset-4" href={sonata.safetyUrl} rel="noopener" target="_blank">gynsurgicalsolutions.com/important-safety-information</a>.
+      </p>
+      <ol id="sonata-sources" class="mt-4 max-w-4xl list-decimal space-y-1 pl-5 text-xs leading-relaxed text-white/55">
+        {sonata.sources.map((s) => <li>{s}</li>)}
+      </ol>
+    </div>
+  </div>
+</section>

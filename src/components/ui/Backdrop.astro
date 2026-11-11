@@ -1,0 +1,31 @@
+---
+// Living background for sections that would otherwise be flat white.
+// variant: "mist" (light), "plum" (dark), "blush" (warm light)
+interface Props {
+  variant?: 'mist' | 'plum' | 'blush';
+  mark?: 'left' | 'right' | 'center' | 'none';
+  rings?: number;
+}
+const { variant = 'mist', mark = 'right', rings = 0 } = Astro.props;
+const palette = {
+  mist: { bg: 'var(--color-mist-50)', glowA: 'var(--color-mist-200)', glowB: '#ffd9ea', ring: 'var(--color-plum-500)', mark: 'var(--color-plum-700)', op: '.07' },
+  blush: { bg: '#fbf0f5', glowA: '#ffd1e6', glowB: 'var(--color-mist-200)', ring: 'var(--color-magenta-500)', mark: 'var(--color-magenta-500)', op: '.07' },
+  plum: { bg: 'var(--color-plum-900)', glowA: 'var(--color-plum-700)', glowB: 'var(--color-lake-700)', ring: '#ffffff', mark: '#ffffff', op: '.07' },
+}[variant];
+const ringSpots = Array.from({ length: rings }, (_, i) => ({
+  left: `${(i * 37 + 12) % 90}%`,
+  top: `${(i * 53 + 18) % 80}%`,
+  delay: `${-i * 2.7}s`,
+}));
+const markPos = { left: 'left:-6%;top:12%', right: 'right:-8%;bottom:-6%', center: 'left:50%;top:50%;translate:-50% -50%', none: 'display:none' }[mark];
+---
+<div class="backdrop" aria-hidden="true" style={`background:${palette.bg}`}>
+  <div class="glow" style={`--c:${palette.glowA};left:-14rem;top:-18rem`}></div>
+  <div class="glow" style={`--c:${palette.glowB};right:-20rem;bottom:-24rem;animation-duration:34s;animation-direction:alternate-reverse`}></div>
+  {ringSpots.map((r) => (
+    <svg class="ripple" viewBox="0 0 100 100" style={`left:${r.left};top:${r.top};animation-delay:${r.delay};color:${palette.ring}`}>
+      <circle cx="50" cy="50" r="49.5" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" />
+    </svg>
+  ))}
+  <span class="mark" style={`${markPos};--mark-color:${palette.mark};--mark-opacity:${palette.op}`}></span>
+</div>

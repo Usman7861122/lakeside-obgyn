@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import { sonata } from '../../data/sonata';
+---
+<BaseLayout title="The Sonata Procedure for Fibroids">
+  <Section>
+    <h1 class="font-serif text-4xl">The Sonata Procedure for Fibroids</h1>
+    <p class="mt-4">Placeholder. Content comes from src/data/sonata.ts (copied exactly from the toolkit).</p>
+    {sonata.safetyLine && <p class="mt-8 text-sm">{sonata.safetyLine} <a class="underline" href={sonata.safetyUrl}>Safety Information</a></p>}
+  </Section>
+</BaseLayout>

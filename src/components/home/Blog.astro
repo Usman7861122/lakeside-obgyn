@@ -1,0 +1,31 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+import Img from '../ui/Img.astro';
+import { posts } from '../../data/home';
+const tones = [['#f4c9d9', '#b04c9f'], ['#e6d6ea', '#5c1650'], ['#ffd1e6', '#882078']];
+---
+<section id="blog" class="section" aria-labelledby="blog-h">
+  <Backdrop variant="blush" mark="none" />
+  <div class="wrap">
+    <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
+      <div>
+        <p class="eyebrow">From our blog</p>
+        <h2 id="blog-h" class="h-section">Straight answers to common questions</h2>
+      </div>
+      <a href="/blog" class="btn">All articles</a>
+    </div>
+    <ul class="mt-14 grid gap-8 md:grid-cols-3">
+      {posts.map((p, n) => (
+        <li data-reveal style={`--d:${n * 0.1}s`}>
+          <article class="group">
+            <a href="/blog" class="block no-underline">
+              <div class="overflow-hidden rounded-[6px]"><Img src={p.img} alt="" tone={tones[n]} class="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" /></div>
+              <p class="mt-5 text-[.7rem] font-semibold uppercase tracking-[.22em] text-magenta-500">{p.tag} <span class="text-ink/40">· {p.date}</span></p>
+              <h3 class="mt-2 text-2xl leading-snug transition-colors group-hover:text-plum-700">{p.title}</h3>
+            </a>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

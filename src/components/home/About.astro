@@ -1,0 +1,37 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+import Img from '../ui/Img.astro';
+import { site } from '../../data/site';
+import { images } from '../../data/images';
+---
+<section id="about" class="section" aria-labelledby="about-h">
+  <Backdrop variant="mist" mark="none" />
+  <div class="wrap">
+    <div class="grid overflow-hidden rounded-[6px] bg-white/80 shadow-[0_40px_90px_-50px_rgb(58_16_56/.55)] ring-1 ring-plum-700/10 backdrop-blur-sm lg:grid-cols-[5fr_6fr]" data-reveal>
+      <div class="relative min-h-[22rem] lg:min-h-full">
+        <Img src={images.about.src} alt={images.about.alt} tone={['#f4c9d9', '#882078']} class="absolute inset-0 h-full w-full !rounded-none" position="35% center" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6 flex items-center gap-4 text-white">
+          <p class="font-display text-5xl leading-none">{site.rating.score}<span class="text-xl text-rose-200"> / 5</span></p>
+          <p class="max-w-[9rem] border-l border-white/40 pl-4 text-xs leading-snug text-white/90">Patient rating from {site.rating.count} reviews</p>
+        </div>
+      </div>
+      <div class="flex flex-col p-8 md:p-12 lg:p-14">
+        <p class="eyebrow">About the practice</p>
+        <h2 id="about-h" class="h-section !text-[clamp(1.9rem,3.4vw,2.8rem)]">A family practice in the heart of the Inner Richmond</h2>
+        <p class="lede mt-6">We are a father and daughter team of board-certified physicians. Our care is individualized and low-intervention, and we are here for you around the clock.</p>
+        <ul class="mt-8 grid grid-cols-2 border-y border-plum-700/15">
+          {['24/7 care', 'Low-intervention, individualized care', 'On-site ultrasound', 'FemVue® testing'].map((t, i) => (
+            <li class={`flex items-center gap-3 px-1 py-4 text-[.95rem] leading-snug ${i % 2 ? 'border-l border-plum-700/15 pl-5' : ''} ${i > 1 ? 'border-t border-plum-700/15' : ''}`}>
+              <span aria-hidden="true" class="h-px w-4 shrink-0 bg-magenta-500"></span>{t}
+            </li>
+          ))}
+        </ul>
+        <div class="mt-auto flex flex-wrap items-center justify-between gap-x-8 gap-y-5 pt-8">
+          <p class="max-w-sm text-[.9rem] leading-relaxed text-ink/70">We accept {site.insurance}.</p>
+          <a href="#contact" class="btn">Contact our office</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

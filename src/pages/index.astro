@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/islands/Hero';
+import About from '../components/home/About.astro';
+import Services from '../components/home/Services.astro';
+import WhyUs from '../components/home/WhyUs.astro';
+import Doctors from '../components/home/Doctors.astro';
+import Sonata from '../components/home/Sonata.astro';
+import Badges from '../components/home/Badges.astro';
+import Portal from '../components/home/Portal.astro';
+import Blog from '../components/home/Blog.astro';
+import Contact from '../components/home/Contact.astro';
+import Parking from '../components/home/Parking.astro';
+import { heroSlides } from '../data/home';
+import { site } from '../data/site';
+---
+<BaseLayout
+  title="Lakeside Obstetrics, Gynecology & Fertility | Obgyn in Inner Richmond, San Francisco"
+  description="Private obstetrics, gynecology and fertility practice in San Francisco's Inner Richmond. Well-woman care, pregnancy, fibroids and the Sonata procedure, menopause care. Call 415-741-1000."
+>
+  <h1 class="sr-only">{site.name}: obstetrician and gynecologist in the Inner Richmond, San Francisco</h1>
+  <Hero client:load slides={heroSlides} />
+  <About />
+  <Services />
+  <WhyUs />
+  <Doctors />
+  <Sonata />
+  <Badges />
+  <Portal />
+  <Blog />
+  <Contact />
+  <Parking />
+</BaseLayout>

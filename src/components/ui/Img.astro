@@ -1,0 +1,12 @@
+---
+// Square image with slightly rounded edges. Shows temporary art when no photo is set yet.
+interface Props { src?: string | null; alt: string; tone?: string[]; class?: string; loading?: 'lazy' | 'eager'; position?: string }
+const { src, alt, tone = ['#e6d6ea', '#882078'], class: cls = '', loading = 'lazy', position = 'center' } = Astro.props;
+---
+{src ? (
+  <img src={src} alt={alt} loading={loading} decoding="async" class={`img-sq ${cls}`} style={`object-position:${position}`} />
+) : (
+  <div role="img" aria-label={alt} class={`img-sq relative overflow-hidden ${cls}`} style={`background:linear-gradient(145deg, ${tone[0]}, ${tone[1]})`}>
+    <span aria-hidden="true" class="absolute inset-[12%] opacity-40" style="background:#fff;-webkit-mask:url('/images/logo-mark.png') center/contain no-repeat;mask:url('/images/logo-mark.png') center/contain no-repeat"></span>
+  </div>
+)}

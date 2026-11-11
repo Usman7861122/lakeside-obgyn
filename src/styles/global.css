@@ -1,0 +1,211 @@
+@import "tailwindcss";
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/dm-serif-display/400-italic.css";
+@import "@fontsource-variable/open-sans/index.css";
+
+/* ------------------------------------------------------------------
+   Lakeside Obgyn — design tokens
+   Colors come from the practice logo (plum #882078, magenta #D81070).
+   "lake" is the one cool counter-note, used only in water effects.
+   ------------------------------------------------------------------ */
+@theme {
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Open Sans Variable", "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #240a24;
+  --color-plum-900: #3a1038;
+  --color-plum-800: #5c1650;
+  --color-plum-700: #882078;
+  --color-plum-500: #b04c9f;
+  --color-plum-300: #d9a6d0;
+  --color-magenta-600: #b80c5e;
+  --color-magenta-500: #d81070;
+  --color-magenta-400: #f0509a;
+  --color-rose-200: #ffc2dc;
+  --color-mist-50: #faf6fb;
+  --color-mist-100: #f3ebf5;
+  --color-mist-200: #e6d6ea;
+  --color-lake-400: #7fa7bd;
+  --color-lake-700: #2f5d73;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-mist-50);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+  :focus-visible { outline: 2px solid var(--color-magenta-500); outline-offset: 3px; }
+
+  /* Timeline icon: logo in a round badge, centered on the line */
+  .tl-dot {
+    position: absolute; top: -.5rem; left: calc(-4.125rem - .5px);
+    width: 3.25rem; height: 3.25rem; border-radius: 9999px; display: grid; place-items: center;
+    background: #fff; box-shadow: 0 0 0 1px rgb(136 32 120 / .3), 0 10px 24px -10px rgb(136 32 120 / .55);
+    transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease;
+  }
+  @media (min-width: 768px) { .tl-dot { left: calc(-5.125rem - .5px); } }
+  .tl-logo {
+    display: block; width: 2.1rem; height: 1.15rem;
+    background: linear-gradient(120deg, var(--color-plum-700) 0%, var(--color-magenta-500) 50%, var(--color-plum-700) 100%);
+    background-size: 220% 100%; background-position: 0% 0;
+    -webkit-mask: url("/images/logo-mark.png") center / contain no-repeat; mask: url("/images/logo-mark.png") center / contain no-repeat;
+    transform: translate(.2rem, -.1rem);
+    transition: transform .6s cubic-bezier(.2,.7,.2,1), background-position .8s ease;
+  }
+  .tl-item:hover .tl-dot, .tl-dot:hover {
+    transform: scale(1.14);
+    box-shadow: 0 0 0 1.5px var(--color-magenta-500), 0 16px 30px -10px rgb(216 16 112 / .6);
+    animation: tl-pulse 1.6s ease-out infinite;
+  }
+  .tl-item:hover .tl-logo { background-position: 100% 0; transform: translate(.2rem, -.1rem) rotate(-6deg) scale(1.08); }
+  @keyframes tl-pulse { 0% { outline: 0 solid rgb(216 16 112 / .35); outline-offset: 0; } 100% { outline: 14px solid rgb(216 16 112 / 0); outline-offset: 2px; } }
+
+
+  /* Fixed-window parallax background */
+  .parallax-bg {
+    position: absolute; inset: 0; z-index: -20;
+    background: var(--bg) center / cover no-repeat; background-attachment: fixed;
+  }
+  @media (hover: none), (prefers-reduced-motion: reduce) { .parallax-bg { background-attachment: scroll; } }
+
+
+  /* Form fields on dark: glass with a brand-colored focus line */
+  .field {
+    width: 100%; border-radius: 3px; padding-inline: 1rem; color: #fff; font-size: 1rem; letter-spacing: normal; text-transform: none; font-weight: 400;
+    background: linear-gradient(180deg, rgb(255 255 255 / .10), rgb(255 255 255 / .04));
+    border: 1px solid rgb(255 255 255 / .22);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / .06);
+    transition: border-color .3s ease, background-color .3s ease, box-shadow .3s ease;
+  }
+  .field:hover { border-color: rgb(255 255 255 / .4); }
+  .field:focus { outline: none; border-color: var(--color-rose-200); background: rgb(255 255 255 / .14); box-shadow: 0 0 0 3px rgb(216 16 112 / .35), inset 0 -2px 0 var(--color-magenta-500); }
+  .field:-webkit-autofill { -webkit-text-fill-color: #fff; box-shadow: 0 0 0 100px #4a1f4a inset; caret-color: #fff; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+/* ---------- Layout helpers ---------- */
+@layer components {
+  .wrap { width: min(100% - 3rem, 76rem); margin-inline: auto; }
+  .section { position: relative; isolation: isolate; padding-block: clamp(4.5rem, 9vw, 8rem); overflow: clip; }
+
+  .eyebrow {
+    font-size: .72rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--color-magenta-500);
+    display: inline-flex; align-items: center; gap: .8rem;
+  }
+  .eyebrow::before { content: ""; width: 2rem; height: 1px; background: currentColor; }
+  .on-dark .eyebrow { color: var(--color-rose-200); }
+
+  .h-section { font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.08; margin-top: 1rem; }
+  .lede { font-size: 1.075rem; line-height: 1.75; color: color-mix(in oklab, var(--color-ink) 78%, white); }
+  .on-dark .lede { color: color-mix(in oklab, white 82%, var(--color-plum-700)); }
+
+  /* Square images with slightly rounded edges (site rule) */
+  .img-sq { aspect-ratio: 1 / 1; border-radius: 6px; object-fit: cover; width: 100%; display: block; }
+
+  /* ---------- Buttons: square, slightly rounded ---------- */
+  .btn {
+    position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    padding: .95rem 1.7rem; border-radius: 3px;
+    font-size: .74rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
+    border: 1px solid currentColor; color: var(--color-plum-800);
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, transform .35s ease;
+  }
+  .btn:hover { background: var(--color-plum-800); color: white; border-color: var(--color-plum-800); }
+  .on-dark .btn { color: white; border-color: color-mix(in oklab, white 55%, transparent); }
+  .on-dark .btn:hover { background: white; color: var(--color-plum-900); border-color: white; }
+
+  /* Appointment button: slow travelling border light + soft glare */
+  @property --edge { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+  .btn-appt {
+    position: relative; isolation: isolate; overflow: hidden;
+    display: inline-flex; align-items: center; justify-content: center; gap: .65rem;
+    padding: 1rem 1.8rem; border-radius: 3px;
+    font-size: .74rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, var(--color-plum-700), var(--color-plum-800));
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, white 22%, transparent), 0 10px 28px -12px rgb(136 32 120 / .7);
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .btn-appt::before { /* travelling light on the border */
+    content: ""; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit; z-index: 1;
+    background: conic-gradient(from var(--edge), transparent 0 66%, rgb(255 255 255 / .95) 84%, var(--color-rose-200) 92%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    animation: edge-spin 6.5s linear infinite;
+    pointer-events: none;
+  }
+  .btn-appt::after { /* glare */
+    content: ""; position: absolute; top: -20%; bottom: -20%; left: -70%; width: 38%; z-index: 1;
+    background: linear-gradient(100deg, transparent, rgb(255 255 255 / .34), transparent);
+    transform: skewX(-18deg);
+    animation: glare 7s cubic-bezier(.4, 0, .2, 1) infinite;
+    pointer-events: none;
+  }
+  .btn-appt:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1px color-mix(in oklab, white 35%, transparent), 0 16px 34px -12px rgb(216 16 112 / .55); }
+
+  @keyframes edge-spin { to { --edge: 360deg; } }
+  @keyframes glare { 0%, 62% { left: -70%; } 86%, 100% { left: 140%; } }
+
+  /* ---------- Water backdrop (replaces dead white) ---------- */
+  .backdrop { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .backdrop .glow {
+    position: absolute; width: 60rem; height: 60rem; border-radius: 50%; filter: blur(70px); opacity: .55;
+    background: radial-gradient(closest-side, var(--c, var(--color-mist-200)), transparent);
+    animation: drift 90s ease-in-out infinite alternate;
+  }
+  .backdrop .ripple {
+    position: absolute; width: 14rem; height: 14rem; overflow: visible;
+    opacity: 0; animation: ripple 80s linear infinite;
+  }
+  .backdrop .ripple:nth-of-type(2n) { animation-delay: -40s; }
+  .backdrop .mark {
+    position: absolute; width: min(46rem, 90vw); aspect-ratio: 956 / 516; opacity: var(--mark-opacity, .07);
+    background: var(--mark-color, var(--color-plum-700));
+    -webkit-mask: url("/images/logo-mark.png") center / contain no-repeat;
+    mask: url("/images/logo-mark.png") center / contain no-repeat;
+  }
+  @keyframes drift { from { transform: translate3d(-6%, -4%, 0) scale(1); } to { transform: translate3d(8%, 6%, 0) scale(1.12); } }
+  @keyframes ripple { 0% { transform: scale(.5); opacity: 0; } 20% { opacity: .3; } 80% { opacity: .3; } 100% { transform: scale(2.6); opacity: 0; } }
+
+  /* ---------- Scroll reveal ---------- */
+  [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+  [data-reveal].in { opacity: 1; transform: none; }
+  .no-js [data-reveal] { opacity: 1; transform: none; }
+
+  /* ---------- Header nav hover ---------- */
+  .nav-link { position: relative; padding-block: .4rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--color-plum-900); text-decoration: none; }
+  .nav-link::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 0; height: 1.5px; background: var(--color-magenta-500); transition: left .4s cubic-bezier(.2,.7,.2,1), right .4s cubic-bezier(.2,.7,.2,1); }
+  .nav-link:hover::after, .nav-link:focus-visible::after { left: 0; right: 0; }
+  .nav-link:hover { color: var(--color-magenta-600); }
+
+  /* ---------- Hero changing word (logo colors, tinted for dark photos) ---------- */
+  .shift { font-style: italic; animation: shift-color 9s ease-in-out infinite; }
+  @keyframes shift-color {
+    0%, 100% { color: var(--color-magenta-400); }
+    33% { color: #e29be8; }
+    66% { color: var(--color-rose-200); }
+  }
+
+  /* ---------- Flip cards ---------- */
+  .flip { perspective: 1400px; }
+  .flip-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .flip:hover .flip-inner, .flip:focus-within .flip-inner, .flip.is-flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6px; overflow: hidden; }
+  .flip-back { transform: rotateY(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .backdrop .glow, .backdrop .ripple, .btn-appt::before, .btn-appt::after, .shift { animation: none; }
+    .backdrop .ripple { opacity: .25; transform: scale(2); }
+    [data-reveal] { opacity: 1; transform: none; transition: none; }
+    .flip-inner { transition-duration: .01s; }
+    .tl-dot, .tl-logo { transition: none; animation: none !important; }
+  }
+}

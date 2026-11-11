@@ -1,0 +1,36 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+import { doctors } from '../../data/home';
+---
+<section id="providers" class="section" aria-labelledby="providers-h">
+  <Backdrop variant="mist" mark="none" />
+  <div class="wrap">
+    <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
+      <div>
+        <p class="eyebrow">Meet our providers</p>
+        <h2 id="providers-h" class="h-section">The people who will care for you</h2>
+      </div>
+    </div>
+    <ul class="mt-14 grid gap-8 md:grid-cols-3">
+      {doctors.map((d, n) => (
+        <li class="group flex flex-col" data-reveal style={`--d:${n * 0.1}s`}>
+          <div class="relative overflow-hidden rounded-[6px]">
+            {d.img ? (
+              <img src={d.img} alt={`${d.name}, ${d.role}`} loading="lazy" class="img-sq object-[50%_22%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
+            ) : (
+              <div role="img" aria-label={`${d.name} — photo coming soon`} class="img-sq relative grid place-items-center overflow-hidden bg-[linear-gradient(145deg,#e6d6ea,#b04c9f)]">
+                <span aria-hidden="true" class="absolute inset-[14%] opacity-40" style="background:#fff;-webkit-mask:url('/images/logo-mark.png') center/contain no-repeat;mask:url('/images/logo-mark.png') center/contain no-repeat"></span>
+              </div>
+            )}
+            <span aria-hidden="true" class="pointer-events-none absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-magenta-500 transition-transform duration-700 group-hover:scale-x-100"></span>
+          </div>
+          <h3 class="mt-5 text-2xl">{d.name}<span class="text-plum-500">, {d.creds}</span></h3>
+          <p class="mt-1 text-sm uppercase tracking-[.16em] text-ink/60">{d.role}</p>
+          <div class="mt-auto pt-6">
+            <a href={d.href} class="btn !h-11 !px-6 !text-[.72rem]" aria-label={`View profile: ${d.name}`}>View profile</a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

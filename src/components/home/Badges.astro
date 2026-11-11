@@ -1,0 +1,28 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+---
+<section id="credentials" class="section" aria-labelledby="creds-h">
+  <Backdrop variant="blush" mark="none" />
+  <div class="wrap">
+    <div class="mx-auto max-w-2xl text-center" data-reveal>
+      <p class="eyebrow">Credentials</p>
+      <h2 id="creds-h" class="h-section">Recognized for women’s health expertise</h2>
+    </div>
+    <ul class="mx-auto mt-14 grid max-w-4xl gap-8 sm:grid-cols-2">
+      <li class="group overflow-hidden rounded-[6px] bg-white shadow-[0_30px_70px_-40px_rgb(58_16_56/.6)] ring-1 ring-plum-700/10 transition duration-500 hover:-translate-y-1" data-reveal>
+        <div class="relative grid h-60 place-items-center bg-gradient-to-br from-mist-50 via-white to-rose-200/40">
+          <span aria-hidden="true" class="absolute inset-5 rounded-[3px] border border-plum-700/15"></span>
+          <img src="/images/badges/menopause-society-seal.png" alt="Menopause Society Certified Practitioner badge" width="260" height="260" loading="lazy" class="relative h-36 w-36 transition duration-500 group-hover:scale-105" />
+        </div>
+        <p class="border-t border-plum-700/10 px-6 py-5 text-center text-[.78rem] font-semibold uppercase leading-relaxed tracking-[.2em] text-plum-800">Menopause Society<br />Certified Practitioner</p>
+      </li>
+      <li class="group overflow-hidden rounded-[6px] bg-white shadow-[0_30px_70px_-40px_rgb(58_16_56/.6)] ring-1 ring-plum-700/10 transition duration-500 hover:-translate-y-1" data-reveal style="--d:.1s">
+        <a href="https://www.isswsh.org/" rel="noopener" target="_blank" aria-label="ISSWSH — International Society for the Study of Women’s Sexual Health (opens in a new tab)" class="relative grid h-60 place-items-center bg-gradient-to-br from-mist-50 via-white to-rose-200/40">
+          <span aria-hidden="true" class="absolute inset-5 rounded-[3px] border border-plum-700/15"></span>
+          <img src="/images/badges/isswsh-badge.png" alt="ISSWSH, International Society for the Study of Women’s Sexual Health" width="155" height="121" loading="lazy" class="relative h-32 w-auto transition duration-500 group-hover:scale-105" />
+        </a>
+        <p class="border-t border-plum-700/10 px-6 py-5 text-center text-[.78rem] font-semibold uppercase leading-relaxed tracking-[.2em] text-plum-800">International Society for the Study<br />of Women’s Sexual Health</p>
+      </li>
+    </ul>
+  </div>
+</section>
