@@ -1,12 +1,268 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Section from '../../components/ui/Section.astro';
+import Backdrop from '../../components/ui/Backdrop.astro';
+import Fn from '../../components/ui/Fn.astro';
 import { sonata } from '../../data/sonata';
+import { servicesMenu } from '../../data/nav';
+import { site } from '../../data/site';
+
+// All wording comes from src/data/sonata.ts (copied exactly from the Sonata toolkit).
+const others = servicesMenu.filter((x) => x.href !== '/services/sonata');
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'The Sonata Procedure for Fibroids',
+  about: { '@type': 'MedicalProcedure', name: 'Sonata transcervical fibroid ablation' },
+  publisher: { '@type': 'MedicalBusiness', name: site.name, telephone: site.phone },
+};
+const description = 'The Sonata procedure for fibroids at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco. An incisionless, uterus-sparing treatment option for symptomatic uterine fibroids.';
 ---
-<BaseLayout title="The Sonata Procedure for Fibroids">
-  <Section>
-    <h1 class="font-serif text-4xl">The Sonata Procedure for Fibroids</h1>
-    <p class="mt-4">Placeholder. Content comes from src/data/sonata.ts (copied exactly from the toolkit).</p>
-    {sonata.safetyLine && <p class="mt-8 text-sm">{sonata.safetyLine} <a class="underline" href={sonata.safetyUrl}>Safety Information</a></p>}
-  </Section>
+<BaseLayout title={`The Sonata Procedure for Fibroids | ${site.shortName}, Inner Richmond, San Francisco`} description={description} jsonLd={ld}>
+  <!-- Hero -->
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="sn-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-20">
+      <div data-reveal>
+        <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+          <a href="/" class="hover:text-rose-200">Home</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <a href="/services" class="hover:text-rose-200">Services</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <a href="/services/fibroids" class="hover:text-rose-200">Fibroids</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <span class="text-rose-200">Sonata</span>
+        </nav>
+        <h1 id="sn-h" class="mt-8 font-display text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.04] text-white">The Sonata<sup class="align-super text-[.45em]">®</sup> Procedure for Fibroids</h1>
+        <p class="lede mt-6 max-w-xl">{site.descriptor}</p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        </div>
+      </div>
+      <aside class="hero-card" data-reveal style="--d:.14s" aria-label="Practice details">
+        <p class="eyebrow">Visit the practice</p>
+        <ul class="mt-6">
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+            <span><strong>{site.address.line1}</strong><br />{site.address.city}, {site.address.state} {site.address.zip}</span>
+          </li>
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <span><strong>Hours</strong><br />{site.hours}</span>
+          </li>
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+            <span><strong>Phone</strong><br /><a href={site.phoneHref} class="hover:text-rose-200">{site.phone}</a></span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+    <div class="wrap mt-16 lg:mt-20" data-reveal>
+      <div class="area-strip">
+        <span class="area-pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <p>{site.areaLine}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" aria-labelledby="sn-about">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+      <figure class="pframe sonata-fig" data-reveal style="--d:.12s">
+        <span class="pframe-line" aria-hidden="true"></span>
+        <div class="pframe-img">
+          <img src="/images/sonata/device.jpg" alt="The Sonata device, a slim probe with a handle" width="1070" height="880" loading="lazy" class="kb h-full w-full object-cover" />
+        </div>
+      </figure>
+      <div data-reveal>
+        <p class="eyebrow">Fibroid care</p>
+        <h2 id="sn-about" class="h-section">About the Sonata<sup class="align-super text-[.45em]">®</sup> procedure</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+        <p class="bio-lede mt-9">{sonata.about}</p>
+        <p class="svc-lead mt-6">{sonata.about2}</p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={sonata.learnMoreUrl} class="btn !border-plum-700/40 !text-plum-700 hover:!bg-plum-700 hover:!text-white" rel="noopener" target="_blank">Sonata procedure website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common fibroid symptoms -->
+  <section class="section" aria-labelledby="sn-sym">
+    <Backdrop variant="mist" mark="none" />
+    <div class="wrap">
+      <div class="max-w-2xl" data-reveal>
+        <p class="eyebrow">Fibroid care</p>
+        <h2 id="sn-sym" class="h-section">Common fibroid symptoms</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+      </div>
+      <ul class="sn-sym-grid mt-12" data-reveal style="--d:.1s">
+        {sonata.symptoms.map((s, i) => (
+          <li class="sn-sym">
+            <img src={sonata.symptomIcons[i]} alt="" width="196" height="196" loading="lazy" />
+            <span>{s}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Treatable fibroids -->
+  <section class="section" aria-labelledby="sn-treat">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+      <div class="lg:sticky lg:top-28">
+        <figure class="sn-diagram" data-reveal>
+          <img src={sonata.treatable.image} alt={sonata.treatable.imageAlt} width="627" height="557" loading="lazy" />
+        </figure>
+      </div>
+      <div data-reveal style="--d:.12s">
+        <p class="eyebrow">Fibroid care</p>
+        <h2 id="sn-treat" class="h-section">Treatable fibroids</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+        <p class="svc-lead mt-9">{sonata.treatable.intro}</p>
+        <ul class="mt-8 border-t border-plum-700/15">
+          {sonata.treatable.types.map((t) => (
+            <li class="sn-type">
+              <span class="sn-letter" aria-hidden="true">{t.letter}</span>
+              <span><strong>{t.name}:</strong><br />{t.text}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="svc-lead mt-8">{sonata.treatable.outro}</p>
+        <p class="sn-safety mt-10">
+          {sonata.safetyLine} <a href={sonata.safetyUrl} rel="noopener" target="_blank">{sonata.safetyUrl}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <section class="section on-dark" aria-labelledby="sn-expect">
+    <Backdrop variant="plum" mark="right" rings={2} />
+    <div class="wrap">
+      <div class="max-w-3xl" data-reveal>
+        <p class="eyebrow">The procedure</p>
+        <h2 id="sn-expect" class="h-section text-white">What to expect</h2>
+        <p class="lede mt-6">{sonata.expect.intro}</p>
+      </div>
+      <ol class="sn-steps mt-14">
+        {sonata.expect.steps.map((s, i) => (
+          <li class="sn-step" data-reveal style={`--d:${(i * 0.08).toFixed(2)}s`}>
+            <img src={s.image} alt={s.alt} width="323" height="242" loading="lazy" />
+            <p class="sn-step-n">Step {i + 1}</p>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-8 text-sm text-white/75" data-reveal>{sonata.expect.note}</p>
+    </div>
+  </section>
+
+  <!-- Procedure overview -->
+  <section class="section" aria-labelledby="sn-over">
+    <Backdrop variant="mist" mark="none" />
+    <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+      <div class="lg:sticky lg:top-28" data-reveal>
+        <p class="eyebrow">The Sonata procedure</p>
+        <h2 id="sn-over" class="h-section">Procedure overview</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+      </div>
+      <dl class="border-t border-plum-700/15" data-reveal style="--d:.12s">
+        {sonata.overview.map((o) => (
+          <div class="sn-ov">
+            <dt>{o.label}</dt>
+            <dd><Fn t={o.value} /></dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- FAQ (plain list, no accordion) -->
+  <section class="section" aria-labelledby="sn-faq">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+      <div class="lg:sticky lg:top-28" data-reveal>
+        <p class="eyebrow">Questions</p>
+        <h2 id="sn-faq" class="h-section">Frequently asked questions about the Sonata procedure</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+      </div>
+      <div data-reveal style="--d:.12s">
+        {sonata.faq.map((f) => (
+          <article class="sn-faq">
+            <h3>{f.q}</h3>
+            {f.a.map((b) => {
+              if ('p' in b) return <p class="svc-lead mt-4"><Fn t={b.p} /></p>;
+              if ('ul' in b) return (
+                <ul class="mt-4 border-t border-plum-700/15">
+                  {b.ul.map((it) => (
+                    <li class="prow prow-solo svc-row"><span class="svc-chk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg></span><span class="prow-text !font-semibold !text-plum-900"><Fn t={it} /></span></li>
+                  ))}
+                </ul>
+              );
+              return (
+                <ul class="mt-4 border-t border-plum-700/15">
+                  {b.cmp.map((c) => (
+                    <li class="prow prow-solo svc-row"><span class="svc-chk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg></span><span class="prow-text"><strong class="text-plum-900">{c.b}</strong> – {c.t}</span></li>
+                  ))}
+                </ul>
+              );
+            })}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Other services -->
+  <section class="section" aria-labelledby="sn-more">
+    <Backdrop variant="mist" mark="none" />
+    <div class="wrap">
+      <div class="max-w-2xl" data-reveal>
+        <p class="eyebrow">Our services</p>
+        <h2 id="sn-more" class="h-section">Other services</h2>
+      </div>
+      <ul class="mt-12 grid border-t border-plum-700/15 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-3" data-reveal>
+        {others.map((c) => (
+          <li><a href={c.href} class="mlink"><span>{c.label}</span><svg aria-hidden="true" viewBox="0 0 14 10" class="h-2.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 5h11M8 1l4 4-4 4" /></svg></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Safety information and sources (required on every Sonata page) -->
+  <section class="section !py-16" aria-labelledby="sn-src-h">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20" data-reveal>
+      <div>
+        <p class="eyebrow">Safety information</p>
+        <h2 id="sn-src-h" class="h-section !text-[clamp(1.6rem,2.6vw,2.2rem)]">Sources</h2>
+      </div>
+      <div>
+        <p class="sn-safety">{sonata.safetyLine} <a href={sonata.safetyUrl} rel="noopener" target="_blank">{sonata.safetyUrl}</a>.</p>
+        <ol id="sonata-sources" class="sn-sources mt-6">
+          {sonata.sources.map((s) => <li>{s}</li>)}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to action -->
+  <section class="section on-dark !py-20" aria-labelledby="sn-cta">
+    <Backdrop variant="plum" mark="left" />
+    <div class="wrap grid items-center gap-8 lg:grid-cols-[1fr_auto]" data-reveal>
+      <div>
+        <p class="eyebrow">Visit us</p>
+        <h2 id="sn-cta" class="h-section text-white">Schedule your appointment</h2>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

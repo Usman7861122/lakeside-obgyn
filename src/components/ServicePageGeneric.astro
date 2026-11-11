@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Backdrop from './ui/Backdrop.astro';
+import { servicesMenu } from '../data/nav';
+import { site } from '../data/site';
+import type { GenericService, Part } from '../data/svc/types';
+
+interface Props { g: GenericService }
+const { g } = Astro.props;
+const [photo1, photo2, photo3] = g.photos;
+const n = g.blocks.length;
+const photo3Block = n >= 4 ? 3 : -1; // otherwise photo 3 goes in the closing band
+const photo2Block = n >= 2 ? 1 : 0;
+const qaLabel = g.qaLabel ?? `${g.menuLabel} Q & A`;
+const others = servicesMenu.filter((x) => x.href !== `/services/${g.slug}`);
+const bg = (i: number) => (i % 2 === 0 ? 'mist' : 'blush') as 'mist' | 'blush';
+const moreBg = g.related ? bg(n + 1) : bg(n);
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: g.title,
+  description: g.metaDescription,
+  about: { '@type': 'MedicalProcedure', name: g.menuLabel },
+  publisher: { '@type': 'MedicalBusiness', name: site.name, telephone: site.phone },
+};
+const check = '<path d="m5 12 4.5 4.5L19 7"/>';
+const isDev = import.meta.env.DEV;
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// Links the first "fibroid(s)" and "Sonata" in a text. Words stay exactly as written.
+const linkify = (t: string) => {
+  let html = esc(t);
+  if (g.slug !== 'fibroids') html = html.replace(/(fibroids?)/i, '<a href="/services/fibroids" class="svc-link">$1</a>');
+  html = html.replace(/(Sonata®?)/, '<a href="/services/sonata" class="svc-link">$1</a>');
+  return html;
+};
+const kind = (x: Part) => ('p' in x ? 'p' : 'ul' in x ? 'ul' : 'h' in x ? 'h' : 'plink' in x ? 'plink' : 'todo');
+---
+<BaseLayout title={`${g.title} | ${site.shortName}, Inner Richmond, San Francisco`} description={g.metaDescription} jsonLd={ld}>
+  <!-- Hero -->
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="svc-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-20">
+      <div data-reveal>
+        <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+          <a href="/" class="hover:text-rose-200">Home</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <a href="/services" class="hover:text-rose-200">Services</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <span class="text-rose-200">{g.menuLabel}</span>
+        </nav>
+        <h1 id="svc-h" class="mt-8 font-display text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.04] text-white">{g.title}</h1>
+        <p class="lede mt-6 max-w-xl">{site.descriptor}</p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        </div>
+      </div>
+      <aside class="hero-card" data-reveal style="--d:.14s" aria-label="Practice details">
+        <p class="eyebrow">Visit the practice</p>
+        <ul class="mt-6">
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+            <span><strong>{site.address.line1}</strong><br />{site.address.city}, {site.address.state} {site.address.zip}</span>
+          </li>
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <span><strong>Hours</strong><br />{site.hours}</span>
+          </li>
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+            <span><strong>Phone</strong><br /><a href={site.phoneHref} class="hover:text-rose-200">{site.phone}</a></span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+    <div class="wrap mt-16 lg:mt-20" data-reveal>
+      <div class="area-strip">
+        <span class="area-pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <p>{site.areaLine}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section" aria-labelledby="ov-h">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+      <figure class="pframe" data-reveal style="--d:.12s">
+        <span class="pframe-line" aria-hidden="true"></span>
+        <div class="pframe-img">
+          <img src={photo1.src} alt={photo1.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+          <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent"></div>
+        </div>
+      </figure>
+      <div data-reveal>
+        <p class="eyebrow">Our services</p>
+        <h2 id="ov-h" class="h-section">{g.introHeading ?? g.menuLabel}</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+        <p class="bio-lede mt-9">{g.intro[0]}</p>
+        {g.intro.slice(1).map((t) => <p class="svc-lead mt-6">{t}</p>)}
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn !border-plum-700/40 !text-plum-700 hover:!bg-plum-700 hover:!text-white">Call {site.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Question sections, in the same order as the old page -->
+  {g.blocks.map((b, i) => {
+    const withPhoto = i === photo2Block ? photo2 : i === photo3Block ? photo3 : null;
+    const photoRight = i === photo3Block;
+    const content = b.parts;
+    return (
+      <section class="section" aria-labelledby={`q-${i}`}>
+        <Backdrop variant={bg(i)} mark="none" />
+        <div class={`wrap grid items-start gap-12 lg:gap-20 ${photoRight ? 'lg:grid-cols-[7fr_5fr]' : 'lg:grid-cols-[5fr_7fr]'}`}>
+          {withPhoto && !photoRight && (
+            <div class="lg:sticky lg:top-28">
+              <figure class="pframe" data-reveal>
+                <span class="pframe-line" aria-hidden="true"></span>
+                <div class="pframe-img">
+                  <img src={withPhoto.src} alt={withPhoto.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+                  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/35 via-transparent to-magenta-500/10 mix-blend-multiply"></div>
+                </div>
+              </figure>
+            </div>
+          )}
+          {!withPhoto && (
+            <div class="lg:sticky lg:top-28" data-reveal>
+              <p class="eyebrow">{qaLabel}</p>
+              <h2 id={`q-${i}`} class="h-section">{b.q}</h2>
+              <span class="bio-rule" aria-hidden="true"></span>
+            </div>
+          )}
+          <div data-reveal style="--d:.12s">
+            {withPhoto && (
+              <>
+                <p class="eyebrow">{qaLabel}</p>
+                <h2 id={`q-${i}`} class="h-section">{b.q}</h2>
+                <span class="bio-rule" aria-hidden="true"></span>
+              </>
+            )}
+            <div class={withPhoto ? 'mt-8' : ''}>
+              {content.map((x) => {
+                const k = kind(x);
+                if (k === 'p') return <p class="svc-lead mt-5 first:mt-0" set:html={linkify((x as { p: string }).p)} />;
+                if (k === 'h') return <h3 class="svc-sub">{(x as { h: string }).h}</h3>;
+                if (k === 'plink') {
+                  const l = (x as { plink: { before: string; text: string; href: string; after: string } }).plink;
+                  return <p class="svc-lead mt-5">{l.before}<a href={l.href} rel="noopener" target="_blank" class="svc-link">{l.text}</a>{l.after}</p>;
+                }
+                if (k === 'todo') {
+                  return isDev ? <p class="mt-5 rounded-[4px] border border-dashed border-magenta-500 bg-white p-4 text-sm text-plum-900"><strong>TODO (shows in dev only):</strong> {(x as { todo: string }).todo}</p> : null;
+                }
+                return (
+                  <ul class="mt-5 border-t border-plum-700/15">
+                    {(x as { ul: string[] }).ul.map((it) => (
+                      <li class="prow prow-solo svc-row"><span class="svc-chk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" set:html={check} /></span><span class="prow-text !font-semibold !text-plum-900" set:html={linkify(it)} /></li>
+                    ))}
+                  </ul>
+                );
+              })}
+            </div>
+          </div>
+          {withPhoto && photoRight && (
+            <div class="lg:sticky lg:top-28">
+              <figure class="pframe" data-reveal style="--d:.12s">
+                <span class="pframe-line" aria-hidden="true"></span>
+                <div class="pframe-img">
+                  <img src={withPhoto.src} alt={withPhoto.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+                  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/35 via-transparent to-magenta-500/10 mix-blend-multiply"></div>
+                </div>
+              </figure>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  })}
+
+  <!-- Related page link (for example Fibroids to the Sonata page) -->
+  {g.related && (
+    <section class="section !py-16" aria-label={g.related.title}>
+      <Backdrop variant={bg(n)} mark="none" />
+      <div class="wrap" data-reveal>
+        <a href={g.related.href} class="rel-card">
+          <span>
+            <span class="eyebrow">{g.related.eyebrow}</span>
+            <span class="rel-title">{g.related.title}</span>
+          </span>
+          <span class="rel-cta">{g.related.cta}<svg aria-hidden="true" viewBox="0 0 14 10" class="h-2.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 5h11M8 1l4 4-4 4" /></svg></span>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- Other services -->
+  <section class="section" aria-labelledby="more-h">
+    <Backdrop variant={moreBg} mark="none" />
+    <div class="wrap">
+      <div class="max-w-2xl" data-reveal>
+        <p class="eyebrow">Our services</p>
+        <h2 id="more-h" class="h-section">Other services</h2>
+      </div>
+      <ul class="mt-12 grid border-t border-plum-700/15 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-3" data-reveal>
+        {others.map((c) => (
+          <li><a href={c.href} class="mlink"><span>{c.label}</span><svg aria-hidden="true" viewBox="0 0 14 10" class="h-2.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 5h11M8 1l4 4-4 4" /></svg></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Closing call to action -->
+  <section class="section on-dark !py-20" aria-labelledby="cta-h">
+    <Backdrop variant="plum" mark="left" />
+    <div class={`wrap grid items-center gap-10 ${photo3Block < 0 ? 'lg:grid-cols-[7fr_5fr] lg:gap-20' : 'lg:grid-cols-[1fr_auto]'}`}>
+      <div data-reveal>
+        <p class="eyebrow">Visit us</p>
+        <h2 id="cta-h" class="h-section text-white">Schedule your appointment</h2>
+        <p class="lede mt-5 max-w-2xl">{g.closing}</p>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        </div>
+      </div>
+      {photo3Block < 0 && (
+        <figure class="pframe pframe-dark" data-reveal style="--d:.12s">
+          <span class="pframe-line" aria-hidden="true"></span>
+          <div class="pframe-img">
+            <img src={photo3.src} alt={photo3.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/45 via-plum-800/10 to-transparent"></div>
+          </div>
+        </figure>
+      )}
+    </div>
+  </section>
+</BaseLayout>

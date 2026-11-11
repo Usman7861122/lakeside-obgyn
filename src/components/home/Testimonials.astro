@@ -1,0 +1,25 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+import Testimonials from '../islands/Testimonials';
+import { reviews } from '../../data/reviews';
+---
+<section id="reviews" class="section" aria-labelledby="reviews-h">
+  <Backdrop variant="blush" mark="none" />
+  <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-24">
+    <figure class="pframe pframe-tall" data-reveal>
+      <span class="pframe-line" aria-hidden="true"></span>
+      <div class="pframe-img">
+        <img src="/images/testimonials/client.jpg" alt="A smiling young woman standing by a bright window" width="1800" height="1200" loading="lazy" class="kb h-full w-full object-cover object-[38%_50%]" />
+        <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/35 via-transparent to-magenta-500/10 mix-blend-multiply"></div>
+        <figcaption class="tm-chip">Patient reviews from Google</figcaption>
+      </div>
+    </figure>
+    <div data-reveal style="--d:.12s">
+      <p class="eyebrow">Patient reviews</p>
+      <h2 id="reviews-h" class="h-section">Kind words from our patients</h2>
+      <div class="mt-10">
+        <Testimonials client:visible reviews={reviews} />
+      </div>
+    </div>
+  </div>
+</section>

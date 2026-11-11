@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Backdrop from '../components/ui/Backdrop.astro';
+import { reviews } from '../data/reviews';
+import { site } from '../data/site';
+
+const description = 'Patient reviews of Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco. Read what our patients say about Dr. Monica Hannon and Dr. Ziyad Hannon.';
+---
+<BaseLayout title={`Patient Reviews | ${site.shortName}, Inner Richmond, San Francisco`} description={description}>
+  <!-- Hero -->
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="rv-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap" data-reveal>
+      <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+        <a href="/" class="hover:text-rose-200">Home</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <span class="text-rose-200">Reviews</span>
+      </nav>
+      <h1 id="rv-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">Patient reviews</h1>
+      <p class="lede mt-6 max-w-2xl">Kind words from our patients, copied from our Google reviews.</p>
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section" aria-label="Patient reviews">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap">
+      <ul class="rv-grid">
+        {reviews.map((r, i) => (
+          <li data-reveal style={`--d:${((i % 3) * 0.08).toFixed(2)}s`}>
+            <figure class="rv-card">
+              <svg aria-hidden="true" viewBox="0 0 40 32" class="rv-q"><path fill="currentColor" d="M0 32V19.2C0 8.4 5.6 1.6 15.6 0l1.6 4.4C11.6 6 9 9.6 8.8 14H16V32H0Zm22.4 0V19.2C22.4 8.4 28 1.6 38 0l1.6 4.4C34 6 31.4 9.6 31.2 14h7.2V32H22.4Z"/></svg>
+              <blockquote class="rv-text">{r.text}</blockquote>
+              <figcaption class="rv-by"><span class="rv-name">{r.name}</span><span class="rv-src">{r.source}</span></figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Call to action -->
+  <section class="section on-dark !py-20" aria-labelledby="rv-cta">
+    <Backdrop variant="plum" mark="left" />
+    <div class="wrap grid items-center gap-8 lg:grid-cols-[1fr_auto]" data-reveal>
+      <div>
+        <p class="eyebrow">Visit us</p>
+        <h2 id="rv-cta" class="h-section text-white">Schedule your appointment</h2>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href="/locations" class="btn">Office location</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

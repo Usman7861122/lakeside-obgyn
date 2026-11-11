@@ -1,0 +1,7 @@
+---
+// Draws text with inline footnote markers (^2) as superscript links to the Sonata Sources list.
+interface Props { t: string; cls?: string }
+const { t, cls = '' } = Astro.props;
+const parts = String(t).split(/\^(\d)/);
+---
+{parts.map((p, i) => (i % 2 === 0 ? p : <sup><a href="#sonata-sources" class={`fn-link ${cls}`} aria-label={`Source ${p}`}>{p}</a></sup>))}

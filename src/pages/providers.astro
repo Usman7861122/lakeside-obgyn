@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Backdrop from '../components/ui/Backdrop.astro';
+import { providers } from '../data/providers';
+import { site } from '../data/site';
+
+// Everything on this page comes from src/data/providers.ts (copied from the old site). The old site has no /providers page,
+// so the layout is ours. Only headings and button labels are design copy.
+const focus = (p: (typeof providers)[number]) =>
+  (p.aboutList ? p.aboutList.items : p.care.map((c) => c.label)).slice(0, 4);
+const variants = ['blush', 'mist'] as const;
+---
+<BaseLayout title={`Our providers | ${site.shortName}, Inner Richmond, San Francisco`} description="Meet the providers at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco: Monica Hannon, MD, FACOG, Ziyad Hannon, MD, FACOG, and Jeanette Blanks, MSN, FNP-C, MSCP, CNL.">
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="provs-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap grid items-end gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-20">
+      <div data-reveal>
+        <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+          <a href="/" class="hover:text-rose-200">Home</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <span class="text-rose-200">Our providers</span>
+        </nav>
+        <h1 id="provs-h" class="mt-8 font-display text-[clamp(2.6rem,5.8vw,4.8rem)] leading-[1.04] text-white">Our providers</h1>
+        <p class="lede mt-6 max-w-xl">{site.descriptor}</p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        </div>
+      </div>
+      <ul class="grid grid-cols-3 gap-3 sm:gap-5" data-reveal style="--d:.14s" aria-label="Jump to a provider">
+        {providers.map((p) => (
+          <li>
+            <a href={`#${p.slug}`} class="provs-chip group">
+              <img src={p.img} alt="" width="300" height="300" loading="eager" class="aspect-square w-full object-cover object-[50%_22%] transition duration-700 group-hover:scale-105" />
+              <span class="provs-chip-name">{p.name}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {providers.map((p, n) => (
+    <section id={p.slug} class="section scroll-mt-24" aria-labelledby={`h-${p.slug}`}>
+      <Backdrop variant={variants[n % 2]} mark="none" />
+      <div class={`wrap grid items-center gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20`}>
+        <figure class={`pframe ${n % 2 ? 'lg:order-last' : ''}`} data-reveal>
+          <span class="pframe-line" aria-hidden="true"></span>
+          <a href={`/provider/${p.slug}`} class="pframe-img block" tabindex="-1" aria-hidden="true">
+            <img src={p.img} alt={p.imgAlt} width="900" height="900" loading="lazy" class="kb h-full w-full object-cover object-[50%_20%]" />
+            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/25 to-transparent"></div>
+          </a>
+        </figure>
+        <div data-reveal style="--d:.12s">
+          <p class="eyebrow">{p.role}</p>
+          <h2 id={`h-${p.slug}`} class="h-section">{p.title}</h2>
+          <span class="bio-rule" aria-hidden="true"></span>
+          {p.boardLine && <p class="mt-8 border-l-2 border-magenta-500 pl-4 text-[1.02rem] leading-relaxed text-ink/80">{p.boardLine}</p>}
+          {focus(p).length > 0 && (
+            <>
+              <p class="mt-8 text-[.72rem] font-bold uppercase tracking-[.2em] text-magenta-600">Areas of care</p>
+              <ul class="mt-3 -mx-3 border-t border-plum-700/15">
+                {focus(p).map((f) => (
+                  <li class="prow prow-solo !py-3"><span class="prow-text !font-semibold !text-plum-900">{f}</span></li>
+                ))}
+              </ul>
+            </>
+          )}
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href={`/provider/${p.slug}`} class="btn-appt" aria-label={`View profile: ${p.name}`}>View profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section on-dark !py-20" aria-labelledby="provs-cta">
+    <Backdrop variant="plum" mark="left" />
+    <div class="wrap grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+      <div data-reveal>
+        <p class="eyebrow">Visit us</p>
+        <h2 id="provs-cta" class="h-section text-white">Request an appointment</h2>
+        <p class="lede mt-5 max-w-xl">{site.address.line1}, {site.address.city}, {site.address.state} {site.address.zip}<br />{site.hours}</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4" data-reveal style="--d:.12s">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

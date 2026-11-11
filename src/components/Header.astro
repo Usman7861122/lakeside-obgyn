@@ -1,8 +1,16 @@
 ---
-import { nav, site } from '../data/site';
+import { site } from '../data/site';
+import { mainNav, providersMenu, servicesMenu } from '../data/nav';
+import { images } from '../data/images';
 import MobileMenu from './islands/MobileMenu';
+const mobileItems = mainNav.map((i) => ({
+  label: i.label, href: i.href, external: 'external' in i && !!i.external,
+  children: i.mega === 'providers' ? providersMenu.map((d) => ({ label: d.name, href: d.href }))
+    : i.mega === 'services' ? servicesMenu : undefined,
+}));
 ---
 <header data-header class="group/h fixed inset-x-0 top-0 z-50">
+  <div class="mega-scrim hidden lg:block" aria-hidden="true"></div>
   <!-- Utility strip -->
   <div class="hidden bg-ink text-[.72rem] tracking-[.08em] text-white/80 md:block">
     <div class="wrap flex items-center justify-between py-2">
@@ -19,19 +27,122 @@ import MobileMenu from './islands/MobileMenu';
   </div>
 
   <!-- Main bar: glass, deepens on scroll -->
-  <div class="border-b border-plum-700/10 bg-white/80 backdrop-blur-xl transition-[background-color,box-shadow] duration-500 group-data-[scrolled]/h:bg-white/95 group-data-[scrolled]/h:shadow-[0_14px_40px_-24px_rgb(58_16_56/.55)]">
+  <div class="relative border-b border-plum-700/10 bg-white/80 backdrop-blur-xl transition-[background-color,box-shadow] duration-500 group-data-[scrolled]/h:bg-white/95 group-data-[scrolled]/h:shadow-[0_14px_40px_-24px_rgb(58_16_56/.55)]">
     <div class="wrap flex items-center justify-between gap-6 py-3">
       <a href="/" class="group/logo block shrink-0" aria-label={`${site.name} — home`}>
         <img src="/images/Logo.png" alt={site.name} width="600" height="145"
           class="h-12 w-auto transition-transform duration-500 group-hover/logo:-translate-y-0.5 md:h-[3.75rem]" />
       </a>
-      <nav class="hidden items-center gap-8 lg:flex" aria-label="Main">
-        {nav.map((i) => <a class="nav-link" href={i.href}>{i.label}</a>)}
+      <nav class="hidden items-center gap-5 lg:flex" aria-label="Main" data-nav>
+        {mainNav.map((i) => i.mega ? (
+          <div class="nav-item" data-item>
+            <a class="nav-link inline-flex items-center gap-1.5" href={i.href} aria-haspopup="true" aria-expanded="false" aria-controls={`mega-${i.mega}`} data-trigger>
+              {i.label}
+              <svg aria-hidden="true" viewBox="0 0 10 6" class="chev h-[.4rem] w-[.65rem]" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4" /></svg>
+            </a>
+          </div>
+        ) : (
+          <a class="nav-link" href={i.href} {...('external' in i && i.external ? { target: '_blank', rel: 'noopener' } : {})}>{i.label}</a>
+        ))}
       </nav>
       <div class="flex items-center gap-3">
-        <a href={site.appointmentHref} class="btn-appt hidden sm:inline-flex">Request appointment</a>
-        <MobileMenu client:media="(max-width: 1023px)" items={nav} phone={site.phone} phoneHref={site.phoneHref} />
+        <a href={site.appointmentHref} class="btn-appt hidden whitespace-nowrap sm:inline-flex lg:hidden xl:inline-flex">Request appointment</a>
+        <MobileMenu client:media="(max-width: 1023px)" items={mobileItems} phone={site.phone} phoneHref={site.phoneHref} />
+      </div>
+    </div>
+
+    <!-- Mega panels (desktop). Attached directly under the bar so the pointer never leaves them. -->
+    <div class="mega-wrap hidden lg:block" data-mega-wrap>
+      <div id="mega-providers" class="mega" data-panel="providers" role="region" aria-label="Our Providers">
+        <div class="wrap mega-inner">
+          <div class="mb-4 flex items-center justify-between border-b border-plum-700/10 pb-4">
+            <p class="eyebrow">Our providers</p>
+            <a href="/providers" class="mega-more">Meet the team <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="grid grid-cols-3 gap-x-10">
+            {providersMenu.map((d) => (
+              <li>
+                <a href={d.href} class="mperson group/p">
+                  <span class="mperson-img"><img src={d.img ?? ''} alt="" loading="lazy" width="160" height="160" class="h-full w-full object-cover object-[50%_18%]" /></span>
+                  <span class="min-w-0">
+                    <span class="mperson-name block font-display text-xl leading-tight">{d.name}</span>
+                    <span class="mt-1 block text-[.8rem] text-plum-700/85">{d.creds}</span>
+                    <span class="block text-[.8rem] text-ink/60">{d.role}</span>
+                    <span class="mcard-cta">View profile <span aria-hidden="true">→</span></span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div id="mega-services" class="mega" data-panel="services" role="region" aria-label="Services">
+        <div class="wrap mega-inner grid grid-cols-[16rem_1fr] items-stretch gap-10">
+          <a href="/services" class="mfeature group/f">
+            <img src={images.services.wellwoman ?? ''} alt="" loading="lazy" width="520" height="520" class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover/f:scale-[1.06]" />
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 via-plum-800/45 to-plum-700/30 mix-blend-multiply" aria-hidden="true"></span>
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" aria-hidden="true"></span>
+            <span class="relative mt-auto block p-6 text-white">
+              <span class="block text-[.68rem] font-semibold uppercase tracking-[.24em] text-rose-200">Services</span>
+              <span class="mt-2 block font-display text-2xl leading-tight">All services</span>
+              <span class="mega-more mt-4 !text-white">View all services <span aria-hidden="true">→</span></span>
+            </span>
+          </a>
+          <ul class="grid grid-cols-3 content-start gap-x-12 border-t border-plum-700/[.14]">
+            {servicesMenu.map((v) => (
+              <li><a href={v.href} class="mlink"><span>{v.label}</span><svg aria-hidden="true" viewBox="0 0 14 10" class="h-2.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 5h11M8 1l4 4-4 4" /></svg></a></li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector('[data-header]') as HTMLElement | null;
+  const wrap = document.querySelector('[data-mega-wrap]') as HTMLElement | null;
+  if (header && wrap) {
+    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-item]'));
+    const panels = Array.from(wrap.querySelectorAll<HTMLElement>('[data-panel]'));
+    const mq = window.matchMedia('(hover: hover)');
+    let current: string | null = null;
+    let timer: number | undefined;
+    const set = (key: string | null) => {
+      current = key;
+      header.toggleAttribute('data-mega-open', !!key);
+      panels.forEach((p) => p.toggleAttribute('data-open', p.dataset.panel === key));
+      items.forEach((it) => {
+        const t = it.querySelector<HTMLElement>('[data-trigger]')!;
+        const on = t.getAttribute('aria-controls') === (key ? `mega-${key}` : '#');
+        it.toggleAttribute('data-open', on);
+        t.setAttribute('aria-expanded', String(on));
+      });
+    };
+    const keyOf = (it: HTMLElement) => it.querySelector<HTMLElement>('[data-trigger]')!.getAttribute('aria-controls')!.replace('mega-', '');
+    const openNow = (k: string) => { clearTimeout(timer); set(k); };
+    const closeSoon = () => { clearTimeout(timer); timer = window.setTimeout(() => set(null), 160); };
+    items.forEach((it) => {
+      const k = keyOf(it);
+      it.addEventListener('mouseenter', () => mq.matches && openNow(k));
+      it.addEventListener('mouseleave', () => mq.matches && closeSoon());
+      it.querySelector('[data-trigger]')!.addEventListener('click', (e) => {
+        if (!mq.matches) { e.preventDefault(); current === k ? set(null) : set(k); }
+      });
+      it.querySelector('[data-trigger]')!.addEventListener('keydown', (e) => {
+        const ev = e as KeyboardEvent;
+        if (ev.key === 'ArrowDown') { ev.preventDefault(); openNow(k); wrap.querySelector<HTMLElement>(`[data-panel="${k}"] a`)?.focus(); }
+      });
+    });
+    panels.forEach((p) => {
+      p.addEventListener('mouseenter', () => mq.matches && clearTimeout(timer));
+      p.addEventListener('mouseleave', () => mq.matches && closeSoon());
+    });
+    header.addEventListener('focusout', (e) => { if (!header.contains((e as FocusEvent).relatedTarget as Node)) set(null); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && current) { const t = document.querySelector<HTMLElement>(`[aria-controls="mega-${current}"]`); set(null); t?.focus(); } });
+    document.addEventListener('click', (e) => { if (current && !header.contains(e.target as Node)) set(null); });
+    // close when a link inside is chosen
+    wrap.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(null); });
+  }
+</script>

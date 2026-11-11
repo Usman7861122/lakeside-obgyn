@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Backdrop from '../components/ui/Backdrop.astro';
+import Parking from '../components/home/Parking.astro';
+import { site } from '../data/site';
+
+const a = site.address;
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(`${a.line1} ${a.city} ${a.state} ${a.zip}`)}&output=embed`;
+const description = 'Office location and parking at Lakeside Obstetrics, Gynecology & Fertility, 402 8th Avenue, Suite 201, Inner Richmond, San Francisco. Address, hours, phone and parking information.';
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalBusiness',
+  name: site.name,
+  telephone: site.phone,
+  address: { '@type': 'PostalAddress', streetAddress: a.line1, addressLocality: a.city, addressRegion: a.state, postalCode: a.zip, addressCountry: 'US' },
+};
+---
+<BaseLayout title={`Office Location & Parking | ${site.shortName}, Inner Richmond, San Francisco`} description={description} jsonLd={ld}>
+  <!-- Hero -->
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="loc-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap" data-reveal>
+      <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+        <a href="/" class="hover:text-rose-200">Home</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <span class="text-rose-200">Office locations</span>
+      </nav>
+      <h1 id="loc-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">Office locations</h1>
+      <p class="lede mt-6 max-w-2xl">{site.descriptor}</p>
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Address, hours and map -->
+  <section class="section" aria-labelledby="loc-office">
+    <Backdrop variant="mist" mark="none" />
+    <div class="wrap grid items-stretch gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+      <div data-reveal>
+        <p class="eyebrow">Our office</p>
+        <h2 id="loc-office" class="h-section">{site.shortName}</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+        <dl class="loc-list mt-8">
+          <div><dt>Address</dt><dd>{a.line1}<br />{a.city}, {a.state} {a.zip}</dd></div>
+          <div><dt>Phone</dt><dd><a href={site.phoneHref} class="svc-link">{site.phone}</a></dd></div>
+          <div><dt>Hours</dt><dd>{site.hours}</dd></div>
+        </dl>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
+          <a href={site.portalUrl} class="btn" rel="noopener" target="_blank">Request appointment</a>
+        </div>
+      </div>
+      <div class="loc-map" data-reveal style="--d:.12s">
+        <iframe title={`Map of ${site.name}, ${a.line1}, ${a.city}`} src={mapSrc} loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="800" height="560"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parking instructions (text copied from Parking Information.docx) -->
+  <Parking />
+</BaseLayout>

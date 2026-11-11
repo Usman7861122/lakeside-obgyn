@@ -28,13 +28,13 @@ import { services } from '../../data/home';
                 <span aria-hidden="true" class="absolute -right-6 -top-4 h-28 w-48 opacity-15" style="background:#fff;-webkit-mask:url('/images/logo-mark.png') center/contain no-repeat;mask:url('/images/logo-mark.png') center/contain no-repeat"></span>
                 <h3 class="relative text-2xl text-rose-200">{s.title}</h3>
                 <p class="relative mt-4 leading-relaxed text-white">{s.text}</p>
-                <a href="#contact" class="relative mt-6 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-white underline-offset-8 hover:underline">Ask about this</a>
+                <a href={s.href} class="relative mt-6 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-white underline-offset-8 hover:underline">Learn more<span class="sr-only"> about {s.title}</span></a>
               </div>
             </div>
           </div>
         </li>
       ))}
     </ul>
-    <p class="mt-12 text-center text-sm text-white/70" data-reveal>We also offer birth control, ovarian cyst care, irregular bleeding and PCOS care, pelvic pain care, ultrasound, and weight loss and management.</p>
+    <p class="mt-12 text-center text-sm text-white/70" data-reveal>We also offer <a class="underline underline-offset-4 hover:text-white" href="/services/birth-control">birth control</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/ovarian-cyst">ovarian cyst care</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/irregular-bleeding">irregular bleeding</a> and <a class="underline underline-offset-4 hover:text-white" href="/services/polycystic-ovary-syndrome">PCOS care</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/pelvic-pain">pelvic pain care</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/ultrasound">ultrasound</a>, and <a class="underline underline-offset-4 hover:text-white" href="/services/weight-loss-management">weight loss and management</a>. See <a class="underline underline-offset-4 hover:text-white" href="/services">all services</a>.</p>
   </div>
 </section>

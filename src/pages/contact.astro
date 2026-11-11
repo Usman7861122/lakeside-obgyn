@@ -1,10 +1,131 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Section from '../components/ui/Section.astro';
+import Backdrop from '../components/ui/Backdrop.astro';
+import { site } from '../data/site';
+
+const a = site.address;
+const description = 'Contact Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco. Send us a message, call 415-741-1000, or visit 402 8th Avenue, Suite 201.';
+const isDev = import.meta.env.DEV;
 ---
-<BaseLayout title="Contact">
-  <Section>
-    <h1 class="font-serif text-4xl">Contact</h1>
-    <p class="mt-4">Contact — placeholder.</p>
-  </Section>
+<BaseLayout title={`Contact Us | ${site.shortName}, Inner Richmond, San Francisco`} description={description}>
+  <!-- Hero -->
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="ct-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap" data-reveal>
+      <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+        <a href="/" class="hover:text-rose-200">Home</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <span class="text-rose-200">Contact us</span>
+      </nav>
+      <h1 id="ct-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">Contact us</h1>
+      <p class="lede mt-6 max-w-2xl">{site.descriptor}</p>
+    </div>
+  </section>
+
+  <!-- Form and office details -->
+  <section class="section" aria-labelledby="ct-form-h">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
+      <div data-reveal>
+        <p class="eyebrow">Send a message</p>
+        <h2 id="ct-form-h" class="h-section">How can we help?</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+
+        <form class="cf mt-8" id="contact-form" method="post" novalidate data-endpoint={site.contactEndpoint ?? ''}>
+          <div class="cf-grid">
+            <div class="cf-field">
+              <label for="cf-name">Name <span aria-hidden="true">*</span></label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" required />
+              <p class="cf-err" id="cf-name-err" hidden>Enter your name.</p>
+            </div>
+            <div class="cf-field">
+              <label for="cf-email">Email <span aria-hidden="true">*</span></label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" required />
+              <p class="cf-err" id="cf-email-err" hidden>Enter a valid email address.</p>
+            </div>
+            <div class="cf-field cf-wide">
+              <label for="cf-phone">Phone</label>
+              <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+            <div class="cf-field cf-wide">
+              <label for="cf-message">Message <span aria-hidden="true">*</span></label>
+              <textarea id="cf-message" name="message" rows="6" required></textarea>
+              <p class="cf-err" id="cf-message-err" hidden>Enter your message.</p>
+            </div>
+          </div>
+          <!-- Spam trap: people never see or fill this field -->
+          <div class="cf-trap" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+
+          <p class="cf-note">Please do not put health information in this form. To request an appointment, use the <a href={site.portalUrl} rel="noopener" target="_blank" class="svc-link">patient portal</a> or call <a href={site.phoneHref} class="svc-link">{site.phone}</a>.</p>
+
+          <div class="mt-7 flex flex-wrap items-center gap-4">
+            <button type="submit" class="btn-appt" id="cf-submit">Send message</button>
+          </div>
+          <p class="cf-status" id="cf-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+          {isDev && !site.contactEndpoint && (
+            <p class="mt-6 rounded-[4px] border border-dashed border-magenta-500 bg-white p-4 text-sm text-plum-900"><strong>TODO (shows in dev only):</strong> the form is not connected to an email service yet. Set <code>contactEndpoint</code> in <code>src/data/site.ts</code>.</p>
+          )}
+        </form>
+      </div>
+
+      <aside class="cf-side" data-reveal style="--d:.12s" aria-label="Office details">
+        <p class="eyebrow">Our office</p>
+        <h2 class="h-section">{site.shortName}</h2>
+        <span class="bio-rule" aria-hidden="true"></span>
+        <dl class="loc-list mt-8">
+          <div><dt>Address</dt><dd>{a.line1}<br />{a.city}, {a.state} {a.zip}</dd></div>
+          <div><dt>Phone</dt><dd><a href={site.phoneHref} class="svc-link">{site.phone}</a></dd></div>
+          <div><dt>Hours</dt><dd>{site.hours}</dd></div>
+        </dl>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
+          <a href="/locations" class="btn">Parking information</a>
+        </div>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (form) {
+    const status = document.getElementById('cf-status') as HTMLElement;
+    const btn = document.getElementById('cf-submit') as HTMLButtonElement;
+    const endpoint = form.dataset.endpoint || '';
+    const checks: Record<string, (v: string) => boolean> = {
+      name: (v) => v.trim().length > 1,
+      email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+      message: (v) => v.trim().length > 1,
+    };
+    const show = (msg: string, ok: boolean) => {
+      status.textContent = msg; status.hidden = false;
+      status.classList.toggle('cf-ok', ok); status.classList.toggle('cf-bad', !ok);
+      status.focus();
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.hidden = true;
+      let first: HTMLElement | null = null;
+      for (const key of Object.keys(checks)) {
+        const el = form.elements.namedItem(key) as HTMLInputElement;
+        const bad = !checks[key](el.value);
+        el.setAttribute('aria-invalid', String(bad));
+        const err = document.getElementById(`cf-${key}-err`) as HTMLElement;
+        err.hidden = !bad;
+        if (bad) { el.setAttribute('aria-describedby', err.id); first ??= el; } else el.removeAttribute('aria-describedby');
+      }
+      if (first) { first.focus(); return; }
+      if ((form.elements.namedItem('website') as HTMLInputElement).value) return; // spam trap filled
+      if (!endpoint) { show('This form is not connected yet, so your message was not sent. Please call 415-741-1000.', false); return; }
+      btn.disabled = true;
+      try {
+        const res = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show('Thank you. We received your message.', true);
+      } catch {
+        show('Your message was not sent. Please try again, or call 415-741-1000.', false);
+      } finally { btn.disabled = false; }
+    });
+  }
+</script>

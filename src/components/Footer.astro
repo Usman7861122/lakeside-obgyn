@@ -32,10 +32,18 @@ import { site, nav } from '../data/site';
     </div>
     <div class="mt-14 flex flex-col gap-3 border-t border-white/15 pt-6 text-xs leading-relaxed text-white/60 md:flex-row md:items-center md:justify-between">
       <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-      <p class="max-w-2xl">
-        Open Payments notice (California AB 1278): the Open Payments database is a federal tool used to search payments made by drug and device companies to physicians and teaching hospitals. It can be found at
-        <a class="text-rose-200 underline" href="https://openpaymentsdata.cms.gov" rel="noopener" target="_blank">openpaymentsdata.cms.gov</a>.
-      </p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2" aria-label="Legal">
+        <li><a href="/your-privacy" class="text-white/80 no-underline hover:text-rose-200">Privacy Policy</a></li>
+        <li><a href="/our-terms" class="text-white/80 no-underline hover:text-rose-200">Terms &amp; Conditions</a></li>
+        <li><a href="/accessibility-statement" class="text-white/80 no-underline hover:text-rose-200">Accessibility Notice</a></li>
+        <li><a href="/open-payments" class="text-white/80 no-underline hover:text-rose-200">Open Payments Database (AB 1278)</a></li>
+        <li><button type="button" class="ck-link text-white/80" data-cookie-settings>Cookie settings</button></li>
+      </ul>
     </div>
   </div>
 </footer>
+<script>
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('[data-cookie-settings]')) window.dispatchEvent(new CustomEvent('open-cookie-settings'));
+  });
+</script>

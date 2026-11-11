@@ -1,12 +1,73 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Section from '../../components/ui/Section.astro';
+import Backdrop from '../../components/ui/Backdrop.astro';
+import { servicesMenu } from '../../data/nav';
+import { site } from '../../data/site';
+
+// Card picture = the first Shutterstock photo of each service page (Sonata uses the toolkit device picture).
+const pic = (href: string) => {
+  const slug = href.replace('/services/', '');
+  if (slug === 'sonata') return '/images/sonata/device.jpg';
+  if (slug === 'annual-well-woman-exam') return '/images/services/wellwoman-1.jpg';
+  return `/images/services/${slug}-1.jpg`;
+};
+const cards = servicesMenu.map((s) => ({ ...s, img: pic(s.href) }));
+const description = 'Services at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco: well-woman exams, birth control, fibroids and the Sonata procedure, menopause care, fertility and more.';
 ---
-<BaseLayout title="Services">
-  <Section>
-    <h1 class="font-serif text-4xl">Services</h1>
-    <ul class="mt-6 list-disc pl-6">
-      <li><a href="/services/sonata" class="underline">The Sonata Procedure for Fibroids</a></li>
-    </ul>
-  </Section>
+<BaseLayout title={`Services | ${site.shortName}, Inner Richmond, San Francisco`} description={description}>
+  <!-- Hero -->
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="sv-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap" data-reveal>
+      <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+        <a href="/" class="hover:text-rose-200">Home</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <span class="text-rose-200">Services</span>
+      </nav>
+      <h1 id="sv-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">Our services</h1>
+      <p class="lede mt-6 max-w-2xl">{site.descriptor}</p>
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service cards, 3 in a row -->
+  <section class="section" aria-label="All services">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap">
+      <ul class="svc-grid">
+        {cards.map((c, i) => (
+          <li data-reveal style={`--d:${((i % 3) * 0.08).toFixed(2)}s`}>
+            <a href={c.href} class="svc-card">
+              <span class="svc-card-img">
+                <img src={c.img} alt="" width="1400" height="1400" loading="lazy" decoding="async" />
+                <span class="svc-card-glare" aria-hidden="true"></span>
+              </span>
+              <span class="svc-card-body">
+                <span class="svc-card-title">{c.label}</span>
+                <span class="svc-card-cta">Learn more<svg aria-hidden="true" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5h11M8 1l4 4-4 4" /></svg></span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Call to action -->
+  <section class="section on-dark !py-20" aria-labelledby="sv-cta">
+    <Backdrop variant="plum" mark="left" />
+    <div class="wrap grid items-center gap-8 lg:grid-cols-[1fr_auto]" data-reveal>
+      <div>
+        <p class="eyebrow">Visit us</p>
+        <h2 id="sv-cta" class="h-section text-white">Schedule your appointment</h2>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

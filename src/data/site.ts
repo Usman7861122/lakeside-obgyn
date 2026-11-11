@@ -3,6 +3,9 @@
 export const site = {
   name: 'Lakeside Obstetrics, Gynecology & Fertility',
   shortName: 'Lakeside Obgyn',
+  // TODO(client): nearby neighborhoods and cities are not in any client document. This line only uses facts we have
+  // (Inner Richmond from the descriptor, Bay Area from Dr. Ziyad Hannon's biography). Ask the client for the real list.
+  areaLine: 'Serving patients in the Inner Richmond, San Francisco, and families throughout the San Francisco Bay Area.',
   descriptor: 'Obstetrician and Gynecologist in the Inner Richmond neighborhood, San Francisco, CA',
   tagline: 'Supporting families one baby at a time.',
   phone: '415-741-1000',
@@ -12,6 +15,9 @@ export const site = {
   hours: 'Monday to Friday, 8:30 am to 5 pm',
   portalUrl: 'https://16523.portal.athenahealth.com/',
   appointmentHref: '#contact',
+  // TODO(dev): set this to the form service or API address that sends the email (for example a Formspree, Resend or
+  // serverless function URL). While it is null the contact form shows a "not connected" message and sends nothing.
+  contactEndpoint: null as string | null,
   social: {
     facebook: 'https://www.facebook.com/LakesideObstetricsGynecology',
     yelp: null as string | null, // old site links Yelp; exact URL not captured yet
@@ -24,9 +30,10 @@ export const site = {
 
 export const nav = [
   { label: 'About', href: '/#about' },
-  { label: 'Services', href: '/#services' },
+  { label: 'Services', href: '/services' },
   { label: 'Providers', href: '/#providers' },
   { label: 'Sonata', href: '/#sonata' },
   { label: 'Patient Portal', href: '/#portal' },
   { label: 'Visit Us', href: '/#visit' },
+  { label: 'Contact Us', href: '/contact' },
 ];

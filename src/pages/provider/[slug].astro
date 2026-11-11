@@ -1,0 +1,294 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Backdrop from '../../components/ui/Backdrop.astro';
+import { providers } from '../../data/providers';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return providers.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const [bio1] = p.bio ?? [];
+const who = `${p.honorific ?? 'Dr.'} ${p.name}`.trim();
+const hasEdu = p.education.length > 0 && !!p.photos;
+const hasHonors = p.honors.length > 0 && !!p.photos;
+const tlIcons: Record<string, string> = {
+  'high school': '<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M12 5V2"/>',
+  'undergraduate': '<path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6"/>',
+  'medical school': '<path d="M5 3H4v6a5 5 0 0 0 10 0V3h-1"/><path d="M9 14v1a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="11" r="2"/>',
+  'residency': '<path d="M3 21h18M5 21V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v15M12 9v6M9 12h6"/>',
+};
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': p.honorific === '' ? 'Person' : 'Physician',
+  name: p.title,
+  jobTitle: p.role,
+  ...(p.honorific === '' ? {} : { medicalSpecialty: ['Obstetric', 'Gynecologic'] }),
+  image: new URL(p.img, Astro.site).href,
+  telephone: site.phone,
+  worksFor: { '@type': 'MedicalBusiness', name: site.name },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.line1,
+    addressLocality: site.address.city,
+    addressRegion: site.address.state,
+    postalCode: site.address.zip,
+    addressCountry: 'US',
+  },
+};
+---
+<BaseLayout title={`${p.title} | ${site.shortName}, Inner Richmond, San Francisco`} description={p.metaDescription} jsonLd={ld}>
+  <!-- Hero -->
+  <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="prov-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-20">
+      <div data-reveal>
+        <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+          <a href="/" class="hover:text-rose-200">Home</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <a href="/providers" class="hover:text-rose-200">Our providers</a>
+          <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+          <span class="text-rose-200">{p.name}</span>
+        </nav>
+        <h1 id="prov-h" class="mt-8 font-display text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.04] text-white">{p.title}</h1>
+        <p class="lede mt-6 max-w-xl">{p.tagline ?? site.descriptor}</p>
+        {p.boardLine && <p class="mt-6 inline-flex items-center gap-3 border-l-2 border-magenta-500 pl-4 text-sm text-white/85">{p.boardLine}</p>}
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        </div>
+      </div>
+      <aside class="hero-card" data-reveal style="--d:.14s" aria-label="Practice details">
+        <p class="eyebrow">Visit the practice</p>
+        <ul class="mt-6">
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+            <span><strong>{site.address.line1}</strong><br />{site.address.city}, {site.address.state} {site.address.zip}</span>
+          </li>
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <span><strong>Hours</strong><br />{site.hours}</span>
+          </li>
+          <li class="hero-row">
+            <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+            <span><strong>Phone</strong><br /><a href={site.phoneHref} class="hover:text-rose-200">{site.phone}</a></span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+
+  <!-- About: the biography, shown in three sections. Text is word for word from the old site. -->
+  {p.bio && (
+    <>
+      <section id="about" class="section" aria-labelledby="bio-h">
+        <Backdrop variant="blush" mark="none" />
+        <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+          <figure class={`pframe lg:order-first${p.photoSmall ? ' pframe-sm' : ''}`} data-reveal style="--d:.12s">
+            <span class="pframe-line" aria-hidden="true"></span>
+            <div class="pframe-img">
+              <img src={p.img} alt={p.imgAlt} width="900" height="900" loading="lazy" class="kb h-full w-full object-cover object-[50%_20%]" />
+              <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/25 to-transparent"></div>
+            </div>
+          </figure>
+          <div data-reveal>
+            <p class="eyebrow">{p.honorific === '' ? 'About the provider' : 'About the doctor'}</p>
+            <h2 id="bio-h" class="h-section">Meet {who}</h2>
+            <span class="bio-rule" aria-hidden="true"></span>
+            <p class="bio-lede mt-9">{bio1}</p>
+            <a href={site.portalUrl} class="btn-appt mt-10" rel="noopener" target="_blank">Request appointment</a>
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+
+  <!-- Education -->
+  {hasEdu && (
+  <section id="education" class="section" aria-labelledby="edu-h">
+    <Backdrop variant="mist" mark="none" />
+    <div class="wrap grid items-start gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20">
+      <div class="lg:sticky lg:top-28">
+      <figure class="pframe" data-reveal>
+        <span class="pframe-line" aria-hidden="true"></span>
+        <div class="pframe-img">
+          <img src={p.photos!.education.src} alt={p.photos!.education.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+          <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/45 via-plum-700/10 to-magenta-500/10 mix-blend-multiply"></div>
+        </div>
+      </figure>
+      </div>
+      <div data-reveal style="--d:.12s">
+        <p class="eyebrow">Education and training</p>
+        <h2 id="edu-h" class="h-section">{p.eduHeading}</h2>
+        <ol class="tl mt-10">
+          {p.education.map((e) => (
+            <li class="tl-item">
+              <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={tlIcons[e.label.toLowerCase()] ?? '<circle cx="12" cy="12" r="3"/>'} /></span>
+              <span class="prow-label">{e.label}</span>
+              <span class="prow-text">{e.detail}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- Approach: composed feature layout, used only by providers that have an `approach` -->
+  {p.approach && (() => {
+    const [lead, ...rest] = p.approach.items;
+    return (
+  <section id="approach" class="section on-dark" aria-labelledby="appr-h">
+    <Backdrop variant="plum" mark="right" rings={2} />
+    <div class="wrap">
+      <div class="grid items-center gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20">
+        <figure class="pframe pframe-dark" data-reveal>
+          <span class="pframe-line" aria-hidden="true"></span>
+          <div class="pframe-img">
+            <img src={p.approach.photo.src} alt={p.approach.photo.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-900/55 via-plum-800/10 to-magenta-500/10 mix-blend-multiply"></div>
+          </div>
+        </figure>
+        <div data-reveal style="--d:.12s">
+          <p class="eyebrow">{p.approach.eyebrow}</p>
+          <h2 id="appr-h" class="h-section text-white">{p.approach.heading}</h2>
+          <span class="bio-rule" aria-hidden="true"></span>
+          <div class="apc-lead mt-9">
+            <span class="apc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={lead.icon} /></span>
+            <div>
+              <p class="apc-label">{lead.label}</p>
+              <p class="apc-quote">{lead.text}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="mt-14 grid gap-6 md:grid-cols-2 lg:mt-20 lg:gap-8">
+        {rest.map((e, n) => (
+          <li class="apc" data-reveal style={`--d:${n * 0.1}s`}>
+            <span class="apc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={e.icon} /></span>
+            <p class="apc-label mt-6">{e.label}</p>
+            <p class="apc-text">{e.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+    );
+  })()}
+
+  <!-- Credentials -->
+  {p.badges.length > 0 && p.photos?.credentials && (
+  <section id="credentials" class="section on-dark" aria-labelledby="cred-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap grid items-center gap-12 lg:grid-cols-[6fr_5fr] lg:gap-20">
+      <div data-reveal>
+        <p class="eyebrow">Credentials</p>
+        <h2 id="cred-h" class="h-section text-white">{p.boardLine}</h2>
+        <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+          {p.badges.map((b) => {
+            const Tag = b.href ? 'a' : 'div';
+            return (
+              <li>
+                <Tag {...(b.href ? { href: b.href, rel: 'noopener', target: '_blank' } : {})} class="pbadge group">
+                  <span class="pbadge-plate"><img src={b.src} alt={b.alt} width={b.w} height={b.h} loading="lazy" class="h-16 w-auto max-w-[4.5rem] object-contain transition duration-500 group-hover:scale-110" /></span>
+                  <span class="text-sm font-semibold leading-snug text-white">{b.label}</span>
+                </Tag>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <figure class="pframe pframe-dark" data-reveal style="--d:.12s">
+        <span class="pframe-line" aria-hidden="true"></span>
+        <div class="pframe-img">
+          <img src={p.photos!.credentials!.src} alt={p.photos!.credentials!.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+          <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/55 via-plum-800/10 to-transparent"></div>
+        </div>
+      </figure>
+    </div>
+  </section>
+  )}
+
+  <!-- Honors and community -->
+  {hasHonors && (
+  <section id="honors" class="section" aria-labelledby="honors-h">
+    <Backdrop variant="blush" mark="none" />
+    <div class="wrap grid items-center gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20">
+      <figure class="pframe" data-reveal>
+        <span class="pframe-line" aria-hidden="true"></span>
+        <div class="pframe-img">
+          <img src={p.photos!.honors.src} alt={p.photos!.honors.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+          <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/40 via-transparent to-magenta-500/10 mix-blend-multiply"></div>
+        </div>
+      </figure>
+      <div data-reveal style="--d:.12s">
+        <p class="eyebrow">{p.honorsEyebrow}</p>
+        <h2 id="honors-h" class="h-section">{p.honorsHeading}</h2>
+        <ul class="mt-10 -mx-3 border-t border-plum-700/15">
+          {p.honors.map((e) => (
+            <li class="prow">
+              <span class="prow-label">{e.label}</span>
+              <span class="prow-text">{e.detail}</span>
+            </li>
+          ))}
+          {p.extra && (
+            <li class="prow">
+              <span class="prow-label">{p.extra.label}</span>
+              <span class="prow-text">{p.extra.text}</span>
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- Areas of care -->
+  {p.care.length > 0 && (
+  <section class="section" aria-labelledby="care-h">
+    <Backdrop variant={hasHonors ? 'mist' : 'blush'} mark="none" />
+    <div class="wrap">
+      <div class="max-w-2xl" data-reveal>
+        <p class="eyebrow">{p.careHeading?.eyebrow ?? 'Areas of care'}</p>
+        <h2 id="care-h" class="h-section">{p.careHeading?.heading ?? 'Clinical focus'}</h2>
+      </div>
+      <ul class="mt-12 grid border-t border-plum-700/15 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-3" data-reveal>
+        {p.care.map((c) => (
+          <li>
+            {c.href ? (
+              <a href={c.href} class="mlink"><span>{c.label}</span><svg aria-hidden="true" viewBox="0 0 14 10" class="h-2.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 5h11M8 1l4 4-4 4" /></svg></a>
+            ) : (
+              <p class="mlink !cursor-default hover:!pl-1 !text-plum-900"><span>{c.label}</span></p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  )}
+
+  <!-- Biography: visible only while developing. Needs the client's approved text. -->
+  {import.meta.env.DEV && !p.bio && (
+    <section class="wrap py-10">
+      <p class="rounded-[4px] border border-dashed border-magenta-500 bg-white p-6 text-sm text-plum-900">
+        <strong>TODO (shows in dev only):</strong> biography paragraphs for {p.title}. Not copied from the old site. Get the approved text from the client, see docs/OPEN-QUESTIONS.md.
+      </p>
+    </section>
+  )}
+  <!-- Closing call to action -->
+  <section class="section on-dark !py-20" aria-labelledby="cta-h">
+    <Backdrop variant="plum" mark="left" />
+    <div class="wrap grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+      <div data-reveal>
+        <p class="eyebrow">Visit us</p>
+        <h2 id="cta-h" class="h-section text-white">Meet with {who}</h2>
+        <p class="lede mt-5 max-w-xl">{site.address.line1}, {site.address.city}, {site.address.state} {site.address.zip}<br />{site.hours}</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4" data-reveal style="--d:.12s">
+        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

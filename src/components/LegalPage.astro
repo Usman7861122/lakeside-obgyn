@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Backdrop from './ui/Backdrop.astro';
+import { site } from '../data/site';
+import type { LegalPage } from '../data/legal';
+
+interface Props { page: LegalPage }
+const { page } = Astro.props;
+const isDev = import.meta.env.DEV;
+const slugify = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const heads = page.blocks.filter((b): b is { h: string } => 'h' in b).map((b) => ({ t: b.h, id: slugify(b.h) }));
+const titleCase = (t: string) => (t === t.toUpperCase() ? t.charAt(0) + t.slice(1).toLowerCase() : t);
+---
+<BaseLayout title={`${page.title} | ${site.shortName}, Inner Richmond, San Francisco`} description={page.description}>
+  <section class="section on-dark !pb-16 !pt-40 md:!pt-48" aria-labelledby="lg-h">
+    <Backdrop variant="plum" mark="right" />
+    <div class="wrap" data-reveal>
+      <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
+        <a href="/" class="hover:text-rose-200">Home</a>
+        <span aria-hidden="true" class="mx-2 text-white/30">/</span>
+        <span class="text-rose-200">{page.title}</span>
+      </nav>
+      <h1 id="lg-h" class="mt-8 font-display text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[1.06] text-white">{page.title}</h1>
+    </div>
+  </section>
+
+  <section class="section" aria-label={page.title}>
+    <Backdrop variant="mist" mark="none" />
+    <div class={`wrap grid gap-12 ${heads.length > 2 ? 'lg:grid-cols-[minmax(0,3fr)_minmax(0,9fr)] lg:gap-16' : ''}`}>
+      {heads.length > 2 && (
+        <nav aria-label="On this page" class="lg:sticky lg:top-28 lg:self-start" data-reveal>
+          <p class="eyebrow">On this page</p>
+          <ul class="mt-4">
+            {heads.map((h) => <li><a href={`#${h.id}`} class="mlink"><span>{titleCase(h.t)}</span></a></li>)}
+          </ul>
+        </nav>
+      )}
+      <div class="legal-prose max-w-3xl">
+        {page.blocks.map((b) => {
+          if ('h' in b) return <h2 id={slugify(b.h)}>{titleCase(b.h)}</h2>;
+          if ('ul' in b) return <ul>{b.ul.map((i) => <li>{i}</li>)}</ul>;
+          return <p>{b.p}</p>;
+        })}
+        {page.blocks.length === 0 && (
+          <p>For questions about accessibility, call us at <a href={site.phoneHref} class="svc-link">{site.phone}</a> or write to {site.address.line1}, {site.address.city}, {site.address.state} {site.address.zip}.</p>
+        )}
+        {isDev && page.todo && (
+          <p class="rounded-[4px] border border-dashed border-magenta-500 bg-white p-4 text-sm"><strong>TODO (shows in dev only):</strong> {page.todo}</p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
