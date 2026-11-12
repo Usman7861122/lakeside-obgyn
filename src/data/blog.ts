@@ -42,7 +42,7 @@ export const posts: Post[] = [
     metaDescription: 'What to expect at an annual well-woman exam and how to prepare, from the team at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco.',
     excerpt: firstSentence(ww.intro),
     image: images.blog[0] as string,
-    imageAlt: 'A doctor pointing at an ultrasound screen while a patient looks on',
+    imageAlt: 'A patient sitting on an exam table while a doctor takes notes during a visit',
     intro: [ww.intro],
     sections: [
       { h: ww.expect.q, parts: [{ p: ww.expect.lead }, { ul: ww.expect.items }, { p: ww.expect.after }] },
@@ -77,7 +77,7 @@ export const posts: Post[] = [
     metaDescription: 'Perimenopause and menopause symptoms and your care team at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco.',
     excerpt: firstSentence(menopause.intro[0]),
     image: images.blog[2] as string,
-    imageAlt: 'A smiling woman talking with her doctor at a desk',
+    imageAlt: 'A woman with curly hair relaxing on a sofa at home',
     intro: menopause.intro,
     sections: [
       { h: 'Your care team', parts: q(menopause.blocks, 'Your care team') },

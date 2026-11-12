@@ -27,7 +27,7 @@ export const services: WellWomanService[] = [
       'An annual well-woman exam is necessary to prevent chronic diseases and serious gynecological issues, like cervical cancer. The team welcomes patients from the LGBTQ community who are in need of gynecological exams. You can book your annual well-woman visit through the website, or you can call to speak with a team member at the office nearest you today.',
     photos: [
       { src: '/images/services/wellwoman-1.jpg', alt: 'A smiling doctor in a white coat showing a medical report on a clipboard to a patient' },
-      { src: '/images/services/wellwoman-2.jpg', alt: 'A doctor talking with a patient at a desk in a bright consultation room' },
+      { src: '/images/services/wellwoman-2.jpg', alt: 'A patient sitting on an exam table while a doctor takes notes during a visit' },
       { src: '/images/services/wellwoman-3.jpg', alt: 'Two smiling women at a bright medical reception desk' },
     ],
     why: {

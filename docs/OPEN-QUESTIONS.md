@@ -102,3 +102,10 @@ Text was copied word for word from the old site. Please confirm these points wit
 - [ ] The text repeats the service pages, so search engines may see duplicate content. Ask if the client wants different articles later.
 - [ ] Blog is linked from the home cards and the "All articles" button only. It is NOT in the menu or footer yet, as requested. Add it to src/data/nav.ts when ready.
 - [ ] Post images are the stock photos in public/images/blog. Confirm they are licensed for this use.
+
+## Diverse photos (2026-11-12)
+- [ ] Doctor feedback: the site did not show her patients. Four Shutterstock photos (Standard license, IDs 2709769795, 2248174697, 2839632371, 2611669831) replaced the Reviews portrait, Well-woman card and page, home hero consult slide, blog exam cover. About, fertility, LGBTQ+ and menopause photos are still to review.
+- [ ] Check Shutterstock terms for photos used with medical topics (a "posed by a model" note may be needed). Ask the client to approve the photos.
+- [ ] "Meet the team" card uses a stock model, not a real team photo. Ask the client for a real one.
+- [ ] (2026-11-12) "Meet the team" card (providers menu) now shows a Shutterstock portrait of a woman doctor (ID 4224884185), not a real team member. Ask the client to approve it, or send a real team photo to replace public/images/provider/team-lead.jpg.
+- [ ] (2026-11-12) Menopause photos: home card and blog cover now use Shutterstock 2507790911 (woman in her 50s with curly hair on a sofa). The menopause service page photos are still the old ones. Patient Portal background now uses Shutterstock 2438016419 (multiracial group with a pride flag). Ask the client to approve both.

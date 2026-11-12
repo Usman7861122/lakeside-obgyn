@@ -3,7 +3,7 @@ export const images = {
   hero: [
     { src: '/images/hero/bridge.jpg' as string | null, alt: 'Golden Gate Bridge at sunrise from Fort Point, San Francisco' },
     { src: '/images/hero/family.jpg' as string | null, alt: 'A mother holding her baby by a sunlit window' },
-    { src: '/images/hero/consult.jpg' as string | null, alt: 'A woman talking with her doctor in a calm, bright clinic' },
+    { src: '/images/hero/consult.jpg' as string | null, alt: 'A doctor and a patient smiling as they look over a clipboard together' },
   ],
   about: { src: '/images/about/consult.jpg' as string | null, alt: 'A doctor and a patient looking at a tablet together in a bright exam room' },
   services: {
