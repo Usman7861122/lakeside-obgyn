@@ -30,8 +30,8 @@ export const service: GenericService = {
   closing:
     'Lakeside Obstetrics, Gynecology & Fertility provides quality LGBTQ care in a safe, supportive environment. Schedule your appointment through the website or call the San Francisco office directly.',
   photos: [
-    { src: '/images/services/lgbtq-care-1.jpg', alt: 'A doctor talking with a patient during a consultation' },
-    { src: '/images/services/lgbtq-care-2.jpg', alt: 'A rainbow pride flag on a doctor’s desk' },
-    { src: '/images/services/lgbtq-care-3.jpg', alt: 'A smiling doctor in a stethoscope sitting at a laptop' },
+    { src: '/images/services/lgbtq-care-1.jpg', alt: 'A group of friends laughing together outdoors while one holds up a rainbow pride flag' },
+    { src: '/images/services/lgbtq-care-2.jpg', alt: 'A person with a buzz cut in a purple hoodie looking to the side against a pink wall' },
+    { src: '/images/services/lgbtq-care-3.jpg', alt: 'A smiling woman with curly hair and heart-shaped sunglasses at the beach' },
   ],
 };
