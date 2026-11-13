@@ -116,7 +116,7 @@ Text was copied word for word from the old site. Please confirm these points wit
 
 ## Dr. Hannon's edits, 2026-11-13 (see docs/EDITS-2026-11-11.md)
 - Provider page addresses still end in "-facog" (/provider/monica-hannon-md-facog). Changing them needs a 301 redirect from the old address. Ask the client if they want new addresses.
-- Logo: the old Logo.png was grainy and had the doctors' names and FACOG inside it. Replaced by a text wordmark. TODO: ask the client for a vector logo (SVG).
+- Logo: the old Logo.png (grainy, with FACOG inside) was replaced on 2026-11-13 by the new high-quality logo the developer supplied (public/images/logo.png, no FACOG, doctors' names kept as M.D.). It sits on a white panel in the footer. TODO: confirm with the client that this is the approved logo; a vector (SVG) would be even sharper.
 - Ultrasound page rewritten from her email (first trimester only, mostly transvaginal). She must read and approve it. Photo 1 (late pregnancy) removed and replaced by a general consult photo. TODO: pick a better stock photo (needs the user's approval first).
 - FemVue video link: her email says "here is a link" but no link came through. Ask Justin or Dr. Hannon. The FemVue homepage section and page have a TODO for the video.
 - Miudella (copper) 3yr IUD: added as "coming soon". Confirm the spelling and whether she wants the brand symbol.
