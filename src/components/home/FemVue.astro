@@ -1,0 +1,21 @@
+---
+import Backdrop from '../ui/Backdrop.astro';
+// Text below is copied from the Fertility & FemVue service page (src/data/svc/fertility-femvue.ts). Nothing new is claimed.
+// TODO: Dr. Hannon's FemVue website video link was not in her email. Add it here when we have it.
+---
+<section id="femvue" class="section" aria-labelledby="femvue-h">
+  <Backdrop variant="blush" mark="none" />
+  <div class="wrap grid items-center gap-14 lg:grid-cols-[5fr_6fr] lg:gap-20">
+    <figure data-reveal class="relative aspect-[4/3] overflow-hidden rounded-[6px] ring-1 ring-plum-700/10">
+      <img src="/images/services/fertility-femvue-1.jpg" alt="" width="1400" height="1050" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+    </figure>
+    <div data-reveal style="--d:.12s">
+      <p class="eyebrow">Fertility care</p>
+      <h2 id="femvue-h" class="h-section">FemVue<sup class="text-[.45em] align-super">®</sup> tubal patency testing</h2>
+      <p class="lede mt-6">To assess whether fallopian tubes are open or blocked, the OBGYN physicians utilize ultrasound equipment and FemVue, a safe and simple method that relies on the injection of air bubbles and sterile water for assessment, rather than the traditional method of using x-ray and radiopaque dye.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="/services/fertility-femvue" class="btn-appt">Learn about Fertility &amp; FemVue</a>
+      </div>
+    </div>
+  </div>
+</section>

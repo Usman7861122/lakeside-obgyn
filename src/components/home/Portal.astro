@@ -7,8 +7,8 @@ import { portalFeatures } from '../../data/home';
   <div aria-hidden="true" class="parallax-bg" style="--bg:url('/images/portal/bg.jpg')"></div>
   <div aria-hidden="true" class="absolute inset-0 -z-10 bg-gradient-to-r from-plum-900/90 via-plum-900/70 to-plum-800/50"></div>
   <div aria-hidden="true" class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/50 via-transparent to-ink/30"></div>
-  <div class="wrap grid items-center gap-14 lg:grid-cols-2 lg:gap-24">
-    <div data-reveal>
+  <div class="wrap">
+    <div class="max-w-2xl" data-reveal>
       <p class="eyebrow">Patient portal</p>
       <h2 id="portal-h" class="h-section text-white">Your health information, open any time</h2>
       <p class="lede mt-6">Use the secure patient portal, day or night, to stay in touch with our office and keep track of your care.</p>
@@ -20,20 +20,6 @@ import { portalFeatures } from '../../data/home';
         ))}
       </ul>
       <div class="mt-10"><a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Open the patient portal</a></div>
-    </div>
-    <div class="relative mx-auto w-full max-w-md" data-reveal style="--d:.15s" aria-hidden="true">
-      <div class="rounded-[10px] border border-white/25 bg-white/[.12] p-6 shadow-[0_40px_80px_-40px_rgb(0_0_0/.7)] backdrop-blur-md">
-        <div class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-white/80"></span><span class="h-2.5 w-2.5 rounded-full bg-white/50"></span><span class="h-2.5 w-2.5 rounded-full bg-white/25"></span></div>
-        <div class="mt-6 space-y-3">
-          {['Test results', 'Messages', 'Refills', 'Visit summary'].map((r, n) => (
-            <div class="flex items-center justify-between rounded-[4px] bg-white/[.14] px-4 py-3.5">
-              <span class="text-sm text-white">{r}</span>
-              <span class={`h-2 w-2 rounded-full ${n === 1 ? 'bg-rose-200 shadow-[0_0_10px_2px_rgb(255_194_220/.7)]' : 'bg-white/60'}`}></span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <span class="absolute -bottom-5 -left-5 -z-10 h-full w-full rounded-[10px] border border-white/25"></span>
     </div>
   </div>
 </section>

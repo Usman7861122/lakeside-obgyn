@@ -1,13 +1,17 @@
 import type { GenericService } from './types';
+import { service as laparoscopic } from './laparoscopic-surgery';
+
+// Merged 2026-11-13 (Dr. Hannon: the Laparoscopic Surgery and Minimally Invasive Surgery tiles are redundant).
+// The laparoscopic questions are appended below word for word. Old address /services/laparoscopic-surgery redirects here.
 
 export const service: GenericService = {
   slug: 'minimally-invasive-surgery',
-  title: 'Minimally Invasive Surgery Specialists',
-  menuLabel: 'Minimally Invasive Surgery',
+  title: 'Minimally Invasive & Laparoscopic Surgery Specialists',
+  menuLabel: 'Minimally Invasive & Laparoscopic Surgery',
   metaDescription:
-    'Minimally invasive surgery specialists in the Inner Richmond, San Francisco. Gynecological surgery with Monica Hannon, MD, FACOG and Ziyad Hannon, MD, FACOG. Schedule online or call.',
+    'Minimally invasive surgery specialists in the Inner Richmond, San Francisco. Gynecological surgery with Monica Hannon, MD and Ziyad Hannon, MD. Call to schedule.',
   intro: [
-    'In most cases, your OB/GYN can perform gynecological surgery using minimally invasive surgery methods. If you need a procedure or would like to find out more information, schedule an exam with board-certified OB/GYNs Monica Hannon, MD, FACOG or Ziyad Hannon, MD, FACOG at Lakeside Obstetrics, Gynecology & Fertility. Schedule online or call the San Francisco office locations nearest you for an appointment.',
+    'In most cases, your OB/GYN can perform gynecological surgery using minimally invasive surgery methods. If you need a procedure or would like to find out more information, schedule an exam with board-certified OB/GYNs Monica Hannon, MD or Ziyad Hannon, MD at Lakeside Obstetrics, Gynecology & Fertility. Call our San Francisco office for an appointment.',
   ],
   blocks: [
     {
@@ -34,9 +38,10 @@ export const service: GenericService = {
         { p: 'You may also need to avoid eating or drinking for 8 hours before your procedure. The physicians at Lakeside Obstetrics, Gynecology & Fertility will counsel you about how to prepare for your specific surgery.' },
       ],
     },
+    ...laparoscopic.blocks,
   ],
   closing:
-    'Lakeside Obstetrics, Gynecology & Fertility provides modern minimally invasive surgical solutions. Schedule your gynecological surgery consultation through the website or call our San Francisco office directly.',
+    'Lakeside Obstetrics, Gynecology & Fertility provides modern minimally invasive surgical solutions. Call our San Francisco office to schedule your gynecological surgery consultation.',
   photos: [
     { src: '/images/services/minimally-invasive-surgery-1.jpg', alt: 'Gloved hands guiding a laparoscopic instrument during surgery' },
     { src: '/images/services/minimally-invasive-surgery-2.jpg', alt: 'Two surgeons working under operating room lights' },

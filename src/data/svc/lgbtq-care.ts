@@ -7,7 +7,7 @@ export const service: GenericService = {
   metaDescription:
     'LGBTQ care in the Inner Richmond, San Francisco. Compassionate gynecological and fertility care, including gender-affirming laparoscopic hysterectomy, at Lakeside Obstetrics, Gynecology & Fertility.',
   intro: [
-    'It’s important for members of the LGBTQ community to receive compassionate gynecological and fertility care. Click on the online scheduler to book your LGBTQ evaluation today, or call the clinic nearest you directly to book a visit.',
+    'It’s important for members of the LGBTQ community to receive compassionate gynecological and fertility care. Call the clinic to book your LGBTQ evaluation today.',
   ],
   blocks: [
     {
@@ -28,7 +28,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'Lakeside Obstetrics, Gynecology & Fertility provides quality LGBTQ care in a safe, supportive environment. Schedule your appointment through the website or call the San Francisco office directly.',
+    'Lakeside Obstetrics, Gynecology & Fertility provides quality LGBTQ care in a safe, supportive environment. Call our San Francisco office to schedule your appointment.',
   photos: [
     { src: '/images/services/lgbtq-care-1.jpg', alt: 'A group of friends laughing together outdoors while one holds up a rainbow pride flag' },
     { src: '/images/services/lgbtq-care-2.jpg', alt: 'A person with a buzz cut in a purple hoodie looking to the side against a pink wall' },

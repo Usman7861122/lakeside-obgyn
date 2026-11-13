@@ -24,7 +24,7 @@ import { doctors } from '../../data/home';
             )}
             <span aria-hidden="true" class="pointer-events-none absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-magenta-500 transition-transform duration-700 group-hover:scale-x-100"></span>
           </div>
-          <h3 class="mt-5 text-2xl">{d.name}<span class="text-plum-500">, {d.creds}</span></h3>
+          <h3 class="mt-5 text-2xl">{d.name}{d.creds && <span class="text-plum-500">, {d.creds}</span>}</h3>
           <p class="mt-1 text-sm uppercase tracking-[.16em] text-ink/60">{d.role}</p>
           <div class="mt-auto pt-6">
             <a href={d.href} class="btn !h-11 !px-6 !text-[.72rem]" aria-label={`View profile: ${d.name}`}>View profile</a>

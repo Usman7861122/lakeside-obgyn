@@ -19,14 +19,7 @@ import { images } from '../../data/images';
       <div class="flex flex-col p-8 md:p-12 lg:p-14">
         <p class="eyebrow">About the practice</p>
         <h2 id="about-h" class="h-section !text-[clamp(1.9rem,3.4vw,2.8rem)]">A family practice in the heart of the Inner Richmond</h2>
-        <p class="lede mt-6">We are a father and daughter team of board-certified physicians. Our care is individualized and low-intervention, and we are here for you around the clock.</p>
-        <ul class="mt-8 grid grid-cols-2 border-y border-plum-700/15">
-          {['24/7 care', 'Low-intervention, individualized care', 'On-site ultrasound', 'FemVue® testing'].map((t, i) => (
-            <li class={`ab-fact flex items-center gap-3 px-1 py-4 text-[.95rem] leading-snug ${i % 2 ? 'border-l border-plum-700/15 pl-5' : ''} ${i > 1 ? 'border-t border-plum-700/15' : ''}`}>
-              <span aria-hidden="true" class="ab-dash h-px w-4 shrink-0 bg-magenta-500"></span><span class="ab-txt">{t}</span>
-            </li>
-          ))}
-        </ul>
+        <p class="lede mt-6">We are a father and daughter team of board-certified gynecology physicians joined by our experienced nurse practitioner. Our care is individualized and low-intervention, and we are here for you around the clock. In addition to routine GYN preventative care, we offer on-site pelvic ultrasound and procedures for expedited diagnosis and treatment plans in the same visit.</p>
         <div class="mt-auto flex flex-wrap items-center justify-between gap-x-8 gap-y-5 pt-8">
           <p class="max-w-sm text-[.9rem] leading-relaxed text-ink/70">We accept {site.insurance}.</p>
           <a href="#contact" class="btn">Contact our office</a>

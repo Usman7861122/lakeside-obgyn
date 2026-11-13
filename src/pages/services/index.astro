@@ -9,7 +9,9 @@ const pic = (href: string) => {
   const slug = href.replace('/services/', '');
   if (slug === 'sonata') return '/images/sonata/device.jpg';
   if (slug === 'annual-well-woman-exam') return '/images/services/wellwoman-1.jpg';
-  return `/images/services/${slug}-1.jpg`;
+  // Different pictures for tiles that looked too similar (Dr. Hannon, 2026-11-13).
+  const alt: Record<string, string> = { 'pelvic-pain': 'pelvic-pain-3', 'ovarian-cyst': 'ovarian-cyst-2', 'polycystic-ovary-syndrome': 'polycystic-ovary-syndrome-2', fibroids: 'fibroids-3', 'sexual-health': 'wellwoman-3' };
+  return `/images/services/${alt[slug] ?? `${slug}-1`}.jpg`;
 };
 const cards = servicesMenu.map((s) => ({ ...s, img: pic(s.href) }));
 const description = 'Services at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco: well-woman exams, birth control, fibroids and the Sonata procedure, menopause care, fertility and more.';
@@ -27,8 +29,7 @@ const description = 'Services at Lakeside Obstetrics, Gynecology & Fertility in 
       <h1 id="sv-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">Our services</h1>
       <p class="lede mt-6 max-w-2xl">{site.descriptor}</p>
       <div class="mt-10 flex flex-wrap items-center gap-4">
-        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
       </div>
     </div>
   </section>
@@ -65,8 +66,7 @@ const description = 'Services at Lakeside Obstetrics, Gynecology & Fertility in 
         <h2 id="sv-cta" class="h-section text-white">Schedule your appointment</h2>
       </div>
       <div class="flex flex-wrap items-center gap-4">
-        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
       </div>
     </div>
   </section>

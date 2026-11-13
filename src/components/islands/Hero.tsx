@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { site } from '../../data/site';
 
 export type Slide = {
   eyebrow: string;
@@ -118,7 +119,7 @@ export default function Hero({ slides }: { slides: Slide[] }) {
                     </h2>
                     <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-white/85">{s.text}</p>
                     <div className="mt-10 flex flex-wrap items-center gap-4">
-                      <a href="#contact" className="btn-appt">Request appointment</a>
+                      <a href={site.phoneHref} className="btn-appt">Call {site.phone}</a>
                       <a href={s.cta.href} className="btn">{s.cta.label}</a>
                     </div>
                   </motion.div>

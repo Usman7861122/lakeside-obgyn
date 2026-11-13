@@ -5,9 +5,9 @@ export const service: GenericService = {
   title: 'Birth Control Specialists',
   menuLabel: 'Birth Control',
   metaDescription:
-    'Birth control specialists in the Inner Richmond, San Francisco. Personalized birth control counseling, IUD and implant insertion at Lakeside Obstetrics, Gynecology & Fertility. Book online or call.',
+    'Birth control specialists in the Inner Richmond, San Francisco. Personalized birth control counseling, IUD and implant insertion at Lakeside Obstetrics, Gynecology & Fertility. Call to book.',
   intro: [
-    'Many modern types of birth control, including the intrauterine device (IUD), are over 99% effective at preventing unwanted pregnancy. If you’d like to start or change birth control, the team provides personalized birth control counseling at the clinic. Your OB/GYN helps you select the right type of contraception for your needs. Book your appointment online or by phone today.',
+    'Many modern types of birth control, including the intrauterine device (IUD), are over 99% effective at preventing unwanted pregnancy. If you’d like to start or change birth control, the team provides personalized birth control counseling at the clinic. Your OB/GYN helps you select the right type of contraception for your needs. Call to book your appointment today.',
   ],
   blocks: [
     {
@@ -18,6 +18,7 @@ export const service: GenericService = {
         { p: 'Long-acting reversible contraceptives, such as copper and hormonal intrauterine devices (IUDs) and hormonal implants, prevent pregnancy by multiple mechanisms. All IUDs and hormonal implants create an unfavorable environment for implantation of a fertilized egg in the uterus. IUDs and hormonal implants impair sperm motility and prevent the sperm from reaching the egg in the first place. Additionally, hormonal IUDs and implants thicken the cervical mucus, providing yet another barrier impacting sperm migration.' },
         { p: 'Currently, we offer insertion of the following long-acting contraceptives in our office:' },
         { ul: ['PARAGARD® (copper) 10yr IUD', 'MIRENA® 5yr IUD', 'KYLEENA® 5yr IUD', 'LILETTA® 6yr IUD', 'SKYLA® 3yr IUD', 'NEXPLANON® 3yr implant'] },
+        { p: 'Coming soon: Miudella (copper) 3yr IUD. It is not available to obtain yet, and our provider has completed the training for insertion.' },
         { h: 'Short-acting hormonal methods' },
         { p: 'Short-acting hormonal birth control, including the traditional pill, the patch, or vaginal ring (combined hormonal contraceptives) work by stopping the release of eggs from your ovaries. In some cases, you may be interested in a progesterone-only pill or injection (Depo Provera) which work primarily by thickening the cervical mucus, slowing the movement of the egg through the fallopian tubes, and thinning the lining of the uterus.' },
         { h: 'Barrier methods' },
@@ -42,7 +43,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'Learn more about the many birth control options available by scheduling a consultation at Lakeside Obstetrics, Gynecology & Fertility today. Schedule online or over the phone to be seen at our San Francisco office location.',
+    'Learn more about the many birth control options available by scheduling a consultation at Lakeside Obstetrics, Gynecology & Fertility today. Call our San Francisco office to be seen.',
   photos: [
     { src: '/images/services/birth-control-1.jpg', alt: 'A hand holding a blister pack of birth control pills against a pink background' },
     { src: '/images/services/birth-control-2.jpg', alt: 'A doctor handing a blister pack of birth control pills to a patient during a consultation' },

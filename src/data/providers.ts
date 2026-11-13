@@ -33,8 +33,8 @@ export const providers: Provider[] = [
   {
     slug: 'monica-hannon-md-facog',
     name: 'Monica Hannon',
-    title: 'Monica Hannon, MD, FACOG',
-    creds: 'MD, FACOG',
+    title: 'Monica Hannon, MD',
+    creds: 'MD',
     role: 'Obstetrician & Gynecologist',
     img: images.doctors.monica,
     imgAlt: 'Dr. Monica Hannon, obstetrician and gynecologist in San Francisco',
@@ -86,13 +86,13 @@ export const providers: Provider[] = [
       "Dr. Monica Hannon is also a strong healthcare advocate within the LGBTQ community. She takes pride in offering respectful and individualized care for her LGBTQ patients – from assisting with conception for queer families to performing gender-affirming surgery and health services for transgender patients.",
       "When not in the office or on-call, Dr. Monica Hannon spends time with her wife and two young kids. She is an active member in Our Family Coalition, a community-based queer family support and advocacy organization. When not at the zoo or the park, Dr. Monica Hannon enjoys going to Ocean beach (even in the freezing cold!), playing baseball with her kids, rollerskating, riding her e-bike, and exploring new corners of the beautiful Bay Area."
     ],
-    metaDescription: 'Monica Hannon, MD, FACOG, board certified obstetrician and gynecologist in the Inner Richmond, San Francisco. Menopause Society Certified Practitioner. Call 415-741-1000.',
+    metaDescription: 'Monica Hannon, MD, board certified obstetrician and gynecologist in the Inner Richmond, San Francisco. Menopause Society Certified Practitioner. Call 415-741-1000.',
   },
   {
     slug: 'ziyad-hannon-md-facog',
     name: 'Ziyad Hannon',
-    title: 'Ziyad Hannon, MD, FACOG',
-    creds: 'MD, FACOG',
+    title: 'Ziyad Hannon, MD',
+    creds: 'MD',
     role: 'Obstetrician & Gynecologist',
     img: images.doctors.ziyad ?? '',
     imgAlt: 'Dr. Ziyad Hannon, obstetrician and gynecologist in San Francisco',
@@ -123,13 +123,13 @@ export const providers: Provider[] = [
       { label: 'Minimally invasive procedures', href: '/services/minimally-invasive-surgery' },
     ],
     bio: [
-      "Since establishing his private practice in 1984, Ziyad Hannon, MD, FACOG, has built a reputation for cutting-edge OB/GYN health care. He welcomes patients to Lakeside Obstetrics, Gynecology & Fertility, at our state-of-the-art San Francisco location on 8th Avenue at Geary Boulevard.",
+      "Since establishing his private practice in 1984, Ziyad Hannon, MD, has built a reputation for cutting-edge OB/GYN health care. He welcomes patients to Lakeside Obstetrics, Gynecology & Fertility, at our state-of-the-art San Francisco location on 8th Avenue at Geary Boulevard.",
       "A graduate of Lowell High School, San Francisco, Dr. Hannon earned a Bachelor of Arts degree in Biochemistry from the University of California, Berkeley, and a Bachelor of Science in Computer Science from the University of San Francisco. He then attended UCLA School of Medicine, Los Angeles, where he obtained his Doctor of Medicine degree. He spent the next four years in residency training at one of the largest maternity hospitals in the United States: Parkland Memorial Hospital, Dallas, Texas. There, he published his research paper on Ectopic Pregnancies.",
       "His commitment to medical student education earned him the “2010 Outstanding Teacher Award” from the University of California San Francisco, School of Medicine. He continues his volunteer clinical teaching, as well as maintaining membership on active staff in the Department of Obstetrics & Gynecology at California Pacific Medical Center, San Francisco. He is also on active staff and serves as Chief of Gynecology at St. Mary’s Hospital and Medical Center, San Francisco.",
       "Dr. Hannon has been serving the needs of families throughout the San Francisco Bay Area since 1984. He has expertise in the management of fertility issues, abdominal & pelvic surgery, including minimally invasive procedures. He has delivered multi-generational families and maintains a full schedule, providing personalized care to his patients.",
       "Outside work, Dr. Hannon enjoys swimming and creative writing, but most of all he enjoys wrestling with his grandchildren."
     ],
-    metaDescription: 'Ziyad Hannon, MD, FACOG, obstetrician and gynecologist in the Inner Richmond, San Francisco. Private practice since 1984, with expertise in fertility, abdominal and pelvic surgery, and minimally invasive procedures.',
+    metaDescription: 'Ziyad Hannon, MD, obstetrician and gynecologist in the Inner Richmond, San Francisco. Private practice since 1984, with expertise in fertility, abdominal and pelvic surgery, and minimally invasive procedures.',
   },
   {
     slug: 'jeanette-blanks-msn-fnp-c-mscp-cnl',
@@ -165,7 +165,12 @@ export const providers: Provider[] = [
       { label: 'STD screening and vaginitis treatment' },
       { label: 'Menstrual management', href: '/services/irregular-bleeding' },
     ],
-    bio: ['Jeanette Blanks is a Family Nurse Practitioner and Menopause Society Certified Practitioner. Her clinical practice centers on comprehensive gynecologic and primary care including:'],
+    // Paragraph 1 is the old site's text. Paragraph 2 was written 2026-11-13 ONLY from facts already on this site (team, location, her care list).
+    // No new claims. Needs Dr. Hannon's approval. Logged in docs/OPEN-QUESTIONS.md.
+    bio: [
+      'Jeanette Blanks is a Family Nurse Practitioner and Menopause Society Certified Practitioner. Her clinical practice centers on comprehensive gynecologic and primary care.',
+      'Jeanette is a nurse practitioner at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco, where she works with Dr. Monica Hannon and Dr. Ziyad Hannon. Her care includes perimenopause and menopause symptom management and hormone replacement therapy, weight loss counseling and medication, contraceptive counseling, and menstrual management.',
+    ],
     metaDescription: 'Jeanette Blanks, MSN, FNP-C, MSCP, CNL, nurse practitioner in the Inner Richmond, San Francisco. Menopause care, hormone therapy, contraception and preventive screening at Lakeside Obstetrics, Gynecology & Fertility.',
   },
 ];

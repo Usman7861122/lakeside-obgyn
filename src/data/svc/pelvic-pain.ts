@@ -5,16 +5,16 @@ export const service: GenericService = {
   title: 'Pelvic Pain Specialists',
   menuLabel: 'Pelvic Pain',
   metaDescription:
-    'Pelvic pain specialists in the Inner Richmond, San Francisco. Pelvic pain exams, testing and treatment at Lakeside Obstetrics, Gynecology & Fertility. Schedule online or call.',
+    'Pelvic pain specialists in the Inner Richmond, San Francisco. Pelvic pain exams, testing and treatment at Lakeside Obstetrics, Gynecology & Fertility. Call to schedule.',
   intro: [
-    'Ongoing pelvic pain has many potential causes including infection, abnormal growths (like fibroids), endometriosis, or even bladder problems. If you suffer from pelvic pain, click on the online scheduler to schedule your pelvic pain exam or call the office nearest you to schedule by phone.',
+    'Ongoing pelvic pain has many potential causes including infection, abnormal growths (like fibroids), endometriosis, or even bladder problems. If you suffer from pelvic pain, call the office to schedule your pelvic pain exam.',
   ],
   blocks: [
     {
       q: 'Why am I having pelvic pain?',
       parts: [
         { p: 'Pelvic pain may be a sign of issues with your urinary tract, reproductive organs, bowels, or even musculoskeletal system. You might even have multiple issues occurring at the same time. In any case, some of the most common causes of pelvic pain include:' },
-        { ul: ['Severe menstrual cramps (dysmenorrhea)', 'Irritable bowel syndrome (IBS)', 'Pelvic inflammatory disease', 'Urinary tract infection (UTI)', 'Ovulation (mittelschmerz)', 'Interstitial cystitis', 'Crohn’s disease', 'Kidney stones', 'Endometriosis', 'Ovarian cysts', 'Fibromyalgia', 'Fibroids'] },
+        { ul: ['Severe menstrual cramps (dysmenorrhea)', 'Pelvic inflammatory disease', 'Urinary tract infection (UTI)', 'Ovulation (mittelschmerz)', 'Interstitial cystitis', 'Kidney stones', 'Endometriosis', 'Ovarian cysts', 'Gastrointestinal problems', 'Fibroids'] },
         { p: 'These pelvic pain issues, and any others, are treatable with the help of your OB/GYN. To get to the root of why you have pelvic pain and determine which treatment you may need, it’s important to have a comprehensive exam and undergo any recommended screenings.' },
       ],
     },
@@ -36,7 +36,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'Before suffering from pelvic pain another day, see how the OB/GYNs at Lakeside Obstetrics, Gynecology & Fertility can help. Schedule an appointment online or call the office to schedule.',
+    'Before suffering from pelvic pain another day, see how the OB/GYNs at Lakeside Obstetrics, Gynecology & Fertility can help. Call the office to schedule an appointment.',
   photos: [
     { src: '/images/services/pelvic-pain-1.jpg', alt: 'A doctor explaining a uterus anatomical model to a patient' },
     { src: '/images/services/pelvic-pain-2.jpg', alt: 'A doctor holding a magnifying glass over a uterus and ovaries model' },

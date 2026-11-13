@@ -638,3 +638,17 @@ a.pbadge:hover { background: rgb(255 255 255 / .13); border-color: rgb(255 194 2
 .bl-card .svc-card-body { justify-content: flex-start; gap: 0; }
 .bl-card .svc-card-title { margin-bottom: .2rem; }
 .bl-card .svc-card-cta { margin-top: auto; padding-top: 1.4rem; }
+
+/* Wordmark (header + footer logo) */
+.wm { display: inline-flex; flex-direction: column; line-height: 1; color: var(--color-plum-700, #5a1e58); }
+.wm-name { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: -0.01em; }
+.wm-sub { margin-top: .4rem; font-size: .6rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; }
+.wm-sub i { font-style: normal; margin: 0 .25em; color: var(--color-magenta-500, #c2368a); }
+.wm-dark { color: #fff; }
+.wm-dark .wm-sub i { color: #fbcfe8; }
+@media (min-width: 768px) { .wm-name { font-size: 2.3rem; } .wm-sub { font-size: .66rem; } }
+
+/* Homepage "More care we offer" chips */
+.more-chip { display: inline-flex; align-items: center; min-height: 3rem; padding: .5rem 1.4rem; border: 1px solid rgb(255 255 255 / .35); border-radius: 999px; color: #fff; font-family: var(--font-display); font-size: 1.2rem; text-decoration: none; transition: background-color .3s, color .3s, border-color .3s; }
+.more-chip:hover, .more-chip:focus-visible { background: #fff; color: var(--color-plum-800, #4a1748); border-color: #fff; }
+@media (min-width: 768px) { .more-chip { font-size: 1.4rem; padding: .6rem 1.7rem; } }

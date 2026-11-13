@@ -2,6 +2,15 @@
 import Backdrop from '../ui/Backdrop.astro';
 import Img from '../ui/Img.astro';
 import { services } from '../../data/home';
+const more = [
+  { label: 'Birth control', href: '/services/birth-control' },
+  { label: 'Ovarian cyst care', href: '/services/ovarian-cyst' },
+  { label: 'Irregular bleeding', href: '/services/irregular-bleeding' },
+  { label: 'PCOS / PMOS care', href: '/services/polycystic-ovary-syndrome' },
+  { label: 'Pelvic pain care', href: '/services/pelvic-pain' },
+  { label: 'Ultrasound', href: '/services/ultrasound' },
+  { label: 'Weight loss and management', href: '/services/weight-loss-management' },
+];
 ---
 <section id="services" class="section on-dark" aria-labelledby="services-h">
   <Backdrop variant="plum" mark="left" rings={2} />
@@ -35,7 +44,14 @@ import { services } from '../../data/home';
         </li>
       ))}
     </ul>
-    <p class="mt-12 text-center text-sm text-white/70" data-reveal>We also offer <a class="underline underline-offset-4 hover:text-white" href="/services/birth-control">birth control</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/ovarian-cyst">ovarian cyst care</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/irregular-bleeding">irregular bleeding</a> and <a class="underline underline-offset-4 hover:text-white" href="/services/polycystic-ovary-syndrome">PCOS care</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/pelvic-pain">pelvic pain care</a>, <a class="underline underline-offset-4 hover:text-white" href="/services/ultrasound">ultrasound</a>, and <a class="underline underline-offset-4 hover:text-white" href="/services/weight-loss-management">weight loss and management</a>.</p>
+    <div class="mt-16 text-center" data-reveal>
+      <p class="eyebrow">More care we offer</p>
+      <ul class="mx-auto mt-6 flex max-w-4xl flex-wrap justify-center gap-3">
+        {more.map((m) => (
+          <li><a href={m.href} class="more-chip">{m.label}</a></li>
+        ))}
+      </ul>
+    </div>
     <div class="mt-8 flex justify-center" data-reveal>
       <a href="/services" class="btn-appt">View all services</a>
     </div>

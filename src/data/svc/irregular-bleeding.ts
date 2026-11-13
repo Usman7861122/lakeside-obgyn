@@ -5,9 +5,9 @@ export const service: GenericService = {
   title: 'Irregular Bleeding Specialists',
   menuLabel: 'Irregular Bleeding',
   metaDescription:
-    'Irregular bleeding specialists in the Inner Richmond, San Francisco. Evaluation and treatment at Lakeside Obstetrics, Gynecology & Fertility. Schedule an exam online or call.',
+    'Irregular bleeding specialists in the Inner Richmond, San Francisco. Evaluation and treatment at Lakeside Obstetrics, Gynecology & Fertility. Call to schedule an exam.',
   intro: [
-    'Irregular bleeding is a health issue that you should not ignore, especially if it is affecting your daily activities, work, or sleep. Before irregular bleeding affects you another day, schedule an exam through the website. You can also call the office nearest you directly to book a visit.',
+    'Irregular bleeding is a health issue that you should not ignore, especially if it is affecting your daily activities, work, or sleep. Before irregular bleeding affects you another day, call the office to schedule an exam.',
   ],
   blocks: [
     {
@@ -36,7 +36,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'Lakeside Obstetrics, Gynecology & Fertility can help treat your irregular bleeding issues. Don’t hesitate to book an evaluation either online or over the phone with the office today.',
+    'Lakeside Obstetrics, Gynecology & Fertility can help treat your irregular bleeding issues. Don’t hesitate to call the office to book an evaluation today.',
   photos: [
     { src: '/images/services/irregular-bleeding-1.jpg', alt: 'A woman holding a calendar with marked days of her menstrual cycle' },
     { src: '/images/services/irregular-bleeding-2.jpg', alt: 'A doctor taking notes on a tablet during a gynecology appointment' },

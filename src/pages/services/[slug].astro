@@ -45,8 +45,7 @@ const check = '<path d="m5 12 4.5 4.5L19 7"/>';
         <h1 id="svc-h" class="mt-8 font-display text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.04] text-white">{s.title}</h1>
         <p class="lede mt-6 max-w-xl">{site.descriptor}</p>
         <div class="mt-10 flex flex-wrap items-center gap-4">
-          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+          <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
         </div>
       </div>
       <aside class="hero-card" data-reveal style="--d:.14s" aria-label="Practice details">
@@ -92,7 +91,7 @@ const check = '<path d="m5 12 4.5 4.5L19 7"/>';
         <span class="bio-rule" aria-hidden="true"></span>
         <p class="bio-lede mt-9">{s.intro}</p>
         <div class="mt-10 flex flex-wrap items-center gap-4">
-          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
           <a href={site.phoneHref} class="btn !border-plum-700/40 !text-plum-700 hover:!bg-plum-700 hover:!text-white">Call {site.phone}</a>
         </div>
       </div>
@@ -218,8 +217,7 @@ const check = '<path d="m5 12 4.5 4.5L19 7"/>';
         <p class="lede mt-5 max-w-2xl">{s.prepare.closing}</p>
       </div>
       <div class="flex flex-wrap items-center gap-4" data-reveal style="--d:.12s">
-        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
       </div>
     </div>
   </section>

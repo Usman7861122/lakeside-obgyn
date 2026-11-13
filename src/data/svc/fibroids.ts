@@ -1,15 +1,14 @@
 import type { GenericService } from './types';
 
-// "Progesterone-line injections" is copied as written on the old site (probably "progesterone-like"). It is medical text, so it is
-// left as is and listed in docs/OPEN-QUESTIONS.md for the client to confirm.
+// Treatment list and paragraph updated 2026-11-13 from Dr. Hannon's email (no progesterone injections; tranexamic acid added).
 export const service: GenericService = {
   slug: 'fibroids',
   title: 'Fibroids Specialists',
   menuLabel: 'Fibroids',
   metaDescription:
-    'Fibroids specialists in the Inner Richmond, San Francisco. Fibroid evaluation and treatment at Lakeside Obstetrics, Gynecology & Fertility. Schedule online or call.',
+    'Fibroids specialists in the Inner Richmond, San Francisco. Fibroid evaluation and treatment at Lakeside Obstetrics, Gynecology & Fertility. Call to schedule.',
   intro: [
-    'Fibroids often lead to pelvic pain, heavy bleeding, and even infertility in some cases. If you have a history of fibroids or are experiencing symptoms, you can schedule your fibroid evaluation through the website or call the San Francisco office location nearest to you directly.',
+    'Fibroids often lead to pelvic pain, heavy bleeding, and even infertility in some cases. If you have a history of fibroids or are experiencing symptoms, call our San Francisco office to schedule your fibroid evaluation.',
   ],
   blocks: [
     {
@@ -33,14 +32,14 @@ export const service: GenericService = {
       q: 'How does an OB/GYN treat fibroids?',
       parts: [
         { p: 'If your fibroids aren’t bothering you, your OB/GYN at Lakeside Obstetrics, Gynecology & Fertility may recommend watching and observing them over time. If you do have fibroid-related symptoms, your OB/GYN may recommend:' },
-        { ul: ['Gonadotropin-releasing hormone agonist medications', 'Over-the-counter pain medications', 'Iron supplements (to treat anemia)', 'Hormonal intrauterine devices (IUDs)', 'Low-dose birth control pills', 'Progesterone-line injections'] },
-        { p: 'For moderate-to-severe fibroid issues, surgery may be the best option. Your OB/GYN at Lakeside Obstetrics, Gynecology & Fertility may recommend a myomectomy to remove the fibroids without damaging healthy uterine tissues.' },
+        { ul: ['Gonadotropin-releasing hormone agonist medications', 'Over-the-counter pain medications', 'Iron supplements (to treat anemia)', 'Hormonal intrauterine devices (IUDs)', 'Low dose birth control pills and progesterone only pills', 'Nonhormonal tranexamic acid', 'Minimally invasive surgery'] },
+        { p: 'For moderate-to-severe fibroid issues, surgery may be the best option. Your OB/GYN at Lakeside Obstetrics, Gynecology & Fertility may recommend a myomectomy or transcervical radiofrequency ablation to treat the fibroids without damaging healthy uterine tissues.' },
         { p: 'But in advanced stages, you may need an endometrial ablation or hysterectomy. These procedures are only an option as a last resort, since you won’t be able to become pregnant afterward.' },
       ],
     },
   ],
   closing:
-    'Before struggling with fibroid symptoms another day, see how the OB/GYNs at Lakeside Obstetrics, Gynecology & Fertility can help. Schedule your appointment online or by phone with the clinic today.',
+    'Before struggling with fibroid symptoms another day, see how the OB/GYNs at Lakeside Obstetrics, Gynecology & Fertility can help. Call the clinic to schedule your appointment today.',
   related: { eyebrow: 'Fibroid treatment option', title: 'The Sonata® Procedure for Fibroids', href: '/services/sonata', cta: 'Learn about the Sonata procedure' },
   photos: [
     { src: '/images/services/fibroids-1.jpg', alt: 'A doctor holding a magnifying glass over a uterus and ovaries model' },

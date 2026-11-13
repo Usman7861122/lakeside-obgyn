@@ -24,9 +24,9 @@ const ld = {
       <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
         <a href="/" class="hover:text-rose-200">Home</a>
         <span aria-hidden="true" class="mx-2 text-white/30">/</span>
-        <span class="text-rose-200">Office locations</span>
+        <span class="text-rose-200">Office location</span>
       </nav>
-      <h1 id="loc-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">Office locations</h1>
+      <h1 id="loc-h" class="mt-8 font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] text-white">Office location</h1>
       <p class="lede mt-6 max-w-2xl">{site.descriptor}</p>
       <div class="mt-10 flex flex-wrap items-center gap-4">
         <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
@@ -50,7 +50,7 @@ const ld = {
         <div class="mt-8" id="hours"><p class="eyebrow">Office hours</p><div class="mt-4"><HoursList /></div></div>
         <div class="mt-9 flex flex-wrap items-center gap-4">
           <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
-          <a href={site.portalUrl} class="btn" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
         </div>
       </div>
       <div class="loc-map" data-reveal style="--d:.12s">

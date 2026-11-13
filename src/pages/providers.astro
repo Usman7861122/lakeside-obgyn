@@ -11,7 +11,7 @@ const focus = (p: (typeof providers)[number]) =>
   (p.aboutList ? p.aboutList.items : p.care.map((c) => c.label)).slice(0, 4);
 const variants = ['blush', 'mist'] as const;
 ---
-<BaseLayout title={`Our providers | ${site.shortName}, Inner Richmond, San Francisco`} description="Meet the providers at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco: Monica Hannon, MD, FACOG, Ziyad Hannon, MD, FACOG, and Jeanette Blanks, MSN, FNP-C, MSCP, CNL.">
+<BaseLayout title={`Our providers | ${site.shortName}, Inner Richmond, San Francisco`} description="Meet the providers at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco: Monica Hannon, MD, Ziyad Hannon, MD, and Jeanette Blanks, MSN, FNP-C, MSCP, CNL.">
   <section class="section on-dark !pb-20 !pt-40 md:!pt-48" aria-labelledby="provs-h">
     <Backdrop variant="plum" mark="right" />
     <div class="wrap grid items-end gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-20">
@@ -24,8 +24,7 @@ const variants = ['blush', 'mist'] as const;
         <h1 id="provs-h" class="mt-8 font-display text-[clamp(2.6rem,5.8vw,4.8rem)] leading-[1.04] text-white">Our providers</h1>
         <p class="lede mt-6 max-w-xl">{site.descriptor}</p>
         <div class="mt-10 flex flex-wrap items-center gap-4">
-          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+          <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
         </div>
       </div>
       <ul class="grid grid-cols-3 gap-3 sm:gap-5" data-reveal style="--d:.14s" aria-label="Jump to a provider">
@@ -84,8 +83,7 @@ const variants = ['blush', 'mist'] as const;
         <p class="lede mt-5 max-w-xl">{site.address.line1}, {site.address.city}, {site.address.state} {site.address.zip}<br /><HoursList variant="status" dark /> <a href="/locations#hours" class="text-rose-200 underline underline-offset-4 hover:text-white">See all hours</a></p>
       </div>
       <div class="flex flex-wrap items-center gap-4" data-reveal style="--d:.12s">
-        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
       </div>
     </div>
   </section>

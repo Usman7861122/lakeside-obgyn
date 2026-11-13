@@ -50,8 +50,8 @@ export const journey = [
 ];
 
 export const doctors = [
-  { key: 'monica', name: 'Monica Hannon, MD', creds: 'FACOG', role: 'Obstetrician & Gynecologist', img: images.doctors.monica, href: '/provider/monica-hannon-md-facog' },
-  { key: 'ziyad', name: 'Ziyad Hannon, MD', creds: 'FACOG', role: 'Obstetrician & Gynecologist', img: images.doctors.ziyad, href: '/provider/ziyad-hannon-md-facog' },
+  { key: 'monica', name: 'Monica Hannon, MD', creds: '', role: 'Obstetrician & Gynecologist', img: images.doctors.monica, href: '/provider/monica-hannon-md-facog' },
+  { key: 'ziyad', name: 'Ziyad Hannon, MD', creds: '', role: 'Obstetrician & Gynecologist', img: images.doctors.ziyad, href: '/provider/ziyad-hannon-md-facog' },
   { key: 'jeanette', name: 'Jeanette Blanks', creds: 'MSN, FNP-C, MSCP, CNL', role: 'Nurse Practitioner', img: images.doctors.jeanette, href: '/provider/jeanette-blanks-msn-fnp-c-mscp-cnl' },
 ];
 

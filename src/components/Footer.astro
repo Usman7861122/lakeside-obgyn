@@ -1,5 +1,6 @@
 ---
 import Backdrop from './ui/Backdrop.astro';
+import Wordmark from './ui/Wordmark.astro';
 import { site, nav } from '../data/site';
 // Keep the time range together so "5 pm" never wraps alone onto the next line.
 const hoursText = site.hours.replace(/(\d+(?::\d\d)? [ap]m) to (\d+(?::\d\d)? [ap]m)/, (m) => m.replace(/ /g, '\u00a0'));
@@ -9,8 +10,7 @@ const hoursText = site.hours.replace(/(\d+(?::\d\d)? [ap]m) to (\d+(?::\d\d)? [a
   <div class="wrap">
     <div class="grid gap-12 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
       <div>
-        <img src="/images/Logo.png" alt={site.name} width="600" height="145" loading="lazy" class="h-14 w-auto brightness-0 invert" />
-        <p class="mt-6 max-w-xs font-display text-2xl leading-snug text-white">{site.tagline}</p>
+        <a href="/" aria-label={`${site.name} — home`} class="no-underline"><Wordmark dark /></a>
       </div>
       <div>
         <h3 class="text-[.72rem] font-semibold uppercase tracking-[.24em] text-rose-200 !font-sans">Office</h3>

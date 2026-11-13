@@ -9,6 +9,9 @@ const SITE = 'https://example.com';
 
 export default defineConfig({
   site: SITE,
+  redirects: {
+    '/services/laparoscopic-surgery': '/services/minimally-invasive-surgery',
+  },
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

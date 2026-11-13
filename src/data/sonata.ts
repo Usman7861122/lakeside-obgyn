@@ -142,18 +142,10 @@ export const sonata = {
       ],
     },
     {
-      q: 'Is the Sonata procedure covered by insurance?',
-      a: [
-        {
-          p: 'Many insurance companies and Medicaid carriers cover the procedure. We suggest scheduling an appointment with a Sonata-trained physician to discuss whether the procedure is appropriate for you. If the Sonata procedure is a match for your fibroids, then your physician’s office will request insurance approval in advance by submitting a pre-authorization request.',
-        },
-      ],
-    },
-    {
       q: 'How does the Sonata procedure compare to other common fibroid treatment options?',
       a: [
         {
-          p: 'Common treatment options include hysterectomy, laparoscopic myomectomy, and uterine artery embolization (UAE). Of these options, transcervical radiofrequency ablation, Sonata, is the only one that allows the patient to go home the day of the procedure. See how the Sonata procedure compares to:',
+          p: 'Common treatment options include hysterectomy, laparoscopic myomectomy, and uterine artery embolization (UAE). See how the Sonata procedure compares to:',
         },
         {
           cmp: [
@@ -163,7 +155,7 @@ export const sonata = {
             },
             {
               b: 'Laparoscopic myomectomy',
-              t: 'Both are laparoscopic surgeries. While laparoscopic myomectomy surgically removes fibroid tissues from the uterus, the Sonata procedure applies heat directly into the fibroid, causing it to shrink over time.',
+              t: 'While laparoscopic myomectomy surgically removes fibroid tissues from the uterus, the Sonata procedure applies heat directly into the fibroid, causing it to shrink over time.',
             },
             {
               b: 'UAE',

@@ -19,6 +19,7 @@ export const service: GenericService = {
       parts: [
         { p: 'Perimenopausal and menopausal symptoms can be significantly disruptive to daily life, overall well-being, and sense of self. At Lakeside Obstetrics, Gynecology and Fertility, we emphasize an individualized approach to care, recognizing that every patient’s experience is unique and deserves personalized treatment.' },
         { p: 'Your care is led by Dr. Monica Hannon, Dr. Ziyad Hannon, and our nurse practitioner Jeanette Blanks. Both Dr. Monica Hannon and Jeanette Blanks, MSN, FNP-C are certified menopause specialists through the Menopause Society.' },
+        { badge: { src: '/images/badges/menopause-society-seal.png', alt: 'Menopause Society Certified Practitioner badge', w: 383, h: 383 } },
       ],
     },
     {
@@ -62,6 +63,7 @@ export const service: GenericService = {
       ],
     },
   ],
+  related: { eyebrow: 'Weight loss & management', title: 'Weight loss and management care', href: '/services/weight-loss-management', cta: 'Learn more' },
   closing:
     'At Lakeside Obstetrics, Gynecology and Fertility, we are committed to helping you navigate menopause with confidence, comfort, and expert care through a personalized approach that prioritizes your overall health and well-being. Regular follow up ensures that your treatment remains safe and effective as your needs evolve. Please call our office 415-741-1000 to schedule your consultation to get started.',
   photos: [

@@ -22,9 +22,9 @@ export const services: WellWomanService[] = [
     title: 'Annual Well-Woman Exam Specialists',
     menuLabel: 'Annual Well-Woman Exam',
     metaDescription:
-      'Annual well-woman exam specialists in the Inner Richmond, San Francisco. Lakeside Obstetrics, Gynecology & Fertility welcomes patients from the LGBTQ community. Book online or call.',
+      'Annual well-woman exam specialists in the Inner Richmond, San Francisco. Lakeside Obstetrics, Gynecology & Fertility welcomes patients from the LGBTQ community. Call to book.',
     intro:
-      'An annual well-woman exam is necessary to prevent chronic diseases and serious gynecological issues, like cervical cancer. The team welcomes patients from the LGBTQ community who are in need of gynecological exams. You can book your annual well-woman visit through the website, or you can call to speak with a team member at the office nearest you today.',
+      'An annual well-woman exam is necessary to prevent chronic diseases and serious gynecological issues, like cervical cancer. The team welcomes patients from the LGBTQ community who are in need of gynecological exams. Call the office today to speak with a team member and book your annual well-woman visit.',
     photos: [
       { src: '/images/services/wellwoman-1.jpg', alt: 'A smiling doctor in a white coat showing a medical report on a clipboard to a patient' },
       { src: '/images/services/wellwoman-2.jpg', alt: 'A patient sitting on an exam table while a doctor takes notes during a visit' },
@@ -63,7 +63,7 @@ export const services: WellWomanService[] = [
       cards: [
         {
           label: 'Ages 13-15',
-          text: 'You should start having annual well-woman exams at Lakeside Obstetrics, Gynecology & Fertility between the ages of 13-15. These early exams generally include physicals, menstruation education, and STD prevention counseling.',
+          text: 'You should start having annual well-woman exams at Lakeside Obstetrics, Gynecology & Fertility between the ages of 13-15. These early exams generally include physicals, menstruation education, and STD prevention counseling. For adolescents who are not yet sexually active, visits do not routinely involve a pelvic examination but rather focus on counseling.',
         },
         {
           label: 'About age 21',
@@ -83,7 +83,7 @@ export const services: WellWomanService[] = [
       note:
         'If you need a Pap smear, please notify the office regarding heavy bleeding on the day of your exam in order to prevent interference with the lab result interpretation.',
       closing:
-        'If you’re due for an annual well-woman exam, contact Lakeside Obstetrics, Gynecology & Fertility today. You can conveniently schedule an appointment online or over the phone with the office.',
+        'If you’re due for an annual well-woman exam, contact Lakeside Obstetrics, Gynecology & Fertility today. Call the office to schedule an appointment.',
     },
   },
 ];

@@ -110,3 +110,20 @@ Text was copied word for word from the old site. Please confirm these points wit
 - [ ] (2026-11-12) "Meet the team" card (providers menu) now shows a Shutterstock portrait of a woman doctor (ID 4224884185), not a real team member. Ask the client to approve it, or send a real team photo to replace public/images/provider/team-lead.jpg.
 - [ ] (2026-11-12) Menopause photos: home card and blog cover now use Shutterstock 2507790911 (woman in her 50s with curly hair on a sofa). The menopause service page photos are still the old ones. Patient Portal background now uses Shutterstock 2438016419 (multiracial group with a pride flag). Ask the client to approve both.
 - [ ] (2026-11-12) LGBTQ care page photos replaced: group with pride flag (Shutterstock 2438016419), buzz-cut portrait (2709769795, same photo as the home Reviews section), curly-hair woman with heart sunglasses (2606659817). Ask the client to approve. Consider a different buzz-cut photo so the same one is not used twice.
+
+## Sonata edits requested by Dr. Hannon (2026-11-13)
+- DONE on her email (2026-11-13): removed the insurance section, the "go home the day of the procedure" sentence and "Both are laparoscopic surgeries". These are still in the Sonata toolkit. TODO: ask Dr. Hannon to tell the Sonata maker, or get an updated toolkit, so the documents agree.
+
+## Dr. Hannon's edits, 2026-11-13 (see docs/EDITS-2026-11-11.md)
+- Provider page addresses still end in "-facog" (/provider/monica-hannon-md-facog). Changing them needs a 301 redirect from the old address. Ask the client if they want new addresses.
+- Logo: the old Logo.png was grainy and had the doctors' names and FACOG inside it. Replaced by a text wordmark. TODO: ask the client for a vector logo (SVG).
+- Ultrasound page rewritten from her email (first trimester only, mostly transvaginal). She must read and approve it. Photo 1 (late pregnancy) removed and replaced by a general consult photo. TODO: pick a better stock photo (needs the user's approval first).
+- FemVue video link: her email says "here is a link" but no link came through. Ask Justin or Dr. Hannon. The FemVue homepage section and page have a TODO for the video.
+- Miudella (copper) 3yr IUD: added as "coming soon". Confirm the spelling and whether she wants the brand symbol.
+- PMOS: sentence about the renaming is from her email. Confirm the full name wording ("Polyendocrine Metabolic Ovarian Syndrome").
+- Sexual Health / Sexual Pain page is a placeholder. Waiting for her text.
+- Jeanette Blanks first paragraph ended in "including:" with nothing after it; ended the sentence with a full stop. The list of services follows in the "Clinical practice" section. Ask if she wants more text.
+- Merged "Laparoscopic Surgery" into "Minimally Invasive & Laparoscopic Surgery". Old address redirects. Both pages' text is kept word for word.
+- Pelvic pain: "Gastrointestinal problems" replaces Crohn's, IBS and Fibromyalgia.
+- Staff group photos: she will email them.
+- Jeanette Blanks bio, paragraph 2 (added 2026-11-13 at the developer's request): written only from facts already on the site (works with Dr. Monica and Dr. Ziyad Hannon, Inner Richmond location, items from her care list). No new claims. Dr. Hannon must approve it or send her own text.

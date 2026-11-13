@@ -7,9 +7,9 @@ export const service: GenericService = {
   title: 'Abnormal Pap Smear Specialists',
   menuLabel: 'Abnormal Pap Smear',
   metaDescription:
-    'Abnormal Pap smear specialists in the Inner Richmond, San Francisco. Evaluation and treatment with board-certified OB/GYNs Monica Hannon, MD, FACOG and Ziyad Hannon, MD, FACOG. Schedule online or call.',
+    'Abnormal Pap smear specialists in the Inner Richmond, San Francisco. Evaluation and treatment with board-certified OB/GYNs Monica Hannon, MD and Ziyad Hannon, MD. Call to schedule.',
   intro: [
-    'Finding out that your Pap smear is abnormal can be alarming and overwhelming. With the help of board-certified OB/GYNs Monica Hannon, MD, FACOG and Ziyad Hannon, MD, FACOG, you can receive the evaluation and treatment that you need at Lakeside Obstetrics, Gynecology & Fertility in San Francisco. Schedule your evaluation online or call to schedule by phone.',
+    'Finding out that your Pap smear is abnormal can be alarming and overwhelming. With the help of board-certified OB/GYNs Monica Hannon, MD and Ziyad Hannon, MD, you can receive the evaluation and treatment that you need at Lakeside Obstetrics, Gynecology & Fertility in San Francisco. Call the office to schedule your evaluation.',
   ],
   blocks: [
     {
@@ -49,7 +49,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'Lakeside Obstetrics, Gynecology & Fertility provides comprehensive care if you had an abnormal Pap smear. Find out more information by scheduling an exam online or by calling the office location directly.',
+    'Lakeside Obstetrics, Gynecology & Fertility provides comprehensive care if you had an abnormal Pap smear. Find out more information by calling the office to schedule an exam.',
   photos: [
     { src: '/images/services/abnormal-pap-smear-1.jpg', alt: 'A gloved hand preparing a cell sample for examination under a microscope' },
     { src: '/images/services/abnormal-pap-smear-2.jpg', alt: 'A gynecologist holding an anatomical uterus model and a speculum' },

@@ -7,9 +7,9 @@ export const service: GenericService = {
   title: 'Laparoscopic Surgery Specialists',
   menuLabel: 'Laparoscopic Surgery',
   metaDescription:
-    'Laparoscopic surgery specialists in the Inner Richmond, San Francisco. Minimally invasive gynecological surgery at Lakeside Obstetrics, Gynecology & Fertility. Book a consultation online or call.',
+    'Laparoscopic surgery specialists in the Inner Richmond, San Francisco. Minimally invasive gynecological surgery at Lakeside Obstetrics, Gynecology & Fertility. Call to book a consultation.',
   intro: [
-    'Laparoscopic surgery is often the preferred method for gynecological procedures. If you need to undergo a gynecological surgery or would like a second opinion, click on the online booking feature or call either office to schedule your consultation today.',
+    'Laparoscopic surgery is often the preferred method for gynecological procedures. If you need to undergo a gynecological surgery or would like a second opinion, call the office to schedule your consultation today.',
   ],
   blocks: [
     {
@@ -38,7 +38,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'If you need laparoscopic surgery, contact Lakeside Obstetrics, Gynecology & Fertility for an evaluation. Click on the online scheduler or call the office to book a visit.',
+    'If you need laparoscopic surgery, contact Lakeside Obstetrics, Gynecology & Fertility for an evaluation. Call the office to book a visit.',
   photos: [
     { src: '/images/services/laparoscopic-surgery-1.jpg', alt: 'A surgical team performing a laparoscopic procedure in an operating room' },
     { src: '/images/services/laparoscopic-surgery-2.jpg', alt: 'Close-up of laparoscopic instruments held by gloved surgeons' },

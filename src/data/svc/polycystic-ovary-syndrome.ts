@@ -2,12 +2,13 @@ import type { GenericService } from './types';
 
 export const service: GenericService = {
   slug: 'polycystic-ovary-syndrome',
-  title: 'Polycystic Ovary Syndrome Specialists',
-  menuLabel: 'Polycystic Ovary Syndrome',
+  title: 'PCOS / PMOS Specialists',
+  menuLabel: 'PCOS / PMOS',
   metaDescription:
-    'Polycystic ovary syndrome (PCOS) specialists in the Inner Richmond, San Francisco. PCOS evaluation and personalized treatment at Lakeside Obstetrics, Gynecology & Fertility. Book online or call.',
+    'PCOS / PMOS (polycystic ovary syndrome) specialists in the Inner Richmond, San Francisco. PCOS and PMOS evaluation and personalized treatment at Lakeside Obstetrics, Gynecology & Fertility. Call to book.',
   intro: [
-    'Polycystic ovary syndrome (PCOS) is a common hormonal disorder that occurs during your reproductive years. Click on the online scheduling tool to book your PCOS evaluation or call the office nearest you to book an appointment by phone.',
+    'PCOS (polycystic ovary syndrome) was very recently renamed PMOS (polyendocrine metabolic ovarian syndrome). We use both names on this page because many patients still know this condition as PCOS.',
+    'Polycystic ovary syndrome (PCOS) is a common hormonal disorder that occurs during your reproductive years. Call the office to book your PCOS evaluation.',
   ],
   blocks: [
     {
@@ -36,7 +37,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'Lakeside Obstetrics, Gynecology & Fertility provides expert PCOS management. Don’t hesitate to schedule an evaluation today online or over the phone.',
+    'Lakeside Obstetrics, Gynecology & Fertility provides expert PCOS management. Don’t hesitate to call the office to schedule an evaluation today.',
   photos: [
     { src: '/images/services/polycystic-ovary-syndrome-1.jpg', alt: 'A uterus model beside letter tiles spelling PCOS on a doctor’s desk' },
     { src: '/images/services/polycystic-ovary-syndrome-2.jpg', alt: 'A pair of hands holding a paper model of a uterus and ovaries' },

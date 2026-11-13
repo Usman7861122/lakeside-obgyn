@@ -67,8 +67,7 @@ export default function MobileMenu({ items, phone, phoneHref }: { items: Item[];
                 )}
               </motion.div>
             ))}
-            <a href={phoneHref} className="mt-8 text-rose-200">Call {phone}</a>
-            <a href="#contact" onClick={() => setOpen(false)} className="btn-appt mt-4 self-start">Request appointment</a>
+            <a href={phoneHref} className="btn-appt mt-8 self-start">Call {phone}</a>
           </motion.nav>
         )}
       </AnimatePresence>, document.body)}

@@ -1,0 +1,10 @@
+---
+// Live-text wordmark. Replaces the old Logo.png, which was grainy and had the doctors' names and FACOG baked in.
+// TODO: swap for the client's vector logo when we receive one.
+interface Props { dark?: boolean; class?: string }
+const { dark = false, class: cls = '' } = Astro.props;
+---
+<span class={`wm ${dark ? 'wm-dark' : ''} ${cls}`}>
+  <span class="wm-name">Lakeside</span>
+  <span class="wm-sub">Obstetrics <i aria-hidden="true">•</i> Gynecology <i aria-hidden="true">•</i> Fertility</span>
+</span>

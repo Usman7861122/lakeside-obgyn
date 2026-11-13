@@ -7,7 +7,7 @@ export const site = {
   // (Inner Richmond from the descriptor, Bay Area from Dr. Ziyad Hannon's biography). Ask the client for the real list.
   areaLine: 'Serving patients in the Inner Richmond, San Francisco, and families throughout the San Francisco Bay Area.',
   descriptor: 'Obstetrician and Gynecologist in the Inner Richmond neighborhood, San Francisco, CA',
-  tagline: 'Supporting families one baby at a time.',
+  tagline: '',
   phone: '415-741-1000',
   phoneHref: 'tel:+14157411000',
   email: null as string | null,

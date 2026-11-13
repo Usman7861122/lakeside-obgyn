@@ -5,9 +5,9 @@ export const service: GenericService = {
   title: 'Ovarian Cyst Specialists',
   menuLabel: 'Ovarian Cyst',
   metaDescription:
-    'Ovarian cyst specialists in the Inner Richmond, San Francisco. Evaluation and personalized treatment plans with Monica Hannon, MD, FACOG and Ziyad Hannon, MD, FACOG. Schedule online or call.',
+    'Ovarian cyst specialists in the Inner Richmond, San Francisco. Evaluation and personalized treatment plans with Monica Hannon, MD and Ziyad Hannon, MD. Call to schedule.',
   intro: [
-    'Ovarian cysts are common, but they can cause significant pain and serious complications if they grow too large. If you struggle with ovarian cysts, contact board-certified OBGYNs Monica Hannon, MD, FACOG or Ziyad Hannon, MD, FACOG to be evaluated at either of their two San Francisco office locations. The dedicated OB/GYNs can help you manage and prevent ovarian cysts by providing personalized treatment plans. Schedule your ovarian cyst evaluation through the website, or call to schedule by phone.',
+    'Ovarian cysts are common, but they can cause significant pain and serious complications if they grow too large. If you struggle with ovarian cysts, contact board-certified OBGYNs Monica Hannon, MD or Ziyad Hannon, MD to be evaluated at their San Francisco office. The dedicated OB/GYNs can help you manage and prevent ovarian cysts by providing personalized treatment plans. Call the office to schedule your ovarian cyst evaluation.',
   ],
   blocks: [
     {
@@ -40,7 +40,7 @@ export const service: GenericService = {
     },
   ],
   closing:
-    'If you’re experiencing pelvic pain or have a history of ovarian cysts, contact Lakeside Obstetrics, Gynecology & Fertility for further evaluation. You can schedule a visit online or over the phone.',
+    'If you’re experiencing pelvic pain or have a history of ovarian cysts, contact Lakeside Obstetrics, Gynecology & Fertility for further evaluation. Call the office to schedule a visit.',
   photos: [
     { src: '/images/services/ovarian-cyst-1.jpg', alt: 'A doctor holding an ultrasound probe next to a uterus and ovaries model' },
     { src: '/images/services/ovarian-cyst-2.jpg', alt: 'A paper cut-out of a uterus and ovaries with the word CYST in letter tiles' },

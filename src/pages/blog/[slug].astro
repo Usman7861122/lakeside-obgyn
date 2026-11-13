@@ -52,7 +52,7 @@ const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
         ))}
         <p class="!mt-10">{post.closing}</p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
+          <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
           <a href={post.serviceHref} class="btn">{post.serviceLabel}</a>
         </div>
         {post.related && (

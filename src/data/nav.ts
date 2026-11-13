@@ -6,8 +6,8 @@ import { site } from './site';
 // /contents/our-providers pages. Sonata is added because the client's toolkit requires it.
 // Old-site URL slugs are kept for the service pages so they can be redirected 1:1 later.
 export const providersMenu = [
-  { name: 'Monica Hannon, MD', creds: 'FACOG', role: 'Obstetrician & Gynecologist', img: images.doctors.monica, href: '/provider/monica-hannon-md-facog' },
-  { name: 'Ziyad Hannon, MD', creds: 'FACOG', role: 'Obstetrician & Gynecologist', img: images.doctors.ziyad, href: '/provider/ziyad-hannon-md-facog' },
+  { name: 'Monica Hannon, MD', creds: '', role: 'Obstetrician & Gynecologist', img: images.doctors.monica, href: '/provider/monica-hannon-md-facog' },
+  { name: 'Ziyad Hannon, MD', creds: '', role: 'Obstetrician & Gynecologist', img: images.doctors.ziyad, href: '/provider/ziyad-hannon-md-facog' },
   { name: 'Jeanette Blanks', creds: 'MSN, FNP-C, MSCP, CNL', role: 'Nurse Practitioner', img: images.doctors.jeanette, href: '/provider/jeanette-blanks-msn-fnp-c-mscp-cnl' },
 ];
 
@@ -18,15 +18,15 @@ export const servicesMenu = [
   { label: 'Irregular Bleeding', href: '/services/irregular-bleeding' },
   { label: 'Pelvic Pain', href: '/services/pelvic-pain' },
   { label: 'Ovarian Cyst', href: '/services/ovarian-cyst' },
-  { label: 'Polycystic Ovary Syndrome', href: '/services/polycystic-ovary-syndrome' },
+  { label: 'PCOS / PMOS', href: '/services/polycystic-ovary-syndrome' },
   { label: 'Fibroids', href: '/services/fibroids' },
   { label: 'The Sonata Procedure', href: '/services/sonata' },
   { label: 'Ultrasound', href: '/services/ultrasound' },
-  { label: 'Laparoscopic Surgery', href: '/services/laparoscopic-surgery' },
-  { label: 'Minimally Invasive Surgery', href: '/services/minimally-invasive-surgery' },
+  { label: 'Minimally Invasive & Laparoscopic Surgery', href: '/services/minimally-invasive-surgery' },
   { label: 'Perimenopause/Menopause Management', href: '/services/perimenopausemenopause-management' },
   { label: 'Fertility & FemVue', href: '/services/fertility-femvue' },
   { label: 'Weight Loss & Management', href: '/services/weight-loss-management' },
+  { label: 'Sexual Health & Sexual Pain', href: '/services/sexual-health' },
   { label: 'LGBTQ Care', href: '/services/lgbtq-care' },
 ];
 
@@ -36,5 +36,5 @@ export const mainNav = [
   { label: 'Sonata', href: '/services/sonata' },
   { label: 'Patient Portal', href: site.portalUrl, external: true },
   { label: 'Reviews', href: '/reviews' },
-  { label: 'Office Locations', href: '/locations' },
+  { label: 'Office Location', href: '/locations' },
 ];

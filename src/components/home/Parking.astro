@@ -24,6 +24,11 @@ import { site } from '../../data/site';
           <source src="/images/parking/parking-demo.mp4" type="video/mp4" />
         </video>
       </div>
+      <div class="mt-4 flex justify-center">
+        <button type="button" id="parking-replay" class="btn !h-11 !px-6 !text-[.72rem]" aria-controls="parking-video">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Replay map
+        </button>
+      </div>
     </figure>
   </div>
 </section>
@@ -31,6 +36,10 @@ import { site } from '../../data/site';
 <script>
   const v = document.getElementById('parking-video') as HTMLVideoElement | null;
   if (v) {
+    document.getElementById('parking-replay')?.addEventListener('click', () => {
+      v.currentTime = 0;
+      v.play().catch(() => { v.controls = true; });
+    });
     v.muted = true;
     v.loop = false;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

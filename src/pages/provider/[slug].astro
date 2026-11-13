@@ -9,7 +9,7 @@ export function getStaticPaths() {
   return providers.map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
-const [bio1] = p.bio ?? [];
+const [bio1, ...bioRest] = p.bio ?? [];
 const who = `${p.honorific ?? 'Dr.'} ${p.name}`.trim();
 const hasEdu = p.education.length > 0 && !!p.photos;
 const hasHonors = p.honors.length > 0 && !!p.photos;
@@ -55,8 +55,7 @@ const ld = {
         <p class="lede mt-6 max-w-xl">{p.tagline ?? site.descriptor}</p>
         {p.boardLine && <p class="mt-6 inline-flex items-center gap-3 border-l-2 border-magenta-500 pl-4 text-sm text-white/85">{p.boardLine}</p>}
         <div class="mt-10 flex flex-wrap items-center gap-4">
-          <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-          <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+          <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
         </div>
       </div>
       <aside class="hero-card" data-reveal style="--d:.14s" aria-label="Practice details">
@@ -98,7 +97,8 @@ const ld = {
             <h2 id="bio-h" class="h-section">Meet {who}</h2>
             <span class="bio-rule" aria-hidden="true"></span>
             <p class="bio-lede mt-9">{bio1}</p>
-            <a href={site.portalUrl} class="btn-appt mt-10" rel="noopener" target="_blank">Request appointment</a>
+            {bioRest.map((para) => <p class="svc-lead mt-6">{para}</p>)}
+            <a href={site.phoneHref} class="btn-appt mt-10">Call {site.phone}</a>
           </div>
         </div>
       </section>
@@ -287,8 +287,7 @@ const ld = {
         <p class="lede mt-5 max-w-xl">{site.address.line1}, {site.address.city}, {site.address.state} {site.address.zip}<br /><HoursList variant="status" dark /> <a href="/locations#hours" class="text-rose-200 underline underline-offset-4 hover:text-white">See all hours</a></p>
       </div>
       <div class="flex flex-wrap items-center gap-4" data-reveal style="--d:.12s">
-        <a href={site.portalUrl} class="btn-appt" rel="noopener" target="_blank">Request appointment</a>
-        <a href={site.phoneHref} class="btn">Call {site.phone}</a>
+        <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
       </div>
     </div>
   </section>
