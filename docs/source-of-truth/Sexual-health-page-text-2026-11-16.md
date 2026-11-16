@@ -1,0 +1,2 @@
+# Client document: Dr. Hannon's text for the Sexual Health / Sexual Pain page
+Source: attachment "Sexual Health and sexual pain disorders page.docx" in her email of Mon Nov 16, 2026 12:24 AM (forwarded by Justin Berger, "HANNON final touch"). Read from the Gmail preview and copied exactly into src/data/svc/sexual-health.ts. The original .docx is not stored here (not downloaded). Her email also says the site is "good enough to go live for sure" and that Justin should connect with "Four", her tech person, after launch.

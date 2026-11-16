@@ -121,7 +121,7 @@ Text was copied word for word from the old site. Please confirm these points wit
 - FemVue video link: her email says "here is a link" but no link came through. Ask Justin or Dr. Hannon. The FemVue homepage section and page have a TODO for the video.
 - Miudella (copper) 3yr IUD: added as "coming soon". Confirm the spelling and whether she wants the brand symbol.
 - PMOS: sentence about the renaming is from her email. Confirm the full name wording ("Polyendocrine Metabolic Ovarian Syndrome").
-- Sexual Health / Sexual Pain page is a placeholder. Waiting for her text.
+- Sexual Health / Sexual Pain page: DONE 2026-11-16 with her text (docs/source-of-truth/Sexual-health-page-text-2026-11-16.md). Note: her text says "women" throughout, copied exactly. The site also serves LGBTQ patients, so she may want "patients" in a later edit. Not changed.
 - Jeanette Blanks first paragraph ended in "including:" with nothing after it; ended the sentence with a full stop. The list of services follows in the "Clinical practice" section. Ask if she wants more text.
 - Merged "Laparoscopic Surgery" into "Minimally Invasive & Laparoscopic Surgery". Old address redirects. Both pages' text is kept word for word.
 - Pelvic pain: "Gastrointestinal problems" replaces Crohn's, IBS and Fibromyalgia.
