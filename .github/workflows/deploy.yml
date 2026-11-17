@@ -1,0 +1,59 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Needed so GitHub can get a short-lived AWS login (no stored keys).
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-s3
+  cancel-in-progress: true
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: lakeside-obgyn-website
+  AWS_ROLE_ARN: arn:aws:iam::408421298613:role/github-lakeside-deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Pages (HTML) are always re-checked by the browser.
+      - name: Upload pages
+        run: |
+          aws s3 sync dist "s3://$S3_BUCKET" --delete \
+            --exclude "*" --include "*.html" \
+            --cache-control "no-cache"
+
+      # Built scripts and styles in _astro/ have a unique name per build, so they can be cached for a year.
+      - name: Upload built assets
+        run: |
+          aws s3 sync dist/_astro "s3://$S3_BUCKET/_astro" --delete \
+            --cache-control "public,max-age=31536000,immutable"
+
+      # Images, fonts and other files keep the same name when we replace them, so cache them for one hour only.
+      - name: Upload other files
+        run: |
+          aws s3 sync dist "s3://$S3_BUCKET" --delete \
+            --exclude "*.html" --exclude "_astro/*" \
+            --cache-control "public,max-age=3600"
