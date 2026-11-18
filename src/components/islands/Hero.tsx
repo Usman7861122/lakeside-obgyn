@@ -14,6 +14,9 @@ export type Slide = {
 
 const INTERVAL = 8000;
 
+// WebP sizes made by scripts/make-webp.py (hero photos are 2400 px wide, so all four sizes exist)
+const heroSet = (src: string) => [480, 800, 1200, 1600].map((w) => `${src.replace(/\.jpg$/, '')}-${w}.webp ${w}w`).join(', ');
+
 function Art({ kind }: { kind: Slide['art'] }) {
   // Temporary artwork, used until the real photograph is placed in src/data/images.ts
   return (
@@ -93,7 +96,10 @@ export default function Hero({ slides }: { slides: Slide[] }) {
               transition={{ duration: active ? 12 : 1.4, ease: 'linear' }}
             >
               {s.image.src ? (
-                <img src={s.image.src} alt={s.image.alt} className="h-full w-full object-cover" fetchPriority={n === 0 ? 'high' : 'low'} loading={n === 0 ? 'eager' : 'lazy'} />
+                <picture>
+                  <source type="image/webp" srcSet={heroSet(s.image.src)} sizes="100vw" />
+                  <img src={s.image.src} alt={s.image.alt} width={2400} height={1600} className="h-full w-full object-cover" fetchPriority={n === 0 ? 'high' : 'low'} loading={n === 0 ? 'eager' : 'lazy'} decoding={n === 0 ? 'sync' : 'async'} />
+                </picture>
               ) : (
                 <Art kind={s.art} />
               )}

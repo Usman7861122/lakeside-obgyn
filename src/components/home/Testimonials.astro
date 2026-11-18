@@ -1,4 +1,5 @@
 ---
+import Pic from '../ui/Pic.astro';
 import Backdrop from '../ui/Backdrop.astro';
 import Testimonials from '../islands/Testimonials';
 import { reviews } from '../../data/reviews';
@@ -9,7 +10,7 @@ import { reviews } from '../../data/reviews';
     <figure class="pframe pframe-tall" data-reveal>
       <span class="pframe-line" aria-hidden="true"></span>
       <div class="pframe-img">
-        <img src="/images/testimonials/client.jpg" alt="A young person with a shaved head in a purple hoodie, looking off to the side against a pink wall" width="1800" height="1200" loading="lazy" class="kb h-full w-full object-cover object-[38%_50%]" />
+        <Pic src="/images/testimonials/client.jpg" alt="A young person with a shaved head in a purple hoodie, looking off to the side against a pink wall" sizes="(min-width:1024px) 50vw, 100vw" class="kb h-full w-full object-cover object-[38%_50%]" />
         <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/35 via-transparent to-magenta-500/10 mix-blend-multiply"></div>
         <figcaption class="tm-chip">Patient reviews from Google</figcaption>
       </div>

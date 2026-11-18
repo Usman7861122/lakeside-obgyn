@@ -1,4 +1,5 @@
 ---
+import Pic from '../ui/Pic.astro';
 import Backdrop from '../ui/Backdrop.astro';
 // Text below is copied from the Fertility & FemVue service page (src/data/svc/fertility-femvue.ts). Nothing new is claimed.
 // TODO: Dr. Hannon's FemVue website video link was not in her email. Add it here when we have it.
@@ -7,7 +8,7 @@ import Backdrop from '../ui/Backdrop.astro';
   <Backdrop variant="blush" mark="none" />
   <div class="wrap grid items-center gap-14 lg:grid-cols-[5fr_6fr] lg:gap-20">
     <figure data-reveal class="relative aspect-[4/3] overflow-hidden rounded-[6px] ring-1 ring-plum-700/10">
-      <img src="/images/services/fertility-femvue-1.jpg" alt="" width="1400" height="1050" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+      <Pic src="/images/services/fertility-femvue-1.jpg" alt="" sizes="100vw" class="absolute inset-0 h-full w-full object-cover" />
     </figure>
     <div data-reveal style="--d:.12s">
       <p class="eyebrow">Fertility care</p>

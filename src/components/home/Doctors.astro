@@ -1,5 +1,6 @@
 ---
 import Backdrop from '../ui/Backdrop.astro';
+import Pic from '../ui/Pic.astro';
 import { doctors } from '../../data/home';
 ---
 <section id="providers" class="section" aria-labelledby="providers-h">
@@ -16,10 +17,10 @@ import { doctors } from '../../data/home';
         <li class="group flex flex-col" data-reveal style={`--d:${n * 0.1}s`}>
           <div class="relative overflow-hidden rounded-[6px]">
             {d.img ? (
-              <img src={d.img} alt={`${d.name}, ${d.role}`} loading="lazy" class="img-sq object-[50%_22%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
+              <Pic src={d.img} alt={`${d.name}, ${d.role}`} sizes="(min-width:768px) 33vw, 100vw" class="img-sq object-[50%_22%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
             ) : (
               <div role="img" aria-label={`${d.name} — photo coming soon`} class="img-sq relative grid place-items-center overflow-hidden bg-[linear-gradient(145deg,#e6d6ea,#b04c9f)]">
-                <span aria-hidden="true" class="absolute inset-[14%] opacity-40" style="background:#fff;-webkit-mask:url('/images/logo-mark.png') center/contain no-repeat;mask:url('/images/logo-mark.png') center/contain no-repeat"></span>
+                <span aria-hidden="true" class="absolute inset-[14%] opacity-40" style="background:#fff;-webkit-mask:url('/images/logo-mark.webp') center/contain no-repeat;mask:url('/images/logo-mark.webp') center/contain no-repeat"></span>
               </div>
             )}
             <span aria-hidden="true" class="pointer-events-none absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-magenta-500 transition-transform duration-700 group-hover:scale-x-100"></span>

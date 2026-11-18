@@ -1,4 +1,5 @@
 ---
+import Pic from './ui/Pic.astro';
 import HoursList from './ui/HoursList.astro';
 import { site } from '../data/site';
 import { mainNav, providersMenu, servicesMenu } from '../data/nav';
@@ -31,7 +32,7 @@ const mobileItems = mainNav.map((i) => ({
   <div class="relative border-b border-plum-700/10 bg-white/80 backdrop-blur-xl transition-[background-color,box-shadow] duration-500 group-data-[scrolled]/h:bg-white/95 group-data-[scrolled]/h:shadow-[0_14px_40px_-24px_rgb(58_16_56/.55)]">
     <div class="wrap flex items-center justify-between gap-6 py-3">
       <a href="/" class="group/logo block shrink-0" aria-label={`${site.name} — home`}>
-        <img src="/images/logo.png" alt={site.name} width="1000" height="230" class="h-14 w-auto transition-transform duration-500 group-hover/logo:-translate-y-0.5 md:h-[4.1rem] xl:h-[4.6rem]" />
+        <picture><source type="image/webp" srcset="/images/logo-2x.webp" /><img src="/images/logo.png" alt={site.name} width="1000" height="230" class="h-14 w-auto transition-transform duration-500 group-hover/logo:-translate-y-0.5 md:h-[4.1rem] xl:h-[4.6rem]" /></picture>
       </a>
       <nav class="hidden items-center gap-5 lg:flex" aria-label="Main" data-nav>
         {mainNav.map((i) => i.mega ? (
@@ -56,7 +57,7 @@ const mobileItems = mainNav.map((i) => ({
       <div id="mega-providers" class="mega" data-panel="providers" role="region" aria-label="Our Providers">
         <div class="wrap mega-inner grid grid-cols-[16rem_1fr] items-stretch gap-10">
           <a href="/providers" class="mfeature group/f">
-            <img src="/images/provider/team-lead.jpg" alt="" loading="lazy" width="520" height="800" class="absolute inset-0 h-full w-full object-cover object-[50%_10%] transition-transform duration-[1200ms] group-hover/f:scale-[1.05]" />
+            <Pic src="/images/provider/team-lead.jpg" alt="" sizes="260px" class="absolute inset-0 h-full w-full object-cover object-[50%_10%] transition-transform duration-[1200ms] group-hover/f:scale-[1.05]" />
             <span class="absolute inset-0 bg-gradient-to-t from-ink/85 via-plum-800/45 to-plum-700/25 mix-blend-multiply" aria-hidden="true"></span>
             <span class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" aria-hidden="true"></span>
             <span class="relative mt-auto block p-6 text-white">
@@ -69,7 +70,7 @@ const mobileItems = mainNav.map((i) => ({
             {providersMenu.map((d) => (
               <li>
                 <a href={d.href} class="mdoc group/p">
-                  <span class="mdoc-img"><img src={d.img ?? ''} alt="" loading="lazy" width="400" height="400" class="h-full w-full object-cover object-[50%_18%]" /></span>
+                  <span class="mdoc-img"><Pic src={d.img ?? ''} alt="" sizes="120px" class="h-full w-full object-cover object-[50%_18%]" /></span>
                   <span class="mdoc-name">{d.name}</span>
                   <span class="mdoc-creds">{d.creds}</span>
                   <span class="mdoc-role">{d.role}</span>
@@ -84,7 +85,7 @@ const mobileItems = mainNav.map((i) => ({
       <div id="mega-services" class="mega" data-panel="services" role="region" aria-label="Services">
         <div class="wrap mega-inner grid grid-cols-[16rem_1fr] items-stretch gap-10">
           <a href="/services" class="mfeature group/f">
-            <img src={images.services.wellwoman ?? ''} alt="" loading="lazy" width="520" height="520" class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover/f:scale-[1.06]" />
+            <Pic src={images.services.wellwoman ?? ''} alt="" sizes="260px" class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover/f:scale-[1.06]" />
             <span class="absolute inset-0 bg-gradient-to-t from-ink/85 via-plum-800/45 to-plum-700/30 mix-blend-multiply" aria-hidden="true"></span>
             <span class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" aria-hidden="true"></span>
             <span class="relative mt-auto block p-6 text-white">

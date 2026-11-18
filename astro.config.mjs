@@ -13,6 +13,8 @@ export default defineConfig({
     '/services/laparoscopic-surgery': '/services/minimally-invasive-surgery',
     '/contactus': '/contact',
   },
+  // Put the CSS inside each page so it does not block the first paint (one request less on a phone)
+  build: { inlineStylesheets: 'always' },
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

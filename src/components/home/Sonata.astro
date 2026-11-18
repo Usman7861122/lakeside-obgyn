@@ -1,4 +1,5 @@
 ---
+import Pic from '../ui/Pic.astro';
 import Backdrop from '../ui/Backdrop.astro';
 import { sonata } from '../../data/sonata';
 import Fn from '../ui/Fn.astro';
@@ -23,7 +24,7 @@ import Fn from '../ui/Fn.astro';
     </div>
 
     <figure data-reveal style="--d:.14s" class="sonata-photo relative aspect-[1070/880] self-center overflow-hidden rounded-[6px] border border-white/15 bg-[#e4ecf3]">
-      <img src="/images/sonata/device.jpg" alt="The Sonata device, a slim probe with a handle" width="1070" height="880" loading="lazy" decoding="async" class="kb absolute inset-0 h-full w-full object-cover object-[45%_50%]" />
+      <Pic src="/images/sonata/device.jpg" alt="The Sonata device, a slim probe with a handle" sizes="(min-width:1024px) 50vw, 100vw" class="kb absolute inset-0 h-full w-full object-cover object-[45%_50%]" />
       <span aria-hidden="true" class="pointer-events-none absolute inset-3 rounded-[3px] border border-white/60"></span>
     </figure>
 

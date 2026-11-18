@@ -20,6 +20,7 @@ import { site } from '../data/site';
   title="Lakeside Obstetrics, Gynecology & Fertility | Obgyn in Inner Richmond, San Francisco"
   description="Private obstetrics, gynecology and fertility practice in San Francisco's Inner Richmond. Well-woman care, pregnancy, fibroids and the Sonata procedure, menopause care. Call 415-741-1000."
 >
+  <link slot="head" rel="preload" as="image" type="image/webp" imagesrcset={[480, 800, 1200, 1600].map((w) => `${heroSlides[0].image.src?.replace(/\.jpg$/, '')}-${w}.webp ${w}w`).join(', ')} imagesizes="100vw" fetchpriority="high" />
   <h1 class="sr-only">{site.name}: obstetrician and gynecologist in the Inner Richmond, San Francisco</h1>
   <Hero client:load slides={heroSlides} />
   <About />

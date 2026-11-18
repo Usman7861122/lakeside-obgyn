@@ -1,0 +1,29 @@
+---
+// Picture with WebP sizes (made by scripts/make-webp.py) and the original JPG as fallback.
+// Works for any /images/... .jpg. For other files (png, svg) it renders a plain <img>.
+import fs from 'node:fs';
+import path from 'node:path';
+import { imgSize } from '../../lib/imgsize';
+interface Props {
+  src: string; alt: string; sizes?: string; width?: number | string; height?: number | string;
+  loading?: 'lazy' | 'eager'; fetchpriority?: 'high' | 'low' | 'auto'; class?: string; style?: string;
+}
+const { src, alt, sizes = '100vw', width, height, loading = 'lazy', fetchpriority, class: cls, style } = Astro.props;
+const WIDTHS = [480, 800, 1200, 1600];
+let srcset = '';
+if (/^\/images\/.+\.jpg$/.test(src)) {
+  const base = src.slice(0, -4);
+  const found = WIDTHS.filter((w) => fs.existsSync(path.join(process.cwd(), 'public', `${base}-${w}.webp`)));
+  srcset = found.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
+}
+const dims = width && height ? { width, height } : imgSize(src);
+const imgProps = { src, alt, width: dims?.width, height: dims?.height, loading, decoding: 'async', fetchpriority, class: cls, style };
+---
+{srcset ? (
+  <picture>
+    <source type="image/webp" srcset={srcset} sizes={sizes} />
+    <img {...imgProps} />
+  </picture>
+) : (
+  <img {...imgProps} />
+)}
