@@ -18,5 +18,7 @@ Format: ID, date, status, what we see, what we know, what we tried, next step.
   3. The provider ARN in the trust policy points to a provider that was deleted and recreated, or the role is in another AWS account than the provider.
   4. The repo was renamed or moved after the policy was written.
 - **Update 2026-11-17:** provider Audience is `sts.amazonaws.com` (checked in IAM). Idea 1 is ruled out.
-- **Next step:** a temporary "Debug OIDC claims" step was added to the workflow. After the next run, compare the printed `sub` and `aud` with the trust policy. Remove the debug step once fixed.
+- **Cause found 2026-11-17:** the debug step printed `sub = repo:Usman7861122@168510874/lakeside-obgyn@1453866473:ref:refs/heads/main`. GitHub sends the owner and repo IDs inside the subject (a custom subject setting), but the trust policy expects `repo:Usman7861122/lakeside-obgyn:ref:refs/heads/main`. They never match, so AWS refuses the role. `aud`, `iss`, repository and ref were all correct.
+- **Fix (to do in AWS):** edit the role's trust policy and set the `sub` condition to exactly `repo:Usman7861122@168510874/lakeside-obgyn@1453866473:ref:refs/heads/main`. Then re-run the workflow and remove the debug step.
+- **Old next step (done):** a temporary "Debug OIDC claims" step was added to the workflow. After the next run, compare the printed `sub` and `aud` with the trust policy. Remove the debug step once fixed.
 - **Fix applied:** none yet.

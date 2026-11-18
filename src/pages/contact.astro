@@ -5,8 +5,7 @@ import { site } from '../data/site';
 import HoursList from '../components/ui/HoursList.astro';
 
 const a = site.address;
-const description = 'Contact Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco. Send us a message, call 415-741-1000, or visit 402 8th Avenue, Suite 201.';
-const isDev = import.meta.env.DEV;
+const description = 'Contact Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco. Call 415-741-1000 or visit 402 8th Avenue, Suite 201.';
 ---
 <BaseLayout title={`Contact Us | ${site.shortName}, Inner Richmond, San Francisco`} description={description}>
   <!-- Hero -->
@@ -23,110 +22,40 @@ const isDev = import.meta.env.DEV;
     </div>
   </section>
 
-  <!-- Form and office details -->
-  <section class="section" aria-labelledby="ct-form-h">
+  <!-- Ways to reach us -->
+  <section class="section" aria-labelledby="ct-ways-h">
     <Backdrop variant="blush" mark="none" />
-    <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
-      <div data-reveal>
-        <p class="eyebrow">Send a message</p>
-        <h2 id="ct-form-h" class="h-section">How can we help?</h2>
+    <div class="wrap">
+      <div data-reveal class="max-w-2xl">
+        <p class="eyebrow">Our office</p>
+        <h2 id="ct-ways-h" class="h-section">{site.shortName}</h2>
         <span class="bio-rule" aria-hidden="true"></span>
-
-        <form class="cf mt-8" id="contact-form" method="post" novalidate data-endpoint={site.contactEndpoint ?? ''}>
-          <div class="cf-grid">
-            <div class="cf-field">
-              <label for="cf-name">Name <span aria-hidden="true">*</span></label>
-              <input id="cf-name" name="name" type="text" autocomplete="name" required />
-              <p class="cf-err" id="cf-name-err" hidden>Enter your name.</p>
-            </div>
-            <div class="cf-field">
-              <label for="cf-email">Email <span aria-hidden="true">*</span></label>
-              <input id="cf-email" name="email" type="email" autocomplete="email" required />
-              <p class="cf-err" id="cf-email-err" hidden>Enter a valid email address.</p>
-            </div>
-            <div class="cf-field cf-wide">
-              <label for="cf-phone">Phone</label>
-              <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
-            </div>
-            <div class="cf-field cf-wide">
-              <label for="cf-message">Message <span aria-hidden="true">*</span></label>
-              <textarea id="cf-message" name="message" rows="6" required></textarea>
-              <p class="cf-err" id="cf-message-err" hidden>Enter your message.</p>
-            </div>
-          </div>
-          <!-- Spam trap: people never see or fill this field -->
-          <div class="cf-trap" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
-
-          <p class="cf-note">Please do not put health information in this form. To request an appointment, use the <a href={site.portalUrl} rel="noopener" target="_blank" class="svc-link">patient portal</a> or call <a href={site.phoneHref} class="svc-link">{site.phone}</a>.</p>
-
-          <div class="mt-7 flex flex-wrap items-center gap-4">
-            <button type="submit" class="btn-appt" id="cf-submit">Send message</button>
-          </div>
-          <p class="cf-status" id="cf-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
-          {isDev && !site.contactEndpoint && (
-            <p class="mt-6 rounded-[4px] border border-dashed border-magenta-500 bg-white p-4 text-sm text-plum-900"><strong>TODO (shows in dev only):</strong> the form is not connected to an email service yet. Set <code>contactEndpoint</code> in <code>src/data/site.ts</code>.</p>
-          )}
-        </form>
+        <p class="lede mt-6">The best way to reach us, or to make an appointment, is to call the office.</p>
       </div>
 
-      <aside class="cf-side" data-reveal style="--d:.12s" aria-label="Office details">
-        <p class="eyebrow">Our office</p>
-        <h2 class="h-section">{site.shortName}</h2>
-        <span class="bio-rule" aria-hidden="true"></span>
-        <dl class="loc-list mt-8">
-          <div><dt>Address</dt><dd>{a.line1}<br />{a.city}, {a.state} {a.zip}</dd></div>
-          <div><dt>Phone</dt><dd><a href={site.phoneHref} class="svc-link">{site.phone}</a></dd></div>
-          </dl>
-        <div class="mt-8"><p class="eyebrow">Office hours</p><div class="mt-4"><HoursList /></div></div>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
-          <a href="/locations" class="btn">Parking information</a>
-        </div>
-      </aside>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <article class="cf-side" data-reveal>
+          <p class="eyebrow">Call us</p>
+          <p class="mt-4 font-display text-3xl text-plum-900"><a href={site.phoneHref} class="no-underline hover:text-magenta-500">{site.phone}</a></p>
+          <p class="mt-3 text-plum-900/80">Call to book an appointment or to ask a question.</p>
+          <div class="mt-6"><a href={site.phoneHref} class="btn-appt">Call {site.phone}</a></div>
+        </article>
+
+        <article class="cf-side" data-reveal style="--d:.08s">
+          <p class="eyebrow">Visit us</p>
+          <p class="mt-4 text-lg leading-relaxed text-plum-900">{a.line1}<br />{a.city}, {a.state} {a.zip}</p>
+          <div class="mt-6 flex flex-wrap items-center gap-4">
+            <a href={site.mapsHref} class="btn-appt" rel="noopener" target="_blank">Get directions</a>
+            <a href="/parking" class="btn">Parking information</a>
+          </div>
+        </article>
+
+        <article class="cf-side" data-reveal style="--d:.16s">
+          <p class="eyebrow">Office hours</p>
+          <div class="mt-4"><HoursList /></div>
+        </article>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  if (form) {
-    const status = document.getElementById('cf-status') as HTMLElement;
-    const btn = document.getElementById('cf-submit') as HTMLButtonElement;
-    const endpoint = form.dataset.endpoint || '';
-    const checks: Record<string, (v: string) => boolean> = {
-      name: (v) => v.trim().length > 1,
-      email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
-      message: (v) => v.trim().length > 1,
-    };
-    const show = (msg: string, ok: boolean) => {
-      status.textContent = msg; status.hidden = false;
-      status.classList.toggle('cf-ok', ok); status.classList.toggle('cf-bad', !ok);
-      status.focus();
-    };
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.hidden = true;
-      let first: HTMLElement | null = null;
-      for (const key of Object.keys(checks)) {
-        const el = form.elements.namedItem(key) as HTMLInputElement;
-        const bad = !checks[key](el.value);
-        el.setAttribute('aria-invalid', String(bad));
-        const err = document.getElementById(`cf-${key}-err`) as HTMLElement;
-        err.hidden = !bad;
-        if (bad) { el.setAttribute('aria-describedby', err.id); first ??= el; } else el.removeAttribute('aria-describedby');
-      }
-      if (first) { first.focus(); return; }
-      if ((form.elements.namedItem('website') as HTMLInputElement).value) return; // spam trap filled
-      if (!endpoint) { show('This form is not connected yet, so your message was not sent. Please call 415-741-1000.', false); return; }
-      btn.disabled = true;
-      try {
-        const res = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
-        if (!res.ok) throw new Error(String(res.status));
-        form.reset();
-        show('Thank you. We received your message.', true);
-      } catch {
-        show('Your message was not sent. Please try again, or call 415-741-1000.', false);
-      } finally { btn.disabled = false; }
-    });
-  }
-</script>
