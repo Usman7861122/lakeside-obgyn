@@ -27,3 +27,18 @@ location = /parking/  { return 301 /locations/#visit; }
 location = /parking   { return 301 /locations/#visit; }
 ```
 (and the same idea for any old address that moved, for example /services/laparoscopic-surgery/ -> /services/minimally-invasive-surgery/ and /contactus/ -> /contact/).
+
+## nginx changes for DevOps (fix list 2026-11-18, not done yet)
+In `http {}` (or the www `server {}` block):
+```
+server_tokens off;                                   # hide "nginx/1.24.0 (Ubuntu)"
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+```
+In the www 443 `server {}` block (note: a location block with its own add_header drops the server-level ones, so repeat the HSTS line inside each):
+```
+location ^~ /_astro/ { add_header Cache-Control "public, max-age=31536000, immutable"; add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always; }
+location ^~ /images/ { add_header Cache-Control "public, max-age=31536000, immutable"; add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always; }
+```
+Caution for /images/: files keep their names when a photo is replaced, so a 1 year cache would show old pictures. Use `max-age=2592000` (30 days) unless photos get a new name each time. The HTML keeps a short cache (do not add one for `/`).
+Test: `sudo nginx -t && sudo systemctl reload nginx`, then `curl -sI https://www.lakesideobgyn.org/images/hero/bridge-800.webp`.
+Also keep the lakeside-sec.conf snippet in mind: it may already set some headers.
