@@ -36,3 +36,7 @@ mark = Image.open(os.path.join(root, 'logo-mark.png')).convert('RGBA')
 flat = Image.new('RGBA', mark.size, (255, 255, 255, 0)); flat.putalpha(mark.getchannel('A'))
 flat.save(os.path.join(root, 'logo-mark.webp'), 'WEBP', quality=60, alpha_quality=70, method=6)
 print('made', n, 'webp files')
+
+# Menopause Society seal: shown 144 px wide on the home page, so a 288 px copy (the 383 px one stays for bigger uses)
+seal = Image.open(os.path.join(root, 'badges', 'menopause-society-seal.png')).convert('RGBA')
+seal.resize((288, 288), Image.LANCZOS).save(os.path.join(root, 'badges', 'menopause-society-seal-288.webp'), 'WEBP', quality=80, alpha_quality=90, method=6)

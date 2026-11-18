@@ -17,3 +17,9 @@ If a font is changed, measure again. The fallback only applies where the system 
 ## Cookie banner
 Shown only after `document.fonts.ready` (max 2.5 s), opacity-only entrance, `position:fixed`. This avoids a
 layout shift when the banner text reflows after the fonts load.
+
+## Not done in round 3: trimming CSS not used on the home page
+About 28 KB (uncompressed) of rules in `global.css` belong to inner pages only (service, Sonata, timeline, bio,
+provider cards and so on). They could move to a second file loaded by `PageLayout`, but this changes the order of
+unlayered rules and could break inner pages, and "unused CSS" is not part of the Performance score. Left as is.
+Test first on a branch with screenshots of every page type if it is wanted.
