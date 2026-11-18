@@ -1,0 +1,82 @@
+---
+// Mobile menu. Plain HTML + CSS + a small script (no React). Same behavior as before:
+// button opens a full-screen menu, Escape or a link closes it, sub menus open with their own button.
+type Item = { label: string; href: string; external?: boolean; children?: { label: string; href: string }[] };
+interface Props { items: Item[]; phone: string; phoneHref: string }
+const { items, phone, phoneHref } = Astro.props;
+---
+<div class="lg:hidden" data-mm>
+  <button
+    type="button"
+    data-mm-toggle
+    aria-expanded="false"
+    aria-controls="mobile-nav"
+    aria-label="Open menu"
+    class="group relative z-[60] grid h-11 w-11 place-items-center rounded-[3px] border border-plum-700/25 text-plum-800"
+  >
+    <span class="sr-only">Menu</span>
+    <span aria-hidden="true" class="relative block h-3 w-5">
+      <span class="absolute left-0 top-0 h-px w-5 bg-current transition group-aria-expanded:translate-y-[6px] group-aria-expanded:rotate-45"></span>
+      <span class="absolute left-0 top-[6px] h-px w-5 bg-current transition group-aria-expanded:opacity-0"></span>
+      <span class="absolute left-0 top-[12px] h-px w-5 bg-current transition group-aria-expanded:-translate-y-[6px] group-aria-expanded:-rotate-45"></span>
+    </span>
+  </button>
+
+  <!-- The script moves this menu to the end of <body>, so the fixed header cannot clip it. -->
+  <nav id="mobile-nav" data-mm-nav aria-label="Mobile" class="mm-nav fixed inset-0 z-[49] flex flex-col justify-start gap-0 overflow-y-auto bg-plum-900 px-8 pb-8 pt-28 text-white lg:hidden">
+    {items.map((i, n) => (
+      <div class="mm-item border-b border-white/10" style={`--n:${n}`}>
+        <div class="flex items-center justify-between">
+          <a href={i.href} {...(i.external ? { target: '_blank', rel: 'noopener' } : {})} class="flex-1 py-3.5 font-display text-2xl">{i.label}</a>
+          {i.children && (
+            <button type="button" data-mm-sub aria-expanded="false" aria-label={`${i.label} menu`} class="group grid h-11 w-11 place-items-center text-rose-200">
+              <svg aria-hidden="true" viewBox="0 0 10 6" class="h-2 w-3 transition group-aria-expanded:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4" /></svg>
+            </button>
+          )}
+        </div>
+        {i.children && (
+          <ul hidden class="mb-3 grid max-h-[38vh] gap-px overflow-y-auto pl-1">
+            {i.children.map((c) => (
+              <li><a href={c.href} class="block py-2 text-sm text-white/80 hover:text-rose-200">{c.label}</a></li>
+            ))}
+          </ul>
+        )}
+      </div>
+    ))}
+    <a href={phoneHref} class="btn-appt mt-8 self-start">Call {phone}</a>
+  </nav>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-mm]');
+  const btn = root?.querySelector<HTMLButtonElement>('[data-mm-toggle]');
+  const nav = root?.querySelector<HTMLElement>('[data-mm-nav]');
+  if (root && btn && nav) {
+    document.body.appendChild(nav);
+    const wide = matchMedia('(min-width: 1024px)');
+    const set = (open: boolean) => {
+      nav.toggleAttribute('data-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    btn.addEventListener('click', () => set(!nav.hasAttribute('data-open')));
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+    wide.addEventListener('change', () => { if (wide.matches) set(false); });
+    nav.addEventListener('click', (e) => {
+      const t = e.target as HTMLElement;
+      const sub = t.closest<HTMLButtonElement>('[data-mm-sub]');
+      if (sub) {
+        // one sub menu open at a time, like before
+        const list = sub.closest('.mm-item')?.querySelector<HTMLElement>('ul');
+        const open = sub.getAttribute('aria-expanded') !== 'true';
+        nav.querySelectorAll<HTMLButtonElement>('[data-mm-sub]').forEach((b) => {
+          b.setAttribute('aria-expanded', 'false');
+          b.closest('.mm-item')?.querySelector('ul')?.setAttribute('hidden', '');
+        });
+        sub.setAttribute('aria-expanded', String(open));
+        if (open) list?.removeAttribute('hidden');
+      } else if (t.closest('a')) set(false);
+    });
+  }
+</script>

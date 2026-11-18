@@ -4,7 +4,7 @@ import HoursList from './ui/HoursList.astro';
 import { site } from '../data/site';
 import { mainNav, providersMenu, servicesMenu } from '../data/nav';
 import { images } from '../data/images';
-import MobileMenu from './islands/MobileMenu';
+import MobileMenu from './MobileMenu.astro';
 const mobileItems = mainNav.map((i) => ({
   label: i.label, href: i.href, external: 'external' in i && !!i.external,
   children: i.mega === 'providers' ? providersMenu.map((d) => ({ label: d.name, href: d.href }))
@@ -48,7 +48,7 @@ const mobileItems = mainNav.map((i) => ({
       </nav>
       <div class="flex items-center gap-3">
         <a href={site.phoneHref} class="btn-appt hidden whitespace-nowrap sm:inline-flex lg:hidden xl:inline-flex">Call {site.phone}</a>
-        <MobileMenu client:media="(max-width: 1023px)" items={mobileItems} phone={site.phone} phoneHref={site.phoneHref} />
+        <MobileMenu items={mobileItems} phone={site.phone} phoneHref={site.phoneHref} />
       </div>
     </div>
 
