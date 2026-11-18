@@ -26,12 +26,12 @@ const more = [
           <div class="flip aspect-square cursor-pointer" tabindex="0" role="group" aria-label={s.title}>
             <div class="flip-inner">
               <div class="flip-face">
-                <Img src={s.img} alt="" tone={s.tone} class="h-full" />
+                <Img src={s.img} alt="" tone={s.tone} sizes="(min-width:1280px) 389px, (min-width:1024px) 30vw, (min-width:640px) 44vw, calc(100vw - 3rem)" class="h-full" />
                 <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-plum-900/25 to-plum-800/20"></div>
                 <h3 class="absolute inset-x-0 bottom-0 p-6 text-2xl leading-tight text-white">{s.title}</h3>
               </div>
               <div class="flip-face flip-back grid content-center bg-plum-800 p-8 text-white">
-                <Img src={s.img} alt="" decorative tone={s.tone} class="absolute inset-0 h-full w-full" />
+                <Img src={s.img} alt="" decorative tone={s.tone} sizes="(min-width:1280px) 389px, (min-width:1024px) 30vw, (min-width:640px) 44vw, calc(100vw - 3rem)" class="absolute inset-0 h-full w-full" />
                 <div aria-hidden="true" class="absolute inset-0 bg-plum-900/[.82] mix-blend-multiply"></div>
                 <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/70 via-plum-800/70 to-plum-700/60"></div>
                 <span aria-hidden="true" class="absolute -right-6 -top-4 h-28 w-48 opacity-15" style="background:#fff;-webkit-mask:url('/images/logo-mark.webp') center/contain no-repeat;mask:url('/images/logo-mark.webp') center/contain no-repeat"></span>

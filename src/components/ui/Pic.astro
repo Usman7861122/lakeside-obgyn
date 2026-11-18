@@ -10,7 +10,7 @@ interface Props {
   loading?: 'lazy' | 'eager'; fetchpriority?: 'high' | 'low' | 'auto'; class?: string; style?: string;
 }
 const { src, alt: altProp, decorative = false, sizes = '100vw', width, height, loading = 'lazy', fetchpriority, class: cls, style } = Astro.props;
-const WIDTHS = [480, 800, 1200, 1600];
+const WIDTHS = [480, 640, 800, 1200, 1600]; // 640 exists only for a few photos (see scripts/make-webp.py)
 let srcset = '';
 if (/^\/images\/.+\.jpg$/.test(src)) {
   const base = src.slice(0, -4);
