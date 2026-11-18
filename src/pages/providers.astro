@@ -46,7 +46,7 @@ const variants = ['blush', 'mist'] as const;
       <div class={`wrap grid items-center gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20`}>
         <figure class={`pframe ${n % 2 ? 'lg:order-last' : ''}`} data-reveal>
           <span class="pframe-line" aria-hidden="true"></span>
-          <a href={`/provider/${p.slug}/`} class="pframe-img block" tabindex="-1" aria-hidden="true">
+          <a href={`/provider/${p.slug}/`} class="pframe-img block" tabindex="-1" aria-label={`${p.name}: view profile`}>
             <img src={p.img} alt={p.imgAlt} width="900" height="900" loading="lazy" class="kb h-full w-full object-cover object-[50%_20%]" />
             <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink/25 to-transparent"></div>
           </a>
