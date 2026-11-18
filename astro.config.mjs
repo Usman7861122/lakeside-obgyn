@@ -17,7 +17,7 @@ export default defineConfig({
   },
   // Put the CSS inside each page so it does not block the first paint (one request less on a phone)
   build: { inlineStylesheets: 'always' },
-  integrations: [react(), sitemap({ filter: (page) => !page.includes('/parking/') })],
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/parking/'), lastmod: new Date() })],
   vite: {
     plugins: [tailwindcss()],
   },
