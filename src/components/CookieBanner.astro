@@ -50,7 +50,7 @@ const { storageKey, version, intro, policyHref, categories } = cookieConsent;
     const current = (): Choice => Object.fromEntries(sw.map((s) => [s.dataset.cat!, s.getAttribute('aria-checked') === 'true']));
     const custom = (on: boolean) => {
       list.hidden = !on; bCustom.hidden = on; bSave.hidden = !on;
-      box.focus();
+      box.focus({ preventScroll: true });
     };
     const open = (isCustom: boolean) => { box.hidden = false; custom(isCustom); };
     const save = (c: Choice) => {
@@ -75,7 +75,11 @@ const { storageKey, version, intro, policyHref, categories } = cookieConsent;
     const saved = read();
     show({ ...defaults(), ...(saved || {}) });
     if (saved) w.cookieConsent = saved;
-    else if ('requestIdleCallback' in window) requestIdleCallback(() => open(false), { timeout: 2500 });
-    else setTimeout(() => open(false), 200);
+    else {
+      // Show the banner only after the web fonts are ready (at most 2.5 s), so its text cannot reflow and
+      // move the box after it is on screen (this caused CLS). It is position:fixed, so it never moves other content.
+      const fonts = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]) : Promise.resolve();
+      fonts.then(() => ('requestIdleCallback' in window ? requestIdleCallback(() => open(false), { timeout: 1000 }) : setTimeout(() => open(false), 100)));
+    }
   }
 </script>
