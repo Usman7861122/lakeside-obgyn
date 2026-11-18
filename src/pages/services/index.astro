@@ -6,7 +6,7 @@ import { site } from '../../data/site';
 
 // Card picture = the first Shutterstock photo of each service page (Sonata uses the toolkit device picture).
 const pic = (href: string) => {
-  const slug = href.replace('/services/', '');
+  const slug = href.replace('/services/', '').replace(/\/$/, '');
   if (slug === 'sonata') return '/images/sonata/device.jpg';
   if (slug === 'annual-well-woman-exam') return '/images/services/wellwoman-1.jpg';
   // Different pictures for tiles that looked too similar (Dr. Hannon, 2026-11-13).

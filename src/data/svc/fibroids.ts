@@ -40,7 +40,7 @@ export const service: GenericService = {
   ],
   closing:
     'Before struggling with fibroid symptoms another day, see how the OB/GYNs at Lakeside Obstetrics, Gynecology & Fertility can help. Call the clinic to schedule your appointment today.',
-  related: { eyebrow: 'Fibroid treatment option', title: 'The Sonata® Procedure for Fibroids', href: '/services/sonata', cta: 'Learn about the Sonata procedure' },
+  related: { eyebrow: 'Fibroid treatment option', title: 'The Sonata® Procedure for Fibroids', href: '/services/sonata/', cta: 'Learn about the Sonata procedure' },
   photos: [
     { src: '/images/services/fibroids-1.jpg', alt: 'A doctor holding a magnifying glass over a uterus and ovaries model' },
     { src: '/images/services/fibroids-2.jpg', alt: 'A doctor pointing to a uterus model while a patient looks on' },

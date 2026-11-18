@@ -9,9 +9,10 @@ const SITE = 'https://www.lakesideobgyn.org';
 
 export default defineConfig({
   site: SITE,
+  trailingSlash: 'always',
   redirects: {
-    '/services/laparoscopic-surgery': '/services/minimally-invasive-surgery',
-    '/contactus': '/contact',
+    '/services/laparoscopic-surgery': '/services/minimally-invasive-surgery/',
+    '/contactus': '/contact/',
     '/parking': '/locations/#visit',
   },
   // Put the CSS inside each page so it does not block the first paint (one request less on a phone)

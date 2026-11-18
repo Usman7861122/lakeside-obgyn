@@ -40,10 +40,10 @@ export const site = {
 
 export const nav = [
   { label: 'About', href: '/#about' },
-  { label: 'Services', href: '/services' },
+  { label: 'Services', href: '/services/' },
   { label: 'Providers', href: '/#providers' },
   { label: 'Sonata', href: '/#sonata' },
   { label: 'Patient Portal', href: '/#portal' },
   { label: 'Visit Us', href: '/#visit' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'Contact Us', href: '/contact/' },
 ];

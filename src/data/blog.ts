@@ -49,7 +49,7 @@ export const posts: Post[] = [
       { h: ww.prepare.q, parts: [{ p: ww.prepare.lead }, { ul: ww.prepare.items }, { p: ww.prepare.note }] },
     ],
     closing: ww.prepare.closing,
-    serviceHref: `/services/${ww.slug}`,
+    serviceHref: `/services/${ww.slug}/`,
     serviceLabel: 'Annual Well-Woman Exam',
   },
   {
@@ -67,7 +67,7 @@ export const posts: Post[] = [
     ],
     closing: fibroids.closing,
     related: fibroids.related,
-    serviceHref: '/services/fibroids',
+    serviceHref: '/services/fibroids/',
     serviceLabel: 'Fibroids',
   },
   {
@@ -84,7 +84,7 @@ export const posts: Post[] = [
       { h: 'Perimenopause and menopause management', parts: q(menopause.blocks, 'Perimenopause and Menopause Management') },
     ],
     closing: menopause.closing,
-    serviceHref: '/services/perimenopausemenopause-management',
+    serviceHref: '/services/perimenopausemenopause-management/',
     serviceLabel: 'Perimenopause/Menopause Management',
   },
 ];

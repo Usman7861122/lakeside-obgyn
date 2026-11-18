@@ -26,7 +26,7 @@ const description = 'Articles from Lakeside Obstetrics, Gynecology & Fertility i
       <ul class="svc-grid">
         {posts.map((p, i) => (
           <li data-reveal style={`--d:${((i % 3) * 0.08).toFixed(2)}s`}>
-            <a href={`/blog/${p.slug}`} class="svc-card bl-card">
+            <a href={`/blog/${p.slug}/`} class="svc-card bl-card">
               <span class="svc-card-img">
                 <img src={p.image} alt={p.imageAlt} width="1200" height="1200" loading="lazy" decoding="async" />
                 <span class="svc-card-glare" aria-hidden="true"></span>

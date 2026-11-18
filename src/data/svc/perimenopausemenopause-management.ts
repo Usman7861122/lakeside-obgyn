@@ -63,7 +63,7 @@ export const service: GenericService = {
       ],
     },
   ],
-  related: { eyebrow: 'Weight loss & management', title: 'Weight loss and management care', href: '/services/weight-loss-management', cta: 'Learn more' },
+  related: { eyebrow: 'Weight loss & management', title: 'Weight loss and management care', href: '/services/weight-loss-management/', cta: 'Learn more' },
   closing:
     'At Lakeside Obstetrics, Gynecology and Fertility, we are committed to helping you navigate menopause with confidence, comfort, and expert care through a personalized approach that prioritizes your overall health and well-being. Regular follow up ensures that your treatment remains safe and effective as your needs evolve. Please call our office 415-741-1000 to schedule your consultation to get started.',
   photos: [

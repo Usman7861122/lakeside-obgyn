@@ -16,7 +16,7 @@ export function getStaticPaths() {
 }
 const { s, g } = Astro.props;
 const [photo1, photo2, photo3] = s?.photos ?? [];
-const others = servicesMenu.filter((x) => x.href !== `/services/${s?.slug}`);
+const others = servicesMenu.filter((x) => x.href !== `/services/${s?.slug}/`);
 const ld = s && {
   '@context': 'https://schema.org',
   '@type': 'MedicalWebPage',
@@ -38,7 +38,7 @@ const check = '<path d="m5 12 4.5 4.5L19 7"/>';
         <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
           <a href="/" class="hover:text-rose-200">Home</a>
           <span aria-hidden="true" class="mx-2 text-white/30">/</span>
-          <a href="/services" class="hover:text-rose-200">Services</a>
+          <a href="/services/" class="hover:text-rose-200">Services</a>
           <span aria-hidden="true" class="mx-2 text-white/30">/</span>
           <span class="text-rose-200">{s.menuLabel}</span>
         </nav>
@@ -57,7 +57,7 @@ const check = '<path d="m5 12 4.5 4.5L19 7"/>';
           </li>
           <li class="hero-row">
             <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <span><strong>Hours</strong><br /><HoursList variant="status" dark /> <a href="/locations#hours" class="text-rose-200 underline underline-offset-4 hover:text-white">See all hours</a></span>
+            <span><strong>Hours</strong><br /><HoursList variant="status" dark /> <a href="/locations/#hours" class="text-rose-200 underline underline-offset-4 hover:text-white">See all hours</a></span>
           </li>
           <li class="hero-row">
             <span class="hero-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>

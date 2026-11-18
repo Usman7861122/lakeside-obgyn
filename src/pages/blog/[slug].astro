@@ -26,7 +26,7 @@ const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
       <nav aria-label="Breadcrumb" class="text-[.72rem] font-semibold uppercase tracking-[.2em] text-white/70">
         <a href="/" class="hover:text-rose-200">Home</a>
         <span aria-hidden="true" class="mx-2 text-white/30">/</span>
-        <a href="/blog" class="hover:text-rose-200">Blog</a>
+        <a href="/blog/" class="hover:text-rose-200">Blog</a>
         <span aria-hidden="true" class="mx-2 text-white/30">/</span>
         <span class="text-rose-200">{post.tag}</span>
       </nav>
@@ -83,12 +83,12 @@ const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
           <p class="eyebrow">More articles</p>
           <h2 id="ar-more" class="h-section">Keep reading</h2>
         </div>
-        <a href="/blog" class="btn">All articles</a>
+        <a href="/blog/" class="btn">All articles</a>
       </div>
       <ul class="svc-grid mt-12">
         {others.map((p) => (
           <li data-reveal>
-            <a href={`/blog/${p.slug}`} class="svc-card bl-card">
+            <a href={`/blog/${p.slug}/`} class="svc-card bl-card">
               <span class="svc-card-img">
                 <img src={p.image} alt={p.imageAlt} width="1200" height="1200" loading="lazy" decoding="async" />
                 <span class="svc-card-glare" aria-hidden="true"></span>

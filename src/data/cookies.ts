@@ -4,7 +4,7 @@ export const cookieConsent = {
   storageKey: 'lakeside-cookie-consent',
   version: 1,
   intro: 'We use cookies to help personalize your online experience. You can accept all, reject the optional ones, or choose.',
-  policyHref: '/your-privacy#use-of-cookies',
+  policyHref: '/your-privacy/#use-of-cookies',
   categories: [
     { key: 'necessary', label: 'Necessary', text: 'Needed for the site to work, for example to remember this choice. Always on.', locked: true },
     { key: 'analytics', label: 'Analytics', text: 'Helps us see how the site is used, so we can improve it.', locked: false },
