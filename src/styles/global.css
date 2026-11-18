@@ -3,14 +3,20 @@
 @import "@fontsource/dm-serif-display/400-italic.css";
 @import "@fontsource-variable/open-sans/index.css";
 
+/* Fallback faces with the size and line metrics of the web fonts, so text does not reflow when the real fonts arrive.
+   Numbers measured from the font files against Arial / Times New Roman (see docs/PERF-NOTES.md). */
+@font-face { font-family: "Open Sans Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"); size-adjust: 105.3%; ascent-override: 101.51%; descent-override: 27.82%; line-gap-override: 0%; }
+@font-face { font-family: "DM Serif Fallback"; font-style: normal; src: local("Times New Roman"), local("Liberation Serif"); size-adjust: 110.14%; ascent-override: 94.06%; descent-override: 30.41%; line-gap-override: 0%; }
+@font-face { font-family: "DM Serif Fallback"; font-style: italic; src: local("Times New Roman Italic"), local("Liberation Serif Italic"); size-adjust: 106.29%; ascent-override: 97.47%; descent-override: 31.52%; line-gap-override: 0%; }
+
 /* ------------------------------------------------------------------
    Lakeside Obgyn — design tokens
    Colors come from the practice logo (plum #882078, magenta #D81070).
    "lake" is the one cool counter-note, used only in water effects.
    ------------------------------------------------------------------ */
 @theme {
-  --font-display: "DM Serif Display", Georgia, serif;
-  --font-sans: "Open Sans Variable", "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "DM Serif Display", "DM Serif Fallback", Georgia, serif;
+  --font-sans: "Open Sans Variable", "Open Sans Fallback", "Open Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-ink: #240a24;
   --color-plum-900: #3a1038;
