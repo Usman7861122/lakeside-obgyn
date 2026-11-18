@@ -12,10 +12,11 @@ export default defineConfig({
   redirects: {
     '/services/laparoscopic-surgery': '/services/minimally-invasive-surgery',
     '/contactus': '/contact',
+    '/parking': '/locations/#visit',
   },
   // Put the CSS inside each page so it does not block the first paint (one request less on a phone)
   build: { inlineStylesheets: 'always' },
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/parking/') })],
   vite: {
     plugins: [tailwindcss()],
   },

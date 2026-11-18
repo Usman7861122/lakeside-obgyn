@@ -19,3 +19,11 @@ Log: `/var/log/lakeside-sync.log`
 - Server files: `/usr/local/bin/lakeside-sync.sh`, root crontab, log `/var/log/lakeside-sync.log`, local copy `/var/lib/lakeside-site`, AWS keys of IAM user `lakeside-lightsail-sync` (read-only) in root's AWS config.
 - A backup of the old site build is at `/var/www/lakeside.bak` (delete when no longer needed).
 - Limits: deploy takes up to about 1 minute after the GitHub run is green. The Lightsail instance is a single server: no CDN.
+
+## Redirects to add in nginx (server blocks for www, inside the 443 server)
+The static site can only make a "meta refresh" page. A real 301 must come from nginx:
+```
+location = /parking/  { return 301 /locations/#visit; }
+location = /parking   { return 301 /locations/#visit; }
+```
+(and the same idea for any old address that moved, for example /services/laparoscopic-surgery/ -> /services/minimally-invasive-surgery/ and /contactus/ -> /contact/).
