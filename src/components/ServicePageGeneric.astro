@@ -19,6 +19,8 @@ const moreBg = g.related ? bg(n + 1) : bg(n);
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'MedicalWebPage',
+  url: new URL(`/services/${g.slug}/`, Astro.site).href,
+  isPartOf: { '@id': new URL('/#website', Astro.site).href },
   name: g.title,
   description: g.metaDescription,
   about: { '@type': 'MedicalProcedure', name: g.menuLabel },

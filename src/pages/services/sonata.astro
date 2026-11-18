@@ -12,6 +12,8 @@ const others = servicesMenu.filter((x) => x.href !== '/services/sonata/');
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'MedicalWebPage',
+  url: new URL('/services/sonata/', Astro.site).href,
+  isPartOf: { '@id': new URL('/#website', Astro.site).href },
   name: 'The Sonata Procedure for Fibroids',
   about: { '@type': 'MedicalProcedure', name: 'Sonata transcervical fibroid ablation' },
   publisher: { '@type': 'MedicalBusiness', name: site.name, telephone: site.phone },

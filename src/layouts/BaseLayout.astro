@@ -15,6 +15,14 @@ const title = meta?.title ?? props.title;
 const description = meta?.description ?? props.description ?? site.descriptor;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site).href;
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': new URL('/#website', Astro.site).href,
+  url: new URL('/', Astro.site).href,
+  name: site.name,
+  publisher: { '@id': new URL('/#practice', Astro.site).href },
+};
 const ld = {
   '@context': 'https://schema.org',
   '@type': ['Physician', 'MedicalBusiness'],
@@ -23,6 +31,11 @@ const ld = {
   telephone: site.phone,
   '@id': new URL('/#practice', Astro.site).href,
   url: new URL('/', Astro.site).href,
+  logo: new URL('/images/logo.png', Astro.site).href,
+  image: new URL('/images/hero/consult.jpg', Astro.site).href,
+  sameAs: [site.social.facebook, ...(site.social.yelp ? [site.social.yelp] : [])],
+  areaServed: { '@type': 'City', name: site.address.city },
+  ...(site.geo ? { geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng } } : {}),
   medicalSpecialty: ['Obstetric', 'Gynecologic'],
   address: {
     '@type': 'PostalAddress',
@@ -63,6 +76,7 @@ const ld = {
     <meta name="theme-color" content="#5c1650" />
     <script is:inline>document.documentElement.classList.replace('no-js','js')</script>
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    {Astro.url.pathname === '/' && <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />}
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <slot name="head" />
   </head>

@@ -11,6 +11,8 @@ const description = 'Office location and parking at Lakeside Obstetrics, Gynecol
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'MedicalBusiness',
+  '@id': new URL('/#practice', Astro.site).href,
+  url: new URL('/', Astro.site).href,
   name: site.name,
   telephone: site.phone,
   address: { '@type': 'PostalAddress', streetAddress: a.line1, addressLocality: a.city, addressRegion: a.state, postalCode: a.zip, addressCountry: 'US' },

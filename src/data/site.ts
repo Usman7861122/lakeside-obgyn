@@ -26,8 +26,8 @@ export const site = {
     { day: 'Sunday', open: null, close: null },
   ] as { day: string; open: string | null; close: string | null }[],
   portalUrl: 'https://16523.portal.athenahealth.com/',
-  // TODO(dev): set this to the form service or API address that sends the email (for example a Formspree, Resend or
-  // serverless function URL). While it is null the contact form shows a "not connected" message and sends nothing.
+  // TODO(owner): exact map coordinates of the office (latitude, longitude). Used in the practice schema (geo). Not invented here.
+  geo: null as { lat: number; lng: number } | null,
   social: {
     facebook: 'https://www.facebook.com/LakesideObstetricsGynecology',
     yelp: null as string | null, // old site links Yelp; exact URL not captured yet

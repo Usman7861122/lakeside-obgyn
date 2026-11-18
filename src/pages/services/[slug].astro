@@ -20,6 +20,8 @@ const others = servicesMenu.filter((x) => x.href !== `/services/${s?.slug}/`);
 const ld = s && {
   '@context': 'https://schema.org',
   '@type': 'MedicalWebPage',
+  url: new URL(`/services/${s.slug}/`, Astro.site).href,
+  isPartOf: { '@id': new URL('/#website', Astro.site).href },
   name: s.title,
   description: s.metaDescription,
   about: { '@type': 'MedicalProcedure', name: s.menuLabel },

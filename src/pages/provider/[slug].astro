@@ -22,12 +22,14 @@ const tlIcons: Record<string, string> = {
 const ld = {
   '@context': 'https://schema.org',
   '@type': p.honorific === '' ? 'Person' : 'Physician',
+  '@id': new URL(`/provider/${p.slug}/#person`, Astro.site).href,
+  url: new URL(`/provider/${p.slug}/`, Astro.site).href,
   name: p.title,
   jobTitle: p.role,
   ...(p.honorific === '' ? {} : { medicalSpecialty: ['Obstetric', 'Gynecologic'] }),
   image: new URL(p.img, Astro.site).href,
   telephone: site.phone,
-  worksFor: { '@type': 'MedicalBusiness', name: site.name },
+  worksFor: { '@id': new URL('/#practice', Astro.site).href },
   address: {
     '@type': 'PostalAddress',
     streetAddress: site.address.line1,

@@ -14,8 +14,12 @@ const ld = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: post.title,
-  image: post.image,
-  publisher: { '@type': 'MedicalBusiness', name: site.name, telephone: site.phone },
+  image: new URL(post.image, Astro.site).href,
+  datePublished: post.datePublished,
+  dateModified: post.dateModified,
+  author: { '@id': new URL('/#practice', Astro.site).href },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(`/blog/${post.slug}/`, Astro.site).href },
+  publisher: { '@id': new URL('/#practice', Astro.site).href },
 };
 const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 ---

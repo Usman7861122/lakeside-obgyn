@@ -24,6 +24,8 @@ export type Post = {
   related?: { eyebrow: string; title: string; href: string; cta: string };
   serviceHref: string;
   serviceLabel: string;
+  datePublished: string; // TODO(owner): confirm; set to the day the draft article was added to the site
+  dateModified: string;
 };
 
 const ww = services[0];
@@ -37,6 +39,8 @@ const firstSentence = (t: string) => t.split(/(?<=[.?!])\s/)[0];
 export const posts: Post[] = [
   {
     slug: 'what-happens-at-an-annual-well-woman-exam',
+    datePublished: '2026-11-12',
+    dateModified: '2026-11-12',
     tag: 'Well-woman',
     title: 'What happens at an annual well-woman exam',
     metaDescription: 'What to expect at an annual well-woman exam and how to prepare, from the team at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco.',
@@ -54,6 +58,8 @@ export const posts: Post[] = [
   },
   {
     slug: 'fibroid-symptoms-when-to-talk-to-your-doctor',
+    datePublished: '2026-11-12',
+    dateModified: '2026-11-12',
     tag: 'Fibroids',
     title: 'Fibroid symptoms: when to talk to your doctor',
     metaDescription: 'Fibroid symptoms and how an OB/GYN treats fibroids, from Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco.',
@@ -72,6 +78,8 @@ export const posts: Post[] = [
   },
   {
     slug: 'perimenopause-what-to-expect-and-who-can-help',
+    datePublished: '2026-11-12',
+    dateModified: '2026-11-12',
     tag: 'Menopause',
     title: 'Perimenopause: what to expect and who can help',
     metaDescription: 'Perimenopause and menopause symptoms and your care team at Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco.',
