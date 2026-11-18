@@ -127,3 +127,7 @@ Text was copied word for word from the old site. Please confirm these points wit
 - Pelvic pain: "Gastrointestinal problems" replaces Crohn's, IBS and Fibromyalgia.
 - Staff group photos: she will email them.
 - Jeanette Blanks bio, paragraph 2 (added 2026-11-13 at the developer's request): written only from facts already on the site (works with Dr. Monica and Dr. Ziyad Hannon, Inner Richmond location, items from her care list). No new claims. Dr. Hannon must approve it or send her own text.
+
+## SEO titles and descriptions (2026-11-18)
+- [ ] New titles and meta descriptions for all 34 pages are in `src/data/seo.ts` (old and new side by side in `docs/SEO-TITLES-2026-11-18.md`). Owner to approve before deploy; client to review the wording. They use only facts already on the site.
+- [ ] The /about/ title uses "Dr. Hannon" (as in the fix list), but there are two Drs. Hannon. Ask the owner which one the page is about.
