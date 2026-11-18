@@ -14,11 +14,12 @@ export default defineConfig({
     '/services/laparoscopic-surgery': '/services/minimally-invasive-surgery/',
     '/contactus': '/contact/',
     '/parking': '/locations/#visit',
+    '/about': '/provider/monica-hannon-md-facog/',
     '/services/perimenopausemenopause-management': '/services/perimenopause-menopause-management/',
   },
   // Put the CSS inside each page so it does not block the first paint (one request less on a phone)
   build: { inlineStylesheets: 'always' },
-  integrations: [react(), sitemap({ filter: (page) => !page.includes('/parking/'), lastmod: new Date() })],
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/parking/') && !page.endsWith('/about/'), lastmod: new Date() })],
   vite: {
     plugins: [tailwindcss()],
   },

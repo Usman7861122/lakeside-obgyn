@@ -2,7 +2,6 @@
 // Titles: 50 to 60 characters. Descriptions: 140 to 158 characters. Wording is the developer's draft: client to review.
 export const seo: Record<string, { title: string; description: string }> = {
   '/': { title: 'OB/GYN in Inner Richmond, San Francisco | Lakeside Obgyn', description: 'Lakeside Obstetrics, Gynecology & Fertility is a private practice at 402 8th Avenue in the Inner Richmond, San Francisco. Call 415-741-1000 to book a visit.' },
-  '/about/': { title: 'About Dr. Monica Hannon, OB/GYN in SF | Lakeside Obgyn', description: 'Learn about Dr. Monica Hannon, an obstetrician and gynecologist at Lakeside Obstetrics, Gynecology & Fertility in San Francisco. Call 415-741-1000.' },
   '/accessibility-statement/': { title: 'Accessibility Statement, San Francisco | Lakeside Obgyn', description: 'Read the accessibility statement for the Lakeside Obstetrics, Gynecology & Fertility website in San Francisco, and how to reach us at 415-741-1000 for help.' },
   '/blog/': { title: 'Women\'s Health Blog, San Francisco | Lakeside Obgyn', description: 'Articles from Lakeside Obstetrics, Gynecology & Fertility in San Francisco on well-woman exams, fibroids, perimenopause and menopause. Call 415-741-1000.' },
   '/blog/fibroid-symptoms-when-to-talk-to-your-doctor/': { title: 'Fibroid Symptoms: When to See a Doctor | Lakeside Obgyn', description: 'Fibroid symptoms and when to talk to your doctor, from Lakeside Obstetrics, Gynecology & Fertility in San Francisco. Call 415-741-1000 to book a visit.' },

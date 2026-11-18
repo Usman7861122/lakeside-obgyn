@@ -130,8 +130,7 @@ Text was copied word for word from the old site. Please confirm these points wit
 
 ## SEO titles and descriptions (2026-11-18)
 - [ ] New titles and meta descriptions for all 34 pages are in `src/data/seo.ts` (old and new side by side in `docs/SEO-TITLES-2026-11-18.md`). Owner to approve before deploy; client to review the wording. They use only facts already on the site.
-- [x] /about/ is about Dr. Monica Hannon (owner, 2026-11-18). Title and description updated.
-- [ ] /about/ page body is still a PLACEHOLDER ("About — placeholder. Content must come from client docs.") and it is in the sitemap and live. Decide: write the page from a client document, 301 it to /provider/monica-hannon-md-facog/, or set noindex until it has content.
+- [x] /about/ was an empty placeholder page. Owner chose a 301 to /provider/monica-hannon-md-facog/ (2026-11-18). It is out of the sitemap and has no title or description of its own. nginx needs a real 301 (deploy/README.md). If the client later sends About-page text, bring the page back.
 
 ## Schema, sitemap and small fixes (2026-11-18)
 - [ ] Practice schema `geo` (latitude and longitude) is NOT added: no coordinates are in any client document and I could not look them up. Owner: send the exact map coordinates of 402 8th Avenue, then set `site.geo` in `src/data/site.ts` (the schema code is ready).
