@@ -92,7 +92,7 @@ export const posts: Post[] = [
       { h: 'Perimenopause and menopause management', parts: q(menopause.blocks, 'Perimenopause and Menopause Management') },
     ],
     closing: menopause.closing,
-    serviceHref: '/services/perimenopausemenopause-management/',
+    serviceHref: '/services/perimenopause-menopause-management/',
     serviceLabel: 'Perimenopause/Menopause Management',
   },
 ];

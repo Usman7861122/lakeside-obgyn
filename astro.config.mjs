@@ -14,6 +14,7 @@ export default defineConfig({
     '/services/laparoscopic-surgery': '/services/minimally-invasive-surgery/',
     '/contactus': '/contact/',
     '/parking': '/locations/#visit',
+    '/services/perimenopausemenopause-management': '/services/perimenopause-menopause-management/',
   },
   // Put the CSS inside each page so it does not block the first paint (one request less on a phone)
   build: { inlineStylesheets: 'always' },

@@ -130,7 +130,8 @@ Text was copied word for word from the old site. Please confirm these points wit
 
 ## SEO titles and descriptions (2026-11-18)
 - [ ] New titles and meta descriptions for all 34 pages are in `src/data/seo.ts` (old and new side by side in `docs/SEO-TITLES-2026-11-18.md`). Owner to approve before deploy; client to review the wording. They use only facts already on the site.
-- [ ] The /about/ title uses "Dr. Hannon" (as in the fix list), but there are two Drs. Hannon. Ask the owner which one the page is about.
+- [x] /about/ is about Dr. Monica Hannon (owner, 2026-11-18). Title and description updated.
+- [ ] /about/ page body is still a PLACEHOLDER ("About — placeholder. Content must come from client docs.") and it is in the sitemap and live. Decide: write the page from a client document, 301 it to /provider/monica-hannon-md-facog/, or set noindex until it has content.
 
 ## Schema, sitemap and small fixes (2026-11-18)
 - [ ] Practice schema `geo` (latitude and longitude) is NOT added: no coordinates are in any client document and I could not look them up. Owner: send the exact map coordinates of 402 8th Avenue, then set `site.geo` in `src/data/site.ts` (the schema code is ready).
@@ -138,5 +139,5 @@ Text was copied word for word from the old site. Please confirm these points wit
 - [ ] Doctor credentials in schema: none added (needs facts from the owner).
 - [ ] Blog posts have no dates in any client document. `datePublished` and `dateModified` are set to 2026-11-12 (the day the draft articles were added). Owner: confirm or give the real dates (`src/data/blog.ts`). Author in schema = the practice (no named author exists).
 - [ ] Sitemap `lastmod` is the build date for every URL (not a content date).
-- [ ] Slug typo `/services/perimenopausemenopause-management/`: NOT changed. Owner to decide first. If changed, it needs a 301 from the old address (nginx) and a new redirect entry in `astro.config.mjs`.
-- [ ] Images with empty alt text: most are decorative (service and blog photos next to a heading, doctor photos inside a link that already has the name). I did not write new alt text for them because the wording would be new copy. Owner/client: say which pictures should have a description. The three doctor photo links on /providers/ now have an accessible name.
+- [x] Slug typo fixed (owner OK, 2026-11-18): `/services/perimenopausemenopause-management/` is now `/services/perimenopause-menopause-management/`. Astro redirect added; nginx needs a real 301 (see deploy/README.md). Image file names keep the old spelling (not visible to visitors). Old address came from the old site, so ask the client if anything outside the site links to it (Google Business Profile, directories).
+- [x] Alt text added to every picture that had an empty alt (owner: "add to all", 2026-11-18). Text is in `src/lib/alt.ts` (describes what the picture shows; developer wording, client may change). The back face of the home service cards stays decorative so screen readers do not hear each picture twice.

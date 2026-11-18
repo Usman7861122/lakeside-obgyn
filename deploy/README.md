@@ -25,6 +25,7 @@ The static site can only make a "meta refresh" page. A real 301 must come from n
 ```
 location = /parking/  { return 301 /locations/#visit; }
 location = /parking   { return 301 /locations/#visit; }
+location = /services/perimenopausemenopause-management/ { return 301 /services/perimenopause-menopause-management/; }
 ```
 (and the same idea for any old address that moved, for example /services/laparoscopic-surgery/ -> /services/minimally-invasive-surgery/ and /contactus/ -> /contact/).
 

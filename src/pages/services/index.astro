@@ -1,4 +1,5 @@
 ---
+import { altFor } from '../../lib/alt';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Backdrop from '../../components/ui/Backdrop.astro';
 import { servicesMenu } from '../../data/nav';
@@ -10,7 +11,7 @@ const pic = (href: string) => {
   if (slug === 'sonata') return '/images/sonata/device.jpg';
   if (slug === 'annual-well-woman-exam') return '/images/services/wellwoman-1.jpg';
   // Different pictures for tiles that looked too similar (Dr. Hannon, 2026-11-13).
-  const alt: Record<string, string> = { 'pelvic-pain': 'pelvic-pain-3', 'ovarian-cyst': 'ovarian-cyst-2', 'polycystic-ovary-syndrome': 'polycystic-ovary-syndrome-2', fibroids: 'fibroids-3', 'sexual-health': 'wellwoman-3' };
+  const alt: Record<string, string> = { 'pelvic-pain': 'pelvic-pain-3', 'ovarian-cyst': 'ovarian-cyst-2', 'polycystic-ovary-syndrome': 'polycystic-ovary-syndrome-2', fibroids: 'fibroids-3', 'sexual-health': 'wellwoman-3', 'perimenopause-menopause-management': 'perimenopausemenopause-management-1' };
   return `/images/services/${alt[slug] ?? `${slug}-1`}.jpg`;
 };
 const cards = servicesMenu.map((s) => ({ ...s, img: pic(s.href) }));
@@ -43,7 +44,7 @@ const description = 'Services at Lakeside Obstetrics, Gynecology & Fertility in 
           <li data-reveal style={`--d:${((i % 3) * 0.08).toFixed(2)}s`}>
             <a href={c.href} class="svc-card">
               <span class="svc-card-img">
-                <img src={c.img} alt="" width="1400" height="1400" loading="lazy" decoding="async" />
+                <img src={c.img} alt={altFor(c.img)} width="1400" height="1400" loading="lazy" decoding="async" />
                 <span class="svc-card-glare" aria-hidden="true"></span>
               </span>
               <span class="svc-card-body">

@@ -1,11 +1,11 @@
 ---
 // Square image with slightly rounded edges. Shows temporary art when no photo is set yet.
-interface Props { src?: string | null; alt: string; tone?: string[]; class?: string; loading?: 'lazy' | 'eager'; position?: string; sizes?: string }
-const { src, alt, tone = ['#e6d6ea', '#882078'], class: cls = '', loading = 'lazy', position = 'center', sizes = '(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw' } = Astro.props;
+interface Props { src?: string | null; alt: string; tone?: string[]; class?: string; loading?: 'lazy' | 'eager'; position?: string; sizes?: string; decorative?: boolean }
+const { src, alt, tone = ['#e6d6ea', '#882078'], class: cls = '', loading = 'lazy', position = 'center', sizes = '(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw', decorative = false } = Astro.props;
 import Pic from './Pic.astro';
 ---
 {src ? (
-  <Pic src={src} alt={alt} loading={loading} sizes={sizes} class={`img-sq ${cls}`} style={`object-position:${position}`} />
+  <Pic src={src} alt={alt} decorative={decorative} loading={loading} sizes={sizes} class={`img-sq ${cls}`} style={`object-position:${position}`} />
 ) : (
   <div role="img" aria-label={alt} class={`img-sq relative overflow-hidden ${cls}`} style={`background:linear-gradient(145deg, ${tone[0]}, ${tone[1]})`}>
     <span aria-hidden="true" class="absolute inset-[12%] opacity-40" style="background:#fff;-webkit-mask:url('/images/logo-mark.webp') center/contain no-repeat;mask:url('/images/logo-mark.webp') center/contain no-repeat"></span>

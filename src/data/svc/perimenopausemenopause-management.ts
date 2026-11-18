@@ -3,7 +3,7 @@ import type { GenericService } from './types';
 // Medical text: copied exactly, including drug names and spellings as written on the old site (for example "drosperinone").
 // The old page says both Dr. Monica Hannon and Jeanette Blanks are certified menopause specialists through the Menopause Society.
 export const service: GenericService = {
-  slug: 'perimenopausemenopause-management',
+  slug: 'perimenopause-menopause-management',
   title: 'Perimenopause/Menopause Management',
   menuLabel: 'Perimenopause/Menopause Management',
   introHeading: 'Perimenopause and Menopause Care',

@@ -1,4 +1,5 @@
 ---
+import { altFor } from '../lib/alt';
 import HoursList from '../components/ui/HoursList.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Backdrop from '../components/ui/Backdrop.astro';
@@ -31,7 +32,7 @@ const variants = ['blush', 'mist'] as const;
         {providers.map((p) => (
           <li>
             <a href={`#${p.slug}`} class="provs-chip group">
-              <img src={p.img} alt="" width="300" height="300" loading="eager" class="aspect-square w-full object-cover object-[50%_22%] transition duration-700 group-hover:scale-105" />
+              <img src={p.img} alt={altFor(p.img)} width="300" height="300" loading="eager" class="aspect-square w-full object-cover object-[50%_22%] transition duration-700 group-hover:scale-105" />
               <span class="provs-chip-name">{p.name}</span>
             </a>
           </li>

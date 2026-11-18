@@ -23,7 +23,7 @@ export const servicesMenu = [
   { label: 'The Sonata Procedure', href: '/services/sonata/' },
   { label: 'Ultrasound', href: '/services/ultrasound/' },
   { label: 'Minimally Invasive & Laparoscopic Surgery', href: '/services/minimally-invasive-surgery/' },
-  { label: 'Perimenopause/Menopause Management', href: '/services/perimenopausemenopause-management/' },
+  { label: 'Perimenopause/Menopause Management', href: '/services/perimenopause-menopause-management/' },
   { label: 'Fertility & FemVue', href: '/services/fertility-femvue/' },
   { label: 'Weight Loss & Management', href: '/services/weight-loss-management/' },
   { label: 'Sexual Health & Sexual Pain', href: '/services/sexual-health/' },

@@ -34,7 +34,7 @@ export const heroSlides = [
 export const services = [
   { key: 'wellwoman', href: '/services/annual-well-woman-exam/', title: 'Well-woman exams', text: 'Annual exams, birth control, and abnormal Pap smear follow-up, with time to ask your questions.', img: images.services.wellwoman, tone: ['#f4c9d9', '#b04c9f'] },
   { key: 'fertility', href: '/services/fertility-femvue/', title: 'Fertility & FemVue', text: 'Fertility care, including FemVue testing and on-site ultrasound, in the same office.', img: images.services.fertility, tone: ['#ffd1e6', '#d81070'] },
-  { key: 'menopause', href: '/services/perimenopausemenopause-management/', title: 'Perimenopause & menopause', text: 'Management of perimenopause and menopause, including hormone therapy.', img: images.services.menopause, tone: ['#e6d6ea', '#882078'] },
+  { key: 'menopause', href: '/services/perimenopause-menopause-management/', title: 'Perimenopause & menopause', text: 'Management of perimenopause and menopause, including hormone therapy.', img: images.services.menopause, tone: ['#e6d6ea', '#882078'] },
   { key: 'fibroids', href: '/services/fibroids/', title: 'Fibroids & Sonata®', text: 'Ask your doctor if the Sonata procedure, an incisionless option, may be right for you.', img: images.services.fibroids, tone: ['#d9a6d0', '#5c1650'] },
   { key: 'surgery', href: '/services/minimally-invasive-surgery/', title: 'Minimally invasive surgery', text: 'Laparoscopic and other minimally invasive gynecologic surgery.', img: images.services.surgery, tone: ['#b9d0dd', '#2f5d73'] },
   { key: 'lgbtq', href: '/services/lgbtq-care/', title: 'LGBTQ+ care', text: 'Welcoming, respectful care for all patients, including gender-affirming surgery.', img: images.services.lgbtq, tone: ['#ffc2dc', '#b04c9f'] },

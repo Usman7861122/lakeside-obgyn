@@ -69,7 +69,7 @@ export const providers: Provider[] = [
       { label: 'PCOS', href: '/services/polycystic-ovary-syndrome/' },
       { label: 'Pelvic and sexual pain', href: '/services/pelvic-pain/' },
       { label: 'Endometriosis' },
-      { label: 'Perimenopause and menopause', href: '/services/perimenopausemenopause-management/' },
+      { label: 'Perimenopause and menopause', href: '/services/perimenopause-menopause-management/' },
       { label: 'Hormone therapy' },
       { label: 'Low libido' },
       { label: 'Abnormal Pap tests', href: '/services/abnormal-pap-smear/' },
@@ -157,7 +157,7 @@ export const providers: Provider[] = [
     honors: [],
     careHeading: { eyebrow: 'Clinical practice', heading: 'Comprehensive gynecologic and primary care' },
     care: [
-      { label: 'Perimenopause/menopause symptom management & hormone replacement therapy', href: '/services/perimenopausemenopause-management/' },
+      { label: 'Perimenopause/menopause symptom management & hormone replacement therapy', href: '/services/perimenopause-menopause-management/' },
       { label: 'Low libido/Hypoactive sexual desire disorder' },
       { label: 'Weight loss counseling & medication', href: '/services/weight-loss-management/' },
       { label: 'Preventative care screening' },
