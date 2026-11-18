@@ -23,8 +23,8 @@ Log: `/var/log/lakeside-sync.log`
 ## Redirects to add in nginx (server blocks for www, inside the 443 server)
 The static site can only make a "meta refresh" page. A real 301 must come from nginx:
 ```
-location = /parking/  { return 301 /locations/#visit; }
-location = /parking   { return 301 /locations/#visit; }
+location = /parking/  { return 301 "/locations/#visit"; }
+location = /parking   { return 301 "/locations/#visit"; }
 location = /about/    { return 301 /provider/monica-hannon-md-facog/; }
 location = /about     { return 301 /provider/monica-hannon-md-facog/; }
 location = /services/perimenopausemenopause-management/ { return 301 /services/perimenopause-menopause-management/; }
@@ -45,3 +45,6 @@ location ^~ /images/ { add_header Cache-Control "public, max-age=31536000, immut
 Caution for /images/: files keep their names when a photo is replaced, so a 1 year cache would show old pictures. Use `max-age=2592000` (30 days) unless photos get a new name each time. The HTML keeps a short cache (do not add one for `/`).
 Test: `sudo nginx -t && sudo systemctl reload nginx`, then `curl -sI https://www.lakesideobgyn.org/images/hero/bridge-800.webp`.
 Also keep the lakeside-sec.conf snippet in mind: it may already set some headers.
+
+## Done on the server 2026-11-18
+File `/etc/nginx/sites-enabled/lakeside` (backup `~/lakeside.nginx.bak`). Added after the "old WordPress slugs" block: /about, /parking, /contactus/, the renamed menopause slug and /services/laparoscopic-surgery (all 301). `/contents/parking-information` now goes straight to `/locations/#visit`. Already there: `/_astro/` one-year cache. Still to do: HSTS, `server_tokens off`, cache for `/images/` (use 30 days, not 1 year).
