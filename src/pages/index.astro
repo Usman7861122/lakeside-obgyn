@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/islands/Hero';
+import Hero from '../components/home/Hero.astro';
 import About from '../components/home/About.astro';
 import Services from '../components/home/Services.astro';
 import WhyUs from '../components/home/WhyUs.astro';
@@ -22,7 +22,7 @@ import { site } from '../data/site';
 >
   <link slot="head" rel="preload" as="image" type="image/webp" imagesrcset={[480, 800, 1200, 1600].map((w) => `${heroSlides[0].image.src?.replace(/\.jpg$/, '')}-${w}.webp ${w}w`).join(', ')} imagesizes="100vw" fetchpriority="high" />
   <h1 class="sr-only">{site.name}: obstetrician and gynecologist in the Inner Richmond, San Francisco</h1>
-  <Hero client:load slides={heroSlides} />
+  <Hero slides={heroSlides} />
   <About />
   <Services />
   <WhyUs />

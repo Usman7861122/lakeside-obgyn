@@ -1,0 +1,121 @@
+---
+// Home hero. Plain HTML + CSS, so the text and the first photo show without JavaScript.
+// The small script at the bottom only changes slides (timer, dots, arrows, pause on hover or focus).
+import { site } from '../../data/site';
+
+type Slide = {
+  eyebrow: string; lead: string; word: string; text: string;
+  cta: { label: string; href: string };
+  image: { src: string | null; alt: string };
+};
+interface Props { slides: Slide[] }
+const { slides } = Astro.props;
+// WebP sizes made by scripts/make-webp.py (hero photos are 2400 px wide, so all four sizes exist)
+const heroSet = (src: string) => [480, 800, 1200, 1600].map((w) => `${src.replace(/\.jpg$/, '')}-${w}.webp ${w}w`).join(', ');
+---
+<section data-hero aria-roledescription="carousel" aria-label="Welcome" class="hero relative isolate min-h-[100svh] overflow-hidden bg-plum-900 text-white">
+  {slides.map((s, n) => (
+    <div
+      data-slide
+      role="group"
+      aria-roledescription="slide"
+      aria-label={`${n + 1} of ${slides.length}`}
+      aria-hidden={n === 0 ? 'false' : 'true'}
+      inert={n !== 0}
+      class:list={['hero-slide absolute inset-0', n === 0 && 'is-active']}
+    >
+      <div class="hero-bg absolute inset-0">
+        {s.image.src && (
+          <picture>
+            <source type="image/webp" srcset={heroSet(s.image.src)} sizes="100vw" />
+            <img src={s.image.src} alt={s.image.alt} width="2400" height="1600" class="h-full w-full object-cover" fetchpriority={n === 0 ? 'high' : 'low'} loading={n === 0 ? 'eager' : 'lazy'} decoding={n === 0 ? 'sync' : 'async'} />
+          </picture>
+        )}
+      </div>
+      {/* readable text zone + gentle plum tint */}
+      <div class="absolute inset-0 bg-[linear-gradient(95deg,rgb(36_10_36/.88)_0%,rgb(36_10_36/.62)_42%,rgb(36_10_36/.12)_100%)]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink/70 to-transparent"></div>
+
+      <div class="wrap relative flex h-full min-h-[100svh] flex-col justify-center pb-32 pt-44 md:pt-48">
+        <div class="hero-copy max-w-[40rem] on-dark">
+          <p class="eyebrow">{s.eyebrow}</p>
+          <h2 class="mt-6 text-[clamp(2.5rem,6.2vw,5.2rem)] leading-[1.02] text-white">
+            {s.lead} <span class="shift">{s.word}</span>
+          </h2>
+          <p class="mt-6 max-w-[34rem] text-lg leading-relaxed text-white/85">{s.text}</p>
+          <div class="mt-10 flex flex-wrap items-center gap-4">
+            <a href={site.phoneHref} class="btn-appt">Call {site.phone}</a>
+            <a href={s.cta.href} class="btn">{s.cta.label}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <!-- Controls: hidden until the script runs, because they do nothing without it -->
+  <div class="absolute inset-x-0 bottom-0 z-10" data-controls hidden>
+    <div class="wrap flex items-end justify-between gap-6 pb-8">
+      <div class="flex flex-1 items-center gap-3 sm:max-w-md" role="tablist" aria-label="Choose slide">
+        {slides.map((_, n) => (
+          <button type="button" role="tab" data-dot aria-selected={n === 0 ? 'true' : 'false'} aria-label={`Show slide ${n + 1}`} class:list={['hero-dot group relative h-6 flex-1', n === 0 && 'is-active']}>
+            <span class="absolute inset-x-0 top-1/2 h-px bg-white/30"></span>
+            <span class="hero-bar absolute left-0 top-1/2 h-[2px] -translate-y-1/2 bg-white"></span>
+          </button>
+        ))}
+      </div>
+      <div class="hidden items-center gap-2 sm:flex">
+        <button type="button" data-prev aria-label="Previous slide" class="grid h-11 w-11 place-items-center rounded-[3px] border border-white/40 text-white transition hover:bg-white hover:text-plum-900">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 3 5 8l5 5" /></svg>
+        </button>
+        <button type="button" data-next aria-label="Next slide" class="grid h-11 w-11 place-items-center rounded-[3px] border border-white/40 text-white transition hover:bg-white hover:text-plum-900">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 3 5 5-5 5" /></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-hero]');
+  if (root) {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-slide]'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('[data-dot]'));
+    const controls = root.querySelector<HTMLElement>('[data-controls]');
+    const still = matchMedia('(prefers-reduced-motion: reduce)');
+    let i = 0;
+
+    const go = (to: number) => {
+      i = (to + slides.length) % slides.length;
+      slides.forEach((s, n) => {
+        const on = n === i;
+        s.classList.toggle('is-active', on);
+        s.setAttribute('aria-hidden', on ? 'false' : 'true');
+        s.toggleAttribute('inert', !on);
+      });
+      dots.forEach((d, n) => {
+        d.classList.toggle('is-active', n === i);
+        d.classList.toggle('is-done', n < i);
+        d.setAttribute('aria-selected', n === i ? 'true' : 'false');
+      });
+    };
+
+    // The progress bar of the active dot runs for 8 seconds. When it ends, go to the next slide.
+    // Pausing the bar (hover or focus) pauses the timer. With reduced motion there is no bar and no autoplay.
+    root.addEventListener('animationend', (e) => {
+      if ((e.target as HTMLElement).classList.contains('hero-bar') && !still.matches) go(i + 1);
+    });
+    const pause = (on: boolean) => root.toggleAttribute('data-paused', on);
+    root.addEventListener('mouseenter', () => pause(true));
+    root.addEventListener('mouseleave', () => pause(false));
+    root.addEventListener('focusin', () => pause(true));
+    root.addEventListener('focusout', () => pause(false));
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') go(i + 1);
+      if (e.key === 'ArrowLeft') go(i - 1);
+    });
+    dots.forEach((d, n) => d.addEventListener('click', () => go(n)));
+    root.querySelector('[data-prev]')?.addEventListener('click', () => go(i - 1));
+    root.querySelector('[data-next]')?.addEventListener('click', () => go(i + 1));
+    if (controls) controls.hidden = false;
+  }
+</script>

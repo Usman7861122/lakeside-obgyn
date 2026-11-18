@@ -628,3 +628,23 @@ a.pbadge:hover { background: rgb(255 255 255 / .13); border-color: rgb(255 194 2
 .more-chip { display: inline-flex; align-items: center; min-height: 3rem; padding: .5rem 1.4rem; border: 1px solid rgb(255 255 255 / .35); border-radius: 999px; color: #fff; font-family: var(--font-display); font-size: 1.2rem; text-decoration: none; transition: background-color .3s, color .3s, border-color .3s; }
 .more-chip:hover, .more-chip:focus-visible { background: #fff; color: var(--color-plum-800, #4a1748); border-color: #fff; }
 @media (min-width: 768px) { .more-chip { font-size: 1.4rem; padding: .6rem 1.7rem; } }
+
+/* Home hero: slides, entrance and progress bars (CSS only; the script just toggles classes) */
+.hero-slide { opacity: 0; pointer-events: none; transition: opacity 1400ms ease-in-out; }
+.hero-slide.is-active { opacity: 1; pointer-events: auto; }
+.hero-bg { transition: transform 1400ms linear; }
+.hero-slide.is-active .hero-bg { transform: scale(1.08); transition-duration: 12s; }
+/* Text is visible by default. The animation only adds a small rise when the slide becomes active. */
+.hero-slide.is-active .hero-copy { animation: hero-rise .9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+.hero-bar { width: 0; }
+.hero-dot.is-done .hero-bar { width: 100%; }
+.hero-dot.is-active .hero-bar { animation: fill 8000ms linear forwards; }
+[data-hero][data-paused] .hero-dot.is-active .hero-bar { animation-play-state: paused; }
+@keyframes fill { from { width: 0; } to { width: 100%; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide, .hero-bg { transition-duration: .01ms; }
+  .hero-slide.is-active .hero-bg { transform: none; }
+  .hero-slide.is-active .hero-copy { animation: none; }
+  .hero-dot.is-active .hero-bar { animation: none; width: 100%; }
+}
