@@ -2,6 +2,7 @@
 import Backdrop from '../ui/Backdrop.astro';
 import Img from '../ui/Img.astro';
 import { services } from '../../data/home';
+import { servicesMenu } from '../../data/nav';
 const more = [
   { label: 'Birth control', href: '/services/birth-control/' },
   { label: 'Abnormal Pap smear', href: '/services/abnormal-pap-smear/' },
@@ -12,7 +13,13 @@ const more = [
   { label: 'Ultrasound', href: '/services/ultrasound/' },
   { label: 'Weight loss and management', href: '/services/weight-loss-management/' },
   { label: 'Sexual health and sexual pain', href: '/services/sexual-health/' },
+  { label: 'The Sonata® procedure', href: '/services/sonata/' },
 ];
+// Every page in the Services menu must show up here, as a card above or a chip below.
+// If a new service page is added to the menu and not placed here, the build stops with this message.
+const shown = new Set([...services.map((s) => s.href), ...more.map((m) => m.href)]);
+const left = servicesMenu.filter((m) => !shown.has(m.href)).map((m) => m.label);
+if (left.length) throw new Error(`Home "Our services" is missing: ${left.join(', ')}. Add a card (src/data/home.ts) or a chip (src/components/home/Services.astro).`);
 ---
 <section id="services" class="section on-dark" aria-labelledby="services-h">
   <Backdrop variant="plum" mark="left" rings={2} />
