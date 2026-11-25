@@ -15,7 +15,6 @@ export const imageAlt: Record<string, string> = {
   '/images/provider/education-2.jpg': 'A purple stethoscope resting on an open book with other books behind it',
   '/images/provider/education-3.jpg': 'A pink stethoscope and a notebook on a light wooden table',
   '/images/provider/education.jpg': 'Medical books and a stethoscope on a desk',
-  '/images/provider/team-lead.jpg': 'A smiling doctor with curly hair and glasses, in a white coat with a stethoscope, arms crossed',
   '/images/services/abnormal-pap-smear-1.jpg': 'A gloved hand preparing a cell sample for examination under a microscope',
   '/images/services/abnormal-pap-smear-2.jpg': 'A gynecologist holding an anatomical uterus model and a speculum',
   '/images/services/abnormal-pap-smear-3.jpg': 'A smiling gynecologist in a white coat in an exam room',

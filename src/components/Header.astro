@@ -55,18 +55,8 @@ const mobileItems = mainNav.map((i) => ({
     <!-- Mega panels (desktop). Attached directly under the bar so the pointer never leaves them. -->
     <div class="mega-wrap hidden lg:block" data-mega-wrap>
       <div id="mega-providers" class="mega" data-panel="providers" role="region" aria-label="Our Providers">
-        <div class="wrap mega-inner grid grid-cols-[16rem_1fr] items-stretch gap-10">
-          <a href="/providers/" class="mfeature group/f">
-            <Pic src="/images/provider/team-lead.jpg" alt="" sizes="260px" class="absolute inset-0 h-full w-full object-cover object-[50%_10%] transition-transform duration-[1200ms] group-hover/f:scale-[1.05]" />
-            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 via-plum-800/45 to-plum-700/25 mix-blend-multiply" aria-hidden="true"></span>
-            <span class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" aria-hidden="true"></span>
-            <span class="relative mt-auto block p-6 text-white">
-              <span class="block text-[.68rem] font-semibold uppercase tracking-[.24em] text-rose-200">Our providers</span>
-              <span class="mt-2 block font-display text-2xl leading-tight">Meet the team</span>
-              <span class="mega-more mt-4 !text-white">View all providers <span aria-hidden="true">→</span></span>
-            </span>
-          </a>
-          <ul class="grid grid-cols-3 gap-x-8">
+        <div class="wrap mega-inner grid grid-cols-1 items-stretch gap-10">
+          <ul class="grid max-w-[54rem] grid-cols-3 gap-x-8">
             {providersMenu.map((d) => (
               <li>
                 <a href={d.href} class="mdoc group/p">
