@@ -16,7 +16,7 @@ export type Provider = {
   careHeading?: { eyebrow: string; heading: string };
   approach?: { eyebrow: string; heading: string; photo: { src: string; alt: string }; items: { label: string; text: string; icon: string }[] };
   photoSmall?: boolean; // portrait file is small; show it in a smaller frame
-  photos?: { education: { src: string; alt: string }; credentials?: { src: string; alt: string }; honors: { src: string; alt: string } };
+  photos?: { education: { src: string; alt: string }; credentials?: { src: string; alt: string }; honors: { src: string; alt: string; wide?: boolean } };
   eduHeading?: string;
   honorsEyebrow?: string;
   honorsHeading?: string;
@@ -41,7 +41,7 @@ export const providers: Provider[] = [
     boardLine: 'Board certified by the American Board of Obstetrics and Gynecology',
     photos: {
       education: { src: '/images/provider/education.jpg', alt: 'Medical books and a stethoscope on a desk' },
-      credentials: { src: '/images/provider/credentials.jpg', alt: 'A doctor in a white coat with a framed certificate on the wall behind her' },
+      credentials: { src: '/images/provider/doctors-crossed.jpg', alt: 'Dr. Ziyad Hannon and Dr. Monica Hannon in white coats, standing back to back with arms crossed and smiling at the Lakeside front desk' },
       honors: { src: '/images/provider/community.jpg', alt: 'Two mothers holding their newborn baby at home' },
     },
     badges: [
@@ -98,7 +98,7 @@ export const providers: Provider[] = [
     imgAlt: 'Dr. Ziyad Hannon, obstetrician and gynecologist in San Francisco',
     photos: {
       education: { src: '/images/provider/education-2.jpg', alt: 'A purple stethoscope resting on an open book with other books behind it' },
-      honors: { src: '/images/services/surgery.jpg', alt: 'A surgeon in blue scrubs performing a minimally invasive procedure' },
+      honors: { src: '/images/provider/team.jpg', alt: 'Dr. Ziyad Hannon and Dr. Monica Hannon with four members of the Lakeside team, standing together in the office', wide: true },
     },
     badges: [],
     eduHeading: 'Where he trained',

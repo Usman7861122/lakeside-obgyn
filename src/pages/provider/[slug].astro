@@ -218,10 +218,10 @@ const ld = {
   <section id="honors" class="section" aria-labelledby="honors-h">
     <Backdrop variant="blush" mark="none" />
     <div class="wrap grid items-center gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20">
-      <figure class="pframe" data-reveal>
+      <figure class={`pframe${p.photos!.honors.wide ? ' pframe-wide' : ''}`} data-reveal>
         <span class="pframe-line" aria-hidden="true"></span>
         <div class="pframe-img">
-          <img src={p.photos!.honors.src} alt={p.photos!.honors.alt} width="1400" height="1400" loading="lazy" class="kb h-full w-full object-cover" />
+          <img src={p.photos!.honors.src} alt={p.photos!.honors.alt} width={p.photos!.honors.wide ? 1600 : 1400} height={p.photos!.honors.wide ? 1067 : 1400} loading="lazy" class="kb h-full w-full object-cover" />
           <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-plum-800/40 via-transparent to-magenta-500/10 mix-blend-multiply"></div>
         </div>
       </figure>

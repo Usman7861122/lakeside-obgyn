@@ -5,7 +5,7 @@ export const images = {
     { src: '/images/hero/family.jpg' as string | null, alt: 'A mother holding her baby by a sunlit window' },
     { src: '/images/hero/consult.jpg' as string | null, alt: 'A doctor and a patient smiling as they look over a clipboard together' },
   ],
-  about: { src: '/images/about/consult.jpg' as string | null, alt: 'A doctor and a patient looking at a tablet together in a bright exam room' },
+  about: { src: '/images/about/team-sign.jpg' as string | null, alt: 'Dr. Ziyad Hannon and Dr. Monica Hannon standing together in the Lakeside waiting room, in front of the practice sign' },
   services: {
     wellwoman: '/images/services/wellwoman.jpg' as string | null,
     fertility: '/images/services/fertility.jpg' as string | null,

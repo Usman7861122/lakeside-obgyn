@@ -1,7 +1,7 @@
 // Descriptive alt text for every photo. Pic.astro and the card images use this when a page does not pass its own alt.
 // Wording describes what the picture shows (developer text, 2026-11-18). Client may change it.
 export const imageAlt: Record<string, string> = {
-  '/images/about/consult.jpg': 'A doctor and a patient looking at a tablet together in a bright exam room',
+  '/images/about/team-sign.jpg': 'Dr. Ziyad Hannon and Dr. Monica Hannon standing together in the Lakeside waiting room, in front of the practice sign',
   '/images/badges/isswsh-badge.png': 'ISSWSH, International Society for the Study of Women’s Sexual Health',
   '/images/badges/menopause-society-seal.png': 'Menopause Society Certified Practitioner badge',
   '/images/blog/exam.jpg': 'A patient sitting on an exam table while a doctor takes notes during a visit',
@@ -11,7 +11,8 @@ export const imageAlt: Record<string, string> = {
   '/images/hero/consult.jpg': 'A doctor and a patient smiling as they look over a clipboard together',
   '/images/hero/family.jpg': 'A mother holding her baby by a sunlit window',
   '/images/provider/community.jpg': 'Two mothers holding their newborn baby at home',
-  '/images/provider/credentials.jpg': 'A doctor in a white coat with a framed certificate on the wall behind her',
+  '/images/provider/doctors-crossed.jpg': 'Dr. Ziyad Hannon and Dr. Monica Hannon in white coats, standing back to back with arms crossed and smiling at the Lakeside front desk',
+  '/images/provider/team.jpg': 'Dr. Ziyad Hannon and Dr. Monica Hannon with four members of the Lakeside team, standing together in the office',
   '/images/provider/education-2.jpg': 'A purple stethoscope resting on an open book with other books behind it',
   '/images/provider/education-3.jpg': 'A pink stethoscope and a notebook on a light wooden table',
   '/images/provider/education.jpg': 'Medical books and a stethoscope on a desk',
@@ -55,7 +56,7 @@ export const imageAlt: Record<string, string> = {
   '/images/services/polycystic-ovary-syndrome-1.jpg': 'A uterus model beside letter tiles spelling PCOS on a doctor’s desk',
   '/images/services/polycystic-ovary-syndrome-2.jpg': 'A pair of hands holding a paper model of a uterus and ovaries',
   '/images/services/polycystic-ovary-syndrome-3.jpg': 'A doctor writing notes on a clipboard during a consultation',
-  '/images/services/surgery.jpg': 'A surgeon in blue scrubs performing a minimally invasive procedure',
+  '/images/services/surgery.jpg': 'Dr. Monica Hannon operating in a surgical cap, mask and glasses',
   '/images/services/ultrasound-1.jpg': 'A clinician holding an ultrasound probe on a patient\'s abdomen during a scan',
   '/images/services/ultrasound-2.jpg': 'A patient smiling while a clinician performs an ultrasound scan',
   '/images/services/ultrasound-3.jpg': 'A smiling sonographer performing an abdominal ultrasound on a patient',
