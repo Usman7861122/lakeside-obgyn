@@ -1,0 +1,111 @@
+---
+import { site } from '../data/site';
+---
+<div data-contact-form data-endpoint={site.formEndpoint}>
+  <form class="flex flex-col" method="post" action="/contact/" novalidate>
+    <div class="grid gap-5 sm:grid-cols-2">
+      <label class="grid gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">Full name
+        <input name="name" required minlength="2" maxlength="100" autocomplete="name" class="field h-12" />
+      </label>
+      <label class="grid gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">Phone
+        <input name="phone" type="tel" required maxlength="30" autocomplete="tel" class="field h-12" />
+      </label>
+    </div>
+    <label class="mt-5 grid gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">Email
+      <input name="email" type="email" required maxlength="150" autocomplete="email" class="field h-12" />
+    </label>
+    <label class="mt-5 flex flex-1 flex-col gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">How can we help?
+      <textarea name="message" rows="5" maxlength="2000" class="field min-h-32 flex-1 py-3"></textarea>
+    </label>
+
+    <!-- Bot trap: people never see or fill this. If it has a value, the message is treated as spam and not sent. -->
+    <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+      <label>Website
+        <input name="website" type="text" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+
+    <p class="mt-4 text-xs leading-relaxed text-white/65">Please do not include medical details in this form. For an emergency, call 911.</p>
+    <p class="form-error mt-4 hidden rounded-[3px] bg-white/10 px-4 py-3 text-sm text-white" role="alert" data-error></p>
+    <div class="mt-6"><button type="submit" class="btn-appt" data-submit>Send request</button></div>
+    <noscript><p class="mt-4 text-sm text-white/80">This form needs JavaScript. Please call us at <a href={site.phoneHref} class="text-white underline">{site.phone}</a>.</p></noscript>
+  </form>
+
+  <dialog class="thanks" aria-labelledby="thanks-h" data-thanks>
+    <div class="thanks-box">
+      <p class="eyebrow">Message sent</p>
+      <h2 id="thanks-h" class="font-display text-3xl text-plum-900">Thank you</h2>
+      <p class="mt-4 text-plum-900/85">We received your request. Our team will call or email you soon.</p>
+      <p class="mt-3 text-sm text-plum-900/70">For an emergency, call 911.</p>
+      <button type="button" class="btn-appt mt-6" data-close>Close</button>
+    </div>
+  </dialog>
+</div>
+
+<style is:global>
+  [data-contact-form] { position: relative; }
+  dialog.thanks { border: 0; padding: 0; background: transparent; max-width: min(28rem, calc(100vw - 2rem)); margin: auto; }
+  dialog.thanks::backdrop { background: rgb(40 12 40 / .65); backdrop-filter: blur(3px); }
+  dialog.thanks .thanks-box { background: #fff; border-radius: 6px; padding: 2rem 2rem 2.25rem; box-shadow: 0 30px 80px -20px rgb(0 0 0 / .5); }
+  dialog.thanks .eyebrow { color: var(--color-magenta-500); }
+  dialog.thanks[open] { animation: thanks-in .25s ease-out; }
+  @keyframes thanks-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { dialog.thanks[open] { animation: none; } }
+</style>
+
+<script>
+  const loadedAt = Date.now();
+  const FALLBACK = 'Sorry, we could not send your message. Please call us at 415-741-1000.';
+
+  document.querySelectorAll<HTMLElement>('[data-contact-form]').forEach((root) => {
+    const form = root.querySelector('form')!;
+    const btn = root.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const err = root.querySelector<HTMLElement>('[data-error]')!;
+    const dlg = root.querySelector<HTMLDialogElement>('[data-thanks]')!;
+    const endpoint = root.dataset.endpoint || '';
+    let opener: HTMLElement | null = null;
+
+    const showError = (msg: string) => { err.textContent = msg; err.classList.remove('hidden'); };
+    const clearError = () => { err.textContent = ''; err.classList.add('hidden'); };
+
+    root.querySelector('[data-close]')!.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => opener?.focus());
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const fd = new FormData(form);
+      const body = {
+        name: String(fd.get('name') || ''),
+        phone: String(fd.get('phone') || ''),
+        email: String(fd.get('email') || ''),
+        message: String(fd.get('message') || ''),
+        website: String(fd.get('website') || ''),
+        elapsed: Date.now() - loadedAt,
+      };
+
+      const done = () => { form.reset(); opener = btn; dlg.showModal(); };
+
+      // Bot trap filled: act as if it worked, send nothing.
+      if (body.website.trim()) { done(); return; }
+
+      btn.disabled = true;
+      const label = btn.textContent;
+      btn.textContent = 'Sending…';
+      try {
+        const res = await fetch(endpoint, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+        const out = await res.json().catch(() => ({}));
+        if (res.ok && out.ok) done();
+        else showError(res.status === 400 && out.error ? out.error : FALLBACK);
+      } catch {
+        showError(FALLBACK);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+    });
+  });
+</script>

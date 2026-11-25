@@ -14,7 +14,7 @@
 - [ ] Confirm from the old website, they are used on the homepage: "father and daughter team of board-certified physicians", "24/7 care", FemVue, on-site ultrasound, insurance list, rating 4.95 from 456 reviews.
 - [ ] Whose is the Menopause Society badge? (file name says Monica; old site lists MSCP for Jeanette). Homepage shows it unnamed.
 - [ ] Blog: old site had no posts. Homepage blog cards are placeholders ("Coming soon").
-- [ ] Contact form: not connected yet. Where should messages go (email, EHR)? Form says not to send medical details.
+- [x] Contact form connected 2026-11-25 (see the Contact form entry at the end of this file).
 - [ ] Yelp URL for footer; Open Payments (AB 1278) notice: REMOVED from the footer on 2026-11-11 at the developer's request (it is not in any client document). The live site footer keeps a short link "Learn more about the Open Payments Database pursuant to Assembly Bill (AB) 1278". Ask the client if the notice is still required and where it should go.
 - [ ] Parking doc typo: "red start" corrected to "red star" on the page.
 - [ ] "First and only surgeon in SF doing Sonata": NOT used anywhere until the client confirms.
@@ -93,7 +93,7 @@ Text was copied word for word from the old site. Please confirm these points wit
 - [ ] Hours conflict: the old Accessibility page lists Monday to Saturday 8:30 am to 5 pm, while the site header and footer say Monday to Friday (taken from the old home page). Ask the client which is right.
 
 ## Contact page (2026-11-12)
-- [x] Contact form REMOVED 2026-11-18 (developer decision). The /contact page now shows Call, Visit (address, directions, parking) and Office hours. No form, so no email endpoint is needed.
+- [x] Contact form REMOVED 2026-11-18 (developer decision). The /contact page now shows Call, Visit (address, directions, parking) and Office hours. No form, so no email endpoint is needed. REPLACED 2026-11-25: the form is back on the home page and on /contact (developer request, because the old button posted to '#' and returned 405).
 - [x] The old Contact Us address was /contactus. It now redirects to /contact.
 - [ ] Weekly hours list (2026-11-12): built from the old home page (Monday to Friday 8:30 am to 5 pm, Saturday and Sunday shown as Closed). Hours are in no client document, and the old Accessibility page says Monday to Saturday. To change the hours, edit `weekHours` in src/data/site.ts (and the one-line `hours` text). The list marks today and "Open now" or "Closed now" in San Francisco time.
 
@@ -141,3 +141,10 @@ Text was copied word for word from the old site. Please confirm these points wit
 - [ ] Sitemap `lastmod` is the build date for every URL (not a content date).
 - [x] Slug typo fixed (owner OK, 2026-11-18): `/services/perimenopausemenopause-management/` is now `/services/perimenopause-menopause-management/`. Astro redirect added; nginx needs a real 301 (see deploy/README.md). Image file names keep the old spelling (not visible to visitors). Old address came from the old site, so ask the client if anything outside the site links to it (Google Business Profile, directories).
 - [x] Alt text added to every picture that had an empty alt (owner: "add to all", 2026-11-18). Text is in `src/lib/alt.ts` (describes what the picture shows; developer wording, client may change). The back face of the home service cards stays decorative so screen readers do not hear each picture twice.
+
+- [ ] (2026-11-25) Contact form (home page "Get in touch" and /contact). It posts to an AWS Lambda function URL (`lakeside-contact-form`, us-east-1, account Iron Health Solutions) that emails the request with SES from forms@ironhealthsolutions.com. URL is `formEndpoint` in src/data/site.ts. Spam checks: hidden "website" field (filled = spam, nothing is sent, visitor still sees thank you), form must be open at least 3 seconds, and the Lambda only accepts the lakesideobgyn.org and localhost:4321 origins.
+  - TESTING ONLY: messages go to admin@lakesideobgyn.org and alphadeveloper91@gmail.com. BEFORE LAUNCH remove alphadeveloper91@gmail.com: `aws lambda update-function-configuration --function-name lakeside-contact-form --environment ...` (env TO_EMAILS). Ask the client who should receive the messages for real.
+  - Ask the client to approve the thank-you text ("We received your request. Our team will call or email you soon.") and the "Send request" button text. Both are developer text, not from a client document.
+  - Ask the client (or their lawyer) about HIPAA: the form says not to send medical details, but patients may do it anyway, and email is not a secure place for them. Confirm they accept this.
+  - The sender address is on ironhealthsolutions.com. If the client wants it on their own domain, lakesideobgyn.org needs to be verified in SES (DNS records).
+  - The real domain must match the allowed origins (https://www.lakesideobgyn.org and https://lakesideobgyn.org). Add any other address in the Lambda env ALLOWED_ORIGINS and the Function URL CORS.

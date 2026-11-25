@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Backdrop from '../components/ui/Backdrop.astro';
 import { site } from '../data/site';
 import HoursList from '../components/ui/HoursList.astro';
+import ContactForm from '../components/ContactForm.astro';
 
 const a = site.address;
 const description = 'Contact Lakeside Obstetrics, Gynecology & Fertility in the Inner Richmond, San Francisco. Call 415-741-1000 or visit 402 8th Avenue, Suite 201.';
@@ -54,6 +55,21 @@ const description = 'Contact Lakeside Obstetrics, Gynecology & Fertility in the 
           <p class="eyebrow">Office hours</p>
           <div class="mt-4"><HoursList /></div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Message form -->
+  <section id="message" class="section on-dark" aria-labelledby="ct-form-h">
+    <Backdrop variant="plum" mark="none" />
+    <div class="wrap">
+      <div class="grid gap-10 lg:grid-cols-[5fr_6fr]" data-reveal>
+        <div>
+          <p class="eyebrow">Send a message</p>
+          <h2 id="ct-form-h" class="h-section text-white">Request an appointment</h2>
+          <p class="lede mt-5">Call us, or send a message and our team will reply. This form is for scheduling and general questions only.</p>
+        </div>
+        <div class="rounded-[6px] bg-white/[.07] p-8 ring-1 ring-white/15 md:p-12"><ContactForm /></div>
       </div>
     </div>
   </section>

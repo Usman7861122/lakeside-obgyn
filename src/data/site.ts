@@ -11,6 +11,9 @@ export const site = {
   phone: '415-741-1000',
   phoneHref: 'tel:+14157411000',
   email: null as string | null,
+  // Contact form backend: AWS Lambda function URL (lakeside-contact-form, us-east-1). It emails the request through SES.
+  // TESTING: recipients are admin@lakesideobgyn.org and alphadeveloper91@gmail.com. Remove the second one before launch.
+  formEndpoint: 'https://6wnwau665yqy3edoi5ishlwq2q0owdcz.lambda-url.us-east-1.on.aws/',
   address: { line1: '402 8th Avenue, Suite 201', city: 'San Francisco', state: 'CA', zip: '94118' },
   hours: 'Monday to Friday, 8:30 am to 5 pm',
   // Weekly hours for the hours list. Same source as `hours` (old home page). TODO(client): the old Accessibility page

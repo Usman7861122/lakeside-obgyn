@@ -1,5 +1,6 @@
 ---
 import Backdrop from '../ui/Backdrop.astro';
+import ContactForm from '../ContactForm.astro';
 import { site } from '../../data/site';
 import HoursList from '../ui/HoursList.astro';
 const q = encodeURIComponent(`${site.address.line1}, ${site.address.city}, ${site.address.state} ${site.address.zip}`);
@@ -30,24 +31,7 @@ const dirHref = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
             </div>
           </dl>
         </div>
-        <form class="flex flex-col bg-white/[.07] p-8 md:p-12 lg:border-l lg:border-white/15" action="#" method="post">
-          <div class="grid gap-5 sm:grid-cols-2">
-            <label class="grid gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">Full name
-              <input name="name" required autocomplete="name" class="field h-12" />
-            </label>
-            <label class="grid gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">Phone
-              <input name="phone" type="tel" required autocomplete="tel" class="field h-12" />
-            </label>
-          </div>
-          <label class="mt-5 grid gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">Email
-            <input name="email" type="email" required autocomplete="email" class="field h-12" />
-          </label>
-          <label class="mt-5 flex flex-1 flex-col gap-2 text-[.8rem] font-semibold uppercase tracking-[.16em] text-rose-200">How can we help?
-            <textarea name="message" rows="5" class="field min-h-32 flex-1 py-3"></textarea>
-          </label>
-          <p class="mt-4 text-xs leading-relaxed text-white/65">Please do not include medical details in this form. For an emergency, call 911.</p>
-          <div class="mt-6"><button type="submit" class="btn-appt">Send request</button></div>
-        </form>
+        <div class="flex flex-col bg-white/[.07] p-8 md:p-12 lg:border-l lg:border-white/15"><ContactForm /></div>
       </div>
       <div class="relative border-t border-white/15">
         <iframe title="Map of Lakeside Obstetrics, Gynecology & Fertility, 402 8th Avenue, San Francisco" src={mapSrc} loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="block h-72 w-full md:h-80" style="filter:grayscale(.55) contrast(1.05) brightness(.95)"></iframe>
