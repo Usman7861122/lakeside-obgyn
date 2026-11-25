@@ -32,7 +32,6 @@ export const site = {
   // TODO(owner): exact map coordinates of the office (latitude, longitude). Used in the practice schema (geo). Not invented here.
   geo: null as { lat: number; lng: number } | null,
   social: {
-    facebook: 'https://www.facebook.com/LakesideObstetricsGynecology',
     yelp: null as string | null, // old site links Yelp; exact URL not captured yet
   },
   rating: { score: '4.95', count: '456', note: 'From old website footer — refresh before launch' },

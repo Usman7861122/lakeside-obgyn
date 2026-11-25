@@ -36,7 +36,7 @@ const ld = {
   url: new URL('/', Astro.site).href,
   logo: new URL('/images/logo.png', Astro.site).href,
   image: new URL('/images/hero/consult.jpg', Astro.site).href,
-  sameAs: [site.social.facebook, ...(site.social.yelp ? [site.social.yelp] : [])],
+  ...(site.social.yelp ? { sameAs: [site.social.yelp] } : {}),
   areaServed: { '@type': 'City', name: site.address.city },
   ...(site.geo ? { geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng } } : {}),
   medicalSpecialty: ['Obstetric', 'Gynecologic'],

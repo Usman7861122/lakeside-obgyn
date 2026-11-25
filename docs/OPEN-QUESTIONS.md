@@ -135,7 +135,7 @@ Text was copied word for word from the old site. Please confirm these points wit
 
 ## Schema, sitemap and small fixes (2026-11-18)
 - [ ] Practice schema `geo` (latitude and longitude) is NOT added: no coordinates are in any client document and I could not look them up. Owner: send the exact map coordinates of 402 8th Avenue, then set `site.geo` in `src/data/site.ts` (the schema code is ready).
-- [ ] `sameAs` has only the Facebook page (`site.social.facebook`). Yelp is not added (URL not captured). Owner: send any other real profiles (Google Business Profile, Yelp, Healthgrades, doctor profiles). Doctor pages have no `sameAs` for the same reason.
+- [ ] Facebook removed from the site on 2026-11-25 (developer request): footer link, `site.social.facebook` and the `sameAs` entry are gone, so `sameAs` is now empty. Ask the client if they agree. Before that, `sameAs` had only the Facebook page. Yelp is not added (URL not captured). Owner: send any other real profiles (Google Business Profile, Yelp, Healthgrades, doctor profiles). Doctor pages have no `sameAs` for the same reason.
 - [ ] Doctor credentials in schema: none added (needs facts from the owner).
 - [ ] Blog posts have no dates in any client document. `datePublished` and `dateModified` are set to 2026-11-12 (the day the draft articles were added). Owner: confirm or give the real dates (`src/data/blog.ts`). Author in schema = the practice (no named author exists).
 - [ ] Sitemap `lastmod` is the build date for every URL (not a content date).
