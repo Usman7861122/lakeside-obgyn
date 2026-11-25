@@ -148,3 +148,5 @@ Text was copied word for word from the old site. Please confirm these points wit
   - Ask the client (or their lawyer) about HIPAA: the form says not to send medical details, but patients may do it anyway, and email is not a secure place for them. Confirm they accept this.
   - The sender address is on ironhealthsolutions.com. If the client wants it on their own domain, lakesideobgyn.org needs to be verified in SES (DNS records).
   - The real domain must match the allowed origins (https://www.lakesideobgyn.org and https://lakesideobgyn.org). Add any other address in the Lambda env ALLOWED_ORIGINS and the Function URL CORS.
+
+- [ ] (2026-11-25) The Menopause Society badge on the home page now links to https://menopause.org/ (opens in a new tab), like the ISSWSH badge. Developer request (Slack: "make this clickable and go to their website"). The link is not in a client document (only the ISSWSH link is). Ask the client to confirm it is the right page.
